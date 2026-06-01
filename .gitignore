@@ -1,0 +1,7 @@
+# Local dev / editor config (not needed for the hosted app)
+.claude/
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+*.swp

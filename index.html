@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -52,16 +52,6 @@
     .fade-in { animation: fadeIn 0.3s ease; }
     @keyframes fadeIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
   </style>
-
-<!--[if gte mso 9]><xml>
-<mso:CustomDocumentProperties>
-<mso:TaxCatchAll msdt:dt="string">2;#E+H</mso:TaxCatchAll>
-<mso:fdf466af8f6d4af68b463307f3ab2db5 msdt:dt="string">E+H|14339370-37b7-4a1c-9059-2d06321414dc</mso:fdf466af8f6d4af68b463307f3ab2db5>
-<mso:_dlc_DocId msdt:dt="string">4NQAYKV4VESA-1197275342-138106</mso:_dlc_DocId>
-<mso:_dlc_DocIdItemGuid msdt:dt="string">0209ad54-4fed-4a95-8393-fbd0770a0fbe</mso:_dlc_DocIdItemGuid>
-<mso:_dlc_DocIdUrl msdt:dt="string">https://endresshauser.sharepoint.com/teams/ou0000223/_layouts/15/DocIdRedir.aspx?ID=4NQAYKV4VESA-1197275342-138106, 4NQAYKV4VESA-1197275342-138106</mso:_dlc_DocIdUrl>
-</mso:CustomDocumentProperties>
-</xml><![endif]-->
 </head>
 <body>
   <div id="root"></div>
@@ -69,6 +59,7 @@
   <!-- Data layer -->
   <script src="data/personas.js"></script>
   <script src="data/scenarios.js"></script>
+  <script src="data/offline-replies.js"></script>
   <script src="lib/scoring.js"></script>
   <script src="lib/prompts.js"></script>
 
@@ -164,10 +155,91 @@
       return data.choices[0].message.content;
     }
 
+    // ─── Offline (no-API) helpers ─────────────────────────────────────────────
+
+    // Pick one of the pre-written customer replies for a choice (random for variety)
+    function getOfflineReply(scenarioId, stageId, choice) {
+      const byScenario = (typeof OFFLINE_REPLIES !== 'undefined') ? OFFLINE_REPLIES[scenarioId] : null;
+      const pool = byScenario && byScenario[stageId] && byScenario[stageId][choice.id];
+      if (pool && pool.length) return pool[Math.floor(Math.random() * pool.length)];
+      // Fallback if a reply is missing: a neutral line shaped by choice quality
+      if (choice.quality === 'excellent') return 'That is a good question. Let me think about that.';
+      if (choice.quality === 'good') return 'Alright. Go on.';
+      return 'Hm. I am not sure that helps me right now.';
+    }
+
+    // Reveal a fixed string progressively, to match the AI "typing" feel
+    function simulateStream(text, onChunk) {
+      return new Promise(resolve => {
+        const words = text.split(' ');
+        let i = 0;
+        const step = () => {
+          i += Math.max(1, Math.round(words.length / 22)); // ~22 ticks total
+          const shown = words.slice(0, i).join(' ');
+          onChunk(shown);
+          if (i >= words.length) { onChunk(text); resolve(text); }
+          else setTimeout(step, 45);
+        };
+        step();
+      });
+    }
+
+    // Build the 3-line coaching locally from the choices made (no API needed)
+    function buildOfflineCoaching(scenario, choicesMade) {
+      const labelFor = c => {
+        const t = (typeof getTypeMeta === 'function') ? getTypeMeta(c.type).label : c.type;
+        return t;
+      };
+      // Strongest move: best choice, prefer implication/need-payoff
+      const ranked = [...choicesMade].map((c, i) => ({ c, i }))
+        .sort((a, b) => {
+          const w = q => q === 'excellent' ? 2 : q === 'good' ? 1 : 0;
+          const bonus = t => t === 'needpayoff' ? 0.3 : t === 'implication' ? 0.2 : 0;
+          return (w(b.c.quality) + bonus(b.c.type)) - (w(a.c.quality) + bonus(a.c.type));
+        });
+      const best = ranked[0];
+      const worst = ranked[ranked.length - 1];
+
+      let strongest;
+      if (best && best.c.quality !== 'poor') {
+        strongest = `Your ${labelFor(best.c).toLowerCase()} in "${scenario.stages[best.i].title}" was your best move.`;
+      } else {
+        strongest = 'You stayed engaged, but no single move developed the customer\'s real problem.';
+      }
+
+      let miss;
+      const prematurePitch = choicesMade.find((c, i) => c.type === 'solution' && c.quality === 'poor');
+      if (prematurePitch) {
+        miss = 'You pitched a solution before the customer felt the problem.';
+      } else if (worst && worst.c.quality === 'poor') {
+        miss = `Your move in "${scenario.stages[worst.i].title}" lost ground — too vague or off-topic.`;
+      } else if (worst && worst.c.quality === 'good') {
+        miss = 'A few choices were safe but did not develop the problem deeply.';
+      } else {
+        miss = 'Very few weak moves — keep this discipline.';
+      }
+
+      const usedImplication = choicesMade.some(c => c.type === 'implication' && c.quality === 'excellent');
+      const usedNeedpayoff = choicesMade.some(c => c.type === 'needpayoff' && c.quality === 'excellent');
+      let tryNext;
+      if (prematurePitch) {
+        tryNext = 'Ask an implication question (the cost or effect of the problem) before you propose anything.';
+      } else if (!usedImplication) {
+        tryNext = 'Add an implication question — ask what the problem costs or affects — to make it feel urgent.';
+      } else if (!usedNeedpayoff) {
+        tryNext = 'Use a need-payoff question — ask what solving it would be worth — so the customer states the value.';
+      } else {
+        tryNext = 'Keep developing the problem with questions before moving to a next step.';
+      }
+
+      return `Strongest move: ${strongest}\nBiggest miss: ${miss}\nTry next: ${tryNext}`;
+    }
+
     // ─── localStorage helpers ────────────────────────────────────────────────
 
     const STORAGE_KEY = 'ehss_progress_v1';
     const API_KEY_KEY = 'ehss_apikey';
+    const MODE_KEY = 'ehss_mode'; // 'offline' | 'ai'  (default offline)
 
     function loadProgress() {
       try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); }
@@ -340,7 +412,7 @@
       );
     }
 
-    function HomeScreen({ onStart, onSetApiKey, apiKey, progress }) {
+    function HomeScreen({ onStart, onSetApiKey, apiKey, mode, onSetMode, progress }) {
       const [filter, setFilter] = useState('all');
 
       const filtered = SCENARIOS.filter(s => {
@@ -365,21 +437,34 @@
                   </div>
                 </div>
                 <div className="flex items-center gap-3 flex-shrink-0">
-                  {Object.keys(progress).length > 0 && (
-                    <div className="hidden sm:flex items-center gap-4 text-right">
-                      <div><div className="text-base font-bold">{Object.keys(progress).length}/{SCENARIOS.length}</div><div className="text-eh-200 text-xs">Done</div></div>
-                      <div><div className="text-base font-bold">{Math.round(Object.values(progress).reduce((s,p)=>s+(p.score/p.maxScore*100),0)/Object.keys(progress).length)||0}%</div><div className="text-eh-200 text-xs">Avg</div></div>
-                    </div>
+                  {/* Mode toggle: Offline (no key) vs Live AI (Groq key) */}
+                  <div className="flex items-center bg-white/15 rounded-lg p-0.5 text-xs">
+                    <button
+                      onClick={() => onSetMode('offline')}
+                      className={`px-2.5 py-1 rounded-md transition-colors ${mode === 'offline' ? 'bg-white text-eh-700 font-semibold' : 'text-white/80 hover:text-white'}`}
+                      title="Pre-written replies. No key or internet needed."
+                    >
+                      Offline
+                    </button>
+                    <button
+                      onClick={() => onSetMode('ai')}
+                      className={`px-2.5 py-1 rounded-md transition-colors ${mode === 'ai' ? 'bg-white text-eh-700 font-semibold' : 'text-white/80 hover:text-white'}`}
+                      title="Live AI replies via Groq. Needs an API key and internet."
+                    >
+                      Live AI
+                    </button>
+                  </div>
+                  {mode === 'ai' && (
+                    <button
+                      onClick={onSetApiKey}
+                      className={`hidden sm:flex items-center gap-2 text-sm px-3 py-1.5 rounded-lg border transition-colors flex-shrink-0 ${
+                        apiKey ? 'border-white/30 text-white/80 hover:bg-white/10' : 'border-white bg-white/10 text-white hover:bg-white/20 font-medium'
+                      }`}
+                    >
+                      <span>{apiKey ? '✓' : '🔑'}</span>
+                      {apiKey ? 'Key Set' : 'Add Key'}
+                    </button>
                   )}
-                  <button
-                    onClick={onSetApiKey}
-                    className={`flex items-center gap-2 text-sm px-3 py-1.5 rounded-lg border transition-colors flex-shrink-0 ${
-                      apiKey ? 'border-white/30 text-white/80 hover:bg-white/10' : 'border-white bg-white/10 text-white hover:bg-white/20 font-medium'
-                    }`}
-                  >
-                    <span>{apiKey ? '✓' : '🔑'}</span>
-                    {apiKey ? 'API Key Set' : 'Add API Key'}
-                  </button>
                 </div>
               </div>
             </div>
@@ -415,7 +500,7 @@
             {filtered.map(scenario => {
               const persona = PERSONAS[scenario.personaId];
               const result = progress[scenario.id];
-              const canStart = !!apiKey;
+              const canStart = mode === 'offline' || !!apiKey;
 
               return (
                 <div
@@ -477,13 +562,25 @@
             })}
           </div>
 
-          {!apiKey && (
+          {mode === 'offline' && (
+            <div className="max-w-6xl mx-auto px-6 pb-8">
+              <div className="bg-eh-50 border border-eh-200 rounded-xl p-4 flex items-center gap-3">
+                <span className="text-xl">📋</span>
+                <div>
+                  <div className="text-sm font-semibold text-eh-800">Offline mode — ready to play, no key or internet needed</div>
+                  <div className="text-sm text-eh-700">The customer uses realistic pre-written replies. Switch to <strong>Live AI</strong> (top right) for dynamic replies if you have a Groq key and network access.</div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {mode === 'ai' && !apiKey && (
             <div className="max-w-6xl mx-auto px-6 pb-8">
               <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 flex items-center gap-3">
                 <span className="text-xl">🔑</span>
                 <div>
-                  <div className="text-sm font-semibold text-amber-800">Add your Groq API key to begin</div>
-                  <div className="text-sm text-amber-700">Click <strong>Add API Key</strong> in the top right. Free key at console.groq.com</div>
+                  <div className="text-sm font-semibold text-amber-800">Live AI needs a Groq API key</div>
+                  <div className="text-sm text-amber-700">Add a key (free at console.groq.com), or switch to <strong>Offline</strong> mode to play without one.</div>
                 </div>
                 <button onClick={onSetApiKey} className="ml-auto flex-shrink-0 bg-amber-500 text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-amber-600 transition-colors">
                   Add Key
@@ -908,9 +1005,10 @@
 
     // ─── Simulation Screen ────────────────────────────────────────────────────
 
-    function SimulationScreen({ scenario, apiKey, onComplete, onBack }) {
+    function SimulationScreen({ scenario, apiKey, mode, onComplete, onBack }) {
       const persona = PERSONAS[scenario.personaId];
       const systemPrompt = buildSystemPrompt(persona, scenario);
+      const useAI = mode === 'ai' && !!apiKey;
 
       // Shuffle each stage's choices once on mount — prevents always-pick-A pattern
       const [shuffledStages] = useState(() =>
@@ -950,7 +1048,7 @@
         const updatedChoices = [...allChoices, choice];
         setAllChoices(updatedChoices);
 
-        // Build conversation history for Claude
+        // Build conversation history (used in AI mode only)
         const history = messages.map(m => ({
           role: m.role === 'customer' ? 'assistant' : 'user',
           content: m.text
@@ -959,11 +1057,7 @@
 
         setStreamingText('');
 
-        try {
-          const fullResponse = await callClaudeStream(history, systemPrompt, apiKey, (chunk) => {
-            setStreamingText(chunk);
-          });
-
+        const advance = (fullResponse) => {
           const newMessages = [
             ...messages,
             { role: 'user', text: choice.text },
@@ -977,14 +1071,29 @@
             setPhase('done');
             setTimeout(() => onComplete(updatedChoices, newScore, maxScore), 900);
           } else {
-            // Brief pause so the user can read the customer's reply, then advance.
-            // No scoring/feedback is shown during play — only at the end.
+            // Brief pause so the user can read the reply; no scoring shown during play.
             setTimeout(() => {
               setPhase('waiting');
               setStageIndex(stageIndex + 1);
               setChosenThisStage(null);
             }, 1600);
           }
+        };
+
+        try {
+          let fullResponse;
+          if (useAI) {
+            // Live AI; if the call fails (firewall/limit), fall back to a scripted reply.
+            try {
+              fullResponse = await callClaudeStream(history, systemPrompt, apiKey, (chunk) => setStreamingText(chunk));
+            } catch (apiErr) {
+              fullResponse = await simulateStream(getOfflineReply(scenario.id, currentStage.id, choice), (chunk) => setStreamingText(chunk));
+            }
+          } else {
+            // Offline mode: pre-written reply with a typing effect, no API call.
+            fullResponse = await simulateStream(getOfflineReply(scenario.id, currentStage.id, choice), (chunk) => setStreamingText(chunk));
+          }
+          advance(fullResponse);
         } catch (err) {
           setStreamingText('');
           setError(err.message);
@@ -1089,12 +1198,21 @@
       const [selectedScenario, setSelectedScenario] = useState(null);
       const [apiKey, setApiKey] = useState(localStorage.getItem(API_KEY_KEY) || '');
       const [showApiModal, setShowApiModal] = useState(false);
+      const [mode, setMode] = useState(localStorage.getItem(MODE_KEY) || 'offline'); // default offline
       const [progress, setProgress] = useState(loadProgress());
       const [results, setResults] = useState(null); // { choicesMade, score, maxScore, grade, coaching, loadingCoaching }
+
+      function handleSetMode(m) {
+        setMode(m);
+        localStorage.setItem(MODE_KEY, m);
+        // Switching to AI without a key prompts for one
+        if (m === 'ai' && !apiKey) setShowApiModal(true);
+      }
 
       function handleSaveApiKey(key) {
         setApiKey(key);
         setShowApiModal(false);
+        if (key) { setMode('ai'); localStorage.setItem(MODE_KEY, 'ai'); }
       }
 
       function handleStartScenario(scenario) {
@@ -1114,12 +1232,18 @@
         setResults({ choicesMade, score, maxScore, grade, coaching: '', loadingCoaching: true });
         setScreen('results');
 
+        // Offline mode (or no key): build coaching locally, no API call.
+        if (mode !== 'ai' || !apiKey) {
+          setResults(r => ({ ...r, coaching: buildOfflineCoaching(selectedScenario, choicesMade), loadingCoaching: false }));
+          return;
+        }
+        // AI mode: try Groq; fall back to local coaching if it fails (firewall/limit).
         try {
           const persona = PERSONAS[selectedScenario.personaId];
           const coaching = await generateCoaching(selectedScenario, persona, choicesMade, score, maxScore, apiKey);
           setResults(r => ({ ...r, coaching, loadingCoaching: false }));
         } catch {
-          setResults(r => ({ ...r, coaching: 'Unable to generate coaching feedback at this time. Review your choices above for the rationale on each decision.', loadingCoaching: false }));
+          setResults(r => ({ ...r, coaching: buildOfflineCoaching(selectedScenario, choicesMade), loadingCoaching: false }));
         }
       }
 
@@ -1145,6 +1269,8 @@
               onStart={handleStartScenario}
               onSetApiKey={() => setShowApiModal(true)}
               apiKey={apiKey}
+              mode={mode}
+              onSetMode={handleSetMode}
               progress={progress}
             />
           )}
@@ -1162,6 +1288,7 @@
               key={selectedScenario.id + (results ? 'retry' : 'first')}
               scenario={selectedScenario}
               apiKey={apiKey}
+              mode={mode}
               onComplete={handleSimulationComplete}
               onBack={() => setScreen('briefing')}
             />
