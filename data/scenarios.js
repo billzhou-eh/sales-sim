@@ -73,7 +73,7 @@ const SCENARIOS = [
       {
         id: 'develop',
         title: 'Build the Problem',
-        instruction: 'Marcus is relaxed: "Sometimes a driver is missing, so they call the office. A little annoying, but we manage." How do you reply?',
+        instruction: 'Marcus plays the problem down as a minor annoyance they just manage. How do you reply?',
         choices: [
           { id: 'a', type: 'implication', quality: 'excellent', points: 10,
             text: 'While a technician waits for that call, does anything else stop — is a line ever standing idle?',
@@ -89,7 +89,7 @@ const SCENARIOS = [
       {
         id: 'quantify',
         title: 'Put a Cost on It',
-        instruction: 'He admits: "A line has waited a few times. Downtime is expensive here." Where do you go next?',
+        instruction: 'He admits downtime is expensive, but has not put a number on it. Where do you go next?',
         choices: [
           { id: 'a', type: 'implication', quality: 'excellent', points: 10,
             text: 'Expensive how — about what does one hour of a stopped line cost you when this happens?',
@@ -121,7 +121,7 @@ const SCENARIOS = [
       {
         id: 'close',
         title: 'Agree the Next Step',
-        instruction: 'He is interested now: "This was more useful than I expected. But I would need to see it work on our devices." End the call well.',
+        instruction: 'He is interested, but wants to see it work on his own devices before going further. End the call well.',
         choices: [
           { id: 'a', type: 'solution', quality: 'excellent', points: 10,
             text: 'Then let us do that — I bring a unit set up for your devices, and your technician tries it. Next week?',
@@ -181,7 +181,7 @@ const SCENARIOS = [
       {
         id: 'probe',
         title: 'Test "Good Enough"',
-        instruction: 'She says her setup "works fine." How do you test that?',
+        instruction: 'She insists her current setup works fine. How do you test that?',
         choices: [
           { id: 'a', type: 'problem', quality: 'excellent', points: 10,
             text: 'When a technician reaches a device whose driver is not on the tablet, what happens then?',
@@ -197,7 +197,7 @@ const SCENARIOS = [
       {
         id: 'develop',
         title: 'Build the Problem',
-        instruction: 'She admits: "It happens sometimes. They deal with it." How do you respond?',
+        instruction: 'She concedes it happens sometimes, but plays it down. How do you respond?',
         choices: [
           { id: 'a', type: 'implication', quality: 'excellent', points: 10,
             text: 'When it happens, how long does dealing with it take — and what does not get done meanwhile?',
@@ -305,7 +305,7 @@ const SCENARIOS = [
       {
         id: 'reframe',
         title: 'Change the Question',
-        instruction: 'He says: "Azure takes in any device over OPC UA. Connection is solved. What else do you have?"',
+        instruction: 'He argues connection is already a solved problem, and asks what else you offer.',
         choices: [
           { id: 'a', type: 'problem', quality: 'excellent', points: 10,
             text: 'Agreed, connection is the basic part. Today, how do you find out an instrument has drifted before it affects a batch?',
@@ -321,7 +321,7 @@ const SCENARIOS = [
       {
         id: 'develop',
         title: 'Build the Consequence',
-        instruction: 'He admits: "Usually we catch it later — a process symptom, a failed sample. Then we trace it back."',
+        instruction: 'He admits they usually catch problems late, after the fact, then trace them back.',
         choices: [
           { id: 'a', type: 'implication', quality: 'excellent', points: 10,
             text: 'In a regulated batch, what does that late catch cost you — scrapped product, a deviation report, an audit risk?',
@@ -337,7 +337,7 @@ const SCENARIOS = [
       {
         id: 'multivendor',
         title: 'The Multi-Vendor Test',
-        instruction: 'He pushes: "But if this only works with E+H devices, it is not acceptable. We also run Yokogawa and ABB."',
+        instruction: 'He warns that an E+H-only tool is not acceptable, since they run other makers too.',
         choices: [
           { id: 'a', type: 'problem', quality: 'excellent', points: 10,
             text: 'Honest answer — gateways connect them, but the deep health data is richer on E+H. What is your actual mix?',
@@ -369,7 +369,7 @@ const SCENARIOS = [
       {
         id: 'close',
         title: 'Design the Proof of Concept',
-        instruction: 'He agrees: "Alright, I am open to a proof of concept. What would you suggest?"',
+        instruction: 'He is open to a proof of concept and asks what you would suggest.',
         choices: [
           { id: 'a', type: 'solution', quality: 'excellent', points: 10,
             text: '20 of your most critical instruments over 60 days — include 5 Yokogawa or ABB. You set the goals; we review first.',
@@ -429,7 +429,7 @@ const SCENARIOS = [
       {
         id: 'diagnose',
         title: 'Look Deeper',
-        instruction: 'He explains, frustrated: "There were too many alerts early on. The team switched them off. Then the dashboard did not match reality, so why log in?"',
+        instruction: 'Frustrated, he explains that early alert overload made the team switch alerts off and stop trusting the tool. How do you respond?',
         choices: [
           { id: 'a', type: 'implication', quality: 'excellent', points: 10,
             text: 'So two things broke. When it stopped matching reality — was that devices not reporting, or just too much noise?',
@@ -445,7 +445,7 @@ const SCENARIOS = [
       {
         id: 'connect',
         title: 'Connect to the Fix',
-        instruction: 'He confirms: "It was the noise. Hundreds of alerts a day, nobody knew which ones mattered. That is when people stopped." Your move?',
+        instruction: 'He confirms the alert noise was the real cause — that is when people stopped using it. Your move?',
         choices: [
           { id: 'a', type: 'solution', quality: 'excellent', points: 10,
             text: 'That is the real cause — Alarm Management does routing and filtering. Cut the noise a lot, and do 15 seats look different?',
@@ -461,7 +461,7 @@ const SCENARIOS = [
       {
         id: 'reframe',
         title: 'Explain Per-User',
-        instruction: 'He pushes back: "Even if it is fixed — why per user? The devices do not change based on who watches. I should pay per asset."',
+        instruction: 'He pushes back on the per-user model and argues he should pay per asset instead. How do you respond?',
         choices: [
           { id: 'a', type: 'implication', quality: 'excellent', points: 10,
             text: 'In oil & gas, after a safety event, someone asks who accepted that alarm and when. Per-user gives that record. A concern for you?',
@@ -477,7 +477,7 @@ const SCENARIOS = [
       {
         id: 'commercial',
         title: 'The Commercial Lever',
-        instruction: 'He softens: "Alright — if the noise is fixed, maybe it is worth continuing. But the cost must feel fair. What can you do?"',
+        instruction: 'He softens, but says the cost still has to feel fair. What can you do?',
         choices: [
           { id: 'a', type: 'solution', quality: 'excellent', points: 10,
             text: 'Your deal runs through an NSP channel, so you already qualify for 20% off — let me confirm it is on your renewal.',
@@ -493,7 +493,7 @@ const SCENARIOS = [
       {
         id: 'close',
         title: 'Take Ownership',
-        instruction: 'He is willing: "I will try — but I do not have time to manage this. Someone has to actually do it." Close it.',
+        instruction: 'He is willing to try, but has no time to manage it himself. Close it.',
         choices: [
           { id: 'a', type: 'solution', quality: 'excellent', points: 10,
             text: 'I will handle it myself — a session this week with your leads. If it is not working in 30 days, we review the seats.',
@@ -553,7 +553,7 @@ const SCENARIOS = [
       {
         id: 'gap',
         title: 'The Data Gap',
-        instruction: 'She says: "Mostly on the device. Someone exports it by hand if we need history. Not very organised." Your move?',
+        instruction: 'She says the data mostly stays on the device, exported by hand, and is not well organised. Your move?',
         choices: [
           { id: 'a', type: 'implication', quality: 'excellent', points: 10,
             text: 'When a problem comes up suddenly, what is it like trying to rebuild that device\'s history?',
@@ -569,10 +569,10 @@ const SCENARIOS = [
       {
         id: 'incident',
         title: 'The Opening',
-        instruction: 'She mentions: "Last year a Coriolis meter failed with no warning. Two days of downtime. That one still bothers me."',
+        instruction: 'She mentions a past meter failure that caused days of downtime and still bothers her.',
         choices: [
           { id: 'a', type: 'implication', quality: 'excellent', points: 10,
-            text: 'Two days in pulp production is very hard. Looking back, were there any strange signs in the readings before?',
+            text: 'That sounds very costly. Looking back, were there any strange signs in the readings before?',
             rationale: 'You respected the story, then asked a question that makes her think about missed early signs — the way in to predictive health, in her words.' },
           { id: 'b', type: 'solution', quality: 'good', points: 5,
             text: 'That is exactly what Netilion with Heartbeat prevents — it warns you before that kind of failure.',
@@ -585,7 +585,7 @@ const SCENARIOS = [
       {
         id: 'realise',
         title: 'Let Her See It',
-        instruction: 'She pauses: "Actually... the readings were unstable for weeks. We thought it was the process, not the meter. We saw it too late."',
+        instruction: 'She realises the readings had been unstable for weeks, but they saw it too late.',
         choices: [
           { id: 'a', type: 'needpayoff', quality: 'excellent', points: 10,
             text: 'If something had shown that as instrument health weeks earlier, would it have changed how this ended?',
@@ -601,7 +601,7 @@ const SCENARIOS = [
       {
         id: 'entry',
         title: 'The No-Risk Start',
-        instruction: 'She is interested: "That is interesting. But the budget is tight — we just spent on the tablets." Your move?',
+        instruction: 'She is interested, but says the budget is tight after buying the tablets. Your move?',
         choices: [
           { id: 'a', type: 'solution', quality: 'excellent', points: 10,
             text: 'Those new SMT70Bs may qualify for Netilion Plus — a free year included. Do you have the order numbers?',
@@ -617,7 +617,7 @@ const SCENARIOS = [
       {
         id: 'close',
         title: 'Close Without Pressure',
-        instruction: 'She is open: "Alright, if there is no new cost, I would look at it. But nothing big — I do not have time for a large project." Close it.',
+        instruction: 'She is open to it, as long as there is no new cost and it stays small. Close it.',
         choices: [
           { id: 'a', type: 'solution', quality: 'excellent', points: 10,
             text: 'Nothing big — let us connect it to your Field Xpert on a couple of key meters, with you in control. Shall we?',
@@ -677,7 +677,7 @@ const SCENARIOS = [
       {
         id: 'probe',
         title: 'How It Works Today',
-        instruction: 'He says FieldCare runs on his engineering PC and "has always done the job." What do you ask?',
+        instruction: 'He says FieldCare runs on his engineering PC and has always done the job. What do you ask?',
         choices: [
           { id: 'a', type: 'problem', quality: 'excellent', points: 10,
             text: 'When someone other than you needs a device\'s current settings or history, how do they get them?',
@@ -693,7 +693,7 @@ const SCENARIOS = [
       {
         id: 'develop',
         title: 'Build the Problem',
-        instruction: 'He admits people sometimes have to come to his PC, "but it is manageable." How do you respond?',
+        instruction: 'He admits people sometimes have to come to his PC, but calls it manageable. How do you respond?',
         choices: [
           { id: 'a', type: 'implication', quality: 'excellent', points: 10,
             text: 'When you are away, or that PC is busy during a commissioning or audit, what happens to whoever is waiting?',
@@ -741,7 +741,7 @@ const SCENARIOS = [
       {
         id: 'close',
         title: 'Re-frame and Close',
-        instruction: 'He has warmed up: "Alright — put that way, the model makes more sense. But I will not sign an open-ended deal." Close it.',
+        instruction: 'He has warmed up, but will not sign an open-ended deal. Close it.',
         choices: [
           { id: 'a', type: 'solution', quality: 'excellent', points: 10,
             text: 'The price scales to your device count, not a flat fee. Let us map your devices — your settings move across.',
@@ -785,7 +785,7 @@ const SCENARIOS = [
       {
         id: 'open',
         title: 'The Careful Opening',
-        instruction: 'She is tired of "another dashboard." How do you start?',
+        instruction: 'She is tired of monitoring pitches. How do you start?',
         choices: [
           { id: 'a', type: 'rapport', quality: 'excellent', points: 10,
             text: 'Fair — I will not add to that. The uptime number you report to your VP: what is pushing it down today?',
@@ -801,10 +801,10 @@ const SCENARIOS = [
       {
         id: 'probe',
         title: 'How She Finds Out',
-        instruction: 'She says uptime is "mostly fine, but we get surprises." What do you ask?',
+        instruction: 'She admits things mostly work, but problems still slip through. What do you ask to find out how she detects them?',
         choices: [
           { id: 'a', type: 'problem', quality: 'excellent', points: 10,
-            text: 'Those surprises — how do you usually find out an asset is in trouble: before it fails, or after?',
+            text: 'When a problem slips through, how do you usually find out — before it fails, or after?',
             rationale: 'A question aimed at the reactive-versus-early gap, and it invites the failure story without you assuming there is one.' },
           { id: 'b', type: 'situation', quality: 'good', points: 5,
             text: 'How many sites, and about how many critical assets are we talking about across the group?',
@@ -817,7 +817,7 @@ const SCENARIOS = [
       {
         id: 'develop',
         title: 'Build the Cost',
-        instruction: 'She mentions a recent failure that "was not fun" but moves on quickly. How do you respond?',
+        instruction: 'She mentions a recent failure but quickly moves past it. How do you respond?',
         choices: [
           { id: 'a', type: 'implication', quality: 'excellent', points: 10,
             text: 'When it failed, what did it actually cost you — the stoppage, the scrapped product, the rush to fix it?',
@@ -849,7 +849,7 @@ const SCENARIOS = [
       {
         id: 'needpayoff',
         title: 'The Data-Location Question',
-        instruction: 'She warms, then asks: "And where does all this data live? We are careful about anything leaving our network."',
+        instruction: 'She warms, then asks where the data lives — they are careful about anything leaving their network.',
         choices: [
           { id: 'a', type: 'needpayoff', quality: 'excellent', points: 10,
             text: 'Good — SAH70 runs on-premise, so the data stays in your network. Would that clear the path inside your company?',
@@ -865,7 +865,7 @@ const SCENARIOS = [
       {
         id: 'close',
         title: 'Size the Decision',
-        instruction: 'She is interested but says: "A full group rollout is a big risk, and I have to justify every dollar." Close it.',
+        instruction: 'She is interested, but calls a full group rollout a big risk she must justify. Close it.',
         choices: [
           { id: 'a', type: 'solution', quality: 'excellent', points: 10,
             text: 'Then let us not risk the group — one site, your worst assets, goals you can defend to your VP. Prove it, then grow.',
@@ -925,7 +925,7 @@ const SCENARIOS = [
       {
         id: 'probe',
         title: 'The Manual Rounds',
-        instruction: 'He mentions points the team checks by hand because cabling them "was never worth it." What do you ask?',
+        instruction: 'He mentions points the team checks by hand because cabling them was never worth it. What do you ask?',
         choices: [
           { id: 'a', type: 'problem', quality: 'excellent', points: 10,
             text: 'Which of those points would you most want to watch all the time — and why do they matter?',
@@ -941,7 +941,7 @@ const SCENARIOS = [
       {
         id: 'develop',
         title: 'The Hidden Gap',
-        instruction: 'He names a few points and says they are "fine, we check them on rounds." How do you respond?',
+        instruction: 'He names a few points but says they are fine, since they check them on rounds. How do you respond?',
         choices: [
           { id: 'a', type: 'implication', quality: 'excellent', points: 10,
             text: 'Between one round and the next, though — if one of those started to drift, when would you actually know?',
@@ -957,7 +957,7 @@ const SCENARIOS = [
       {
         id: 'quantify',
         title: 'The Safety Weight',
-        instruction: 'He goes quiet, then admits a missed signal between rounds is "the thing that worries me most." Where do you go?',
+        instruction: 'He goes quiet, then admits a missed signal between rounds is what worries him most. Where do you go?',
         choices: [
           { id: 'a', type: 'implication', quality: 'excellent', points: 10,
             text: 'In a hazardous area, worst case if one drifts unseen — and what is cabling them quoted at?',
@@ -973,7 +973,7 @@ const SCENARIOS = [
       {
         id: 'objection',
         title: 'Earn the Trust',
-        instruction: 'Now he raises it directly: "Alright — but I still need to know wireless will not drop out or get hacked in a live plant."',
+        instruction: 'He raises it directly now: he needs to know wireless will not drop out or get hacked in a live plant.',
         choices: [
           { id: 'a', type: 'solution', quality: 'excellent', points: 10,
             text: 'Right to ask — AES-128 encryption, self-healing mesh, 10-year sensor life. Which one point should we prove it on?',
@@ -989,7 +989,7 @@ const SCENARIOS = [
       {
         id: 'close',
         title: 'Offer the Pilot',
-        instruction: 'He is genuinely interested now: "Alright. If you can prove this on one point that worries me, I will take it seriously." Close it.',
+        instruction: 'He is genuinely interested, and will take it seriously if you can prove it on one point that worries him. Close it.',
         choices: [
           { id: 'a', type: 'solution', quality: 'excellent', points: 10,
             text: 'Let us do that — fit an adapter to that point, send it to Netilion so you see it live. Plan it?',
