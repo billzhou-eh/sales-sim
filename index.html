@@ -55,7 +55,7 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
   <style>
-    body { margin: 0; background: #f8fafc; }
+    body { margin: 0; background: #E6ECF0; }
     .animate-pulse-soft { animation: pulse-soft 1.5s ease-in-out infinite; }
     @keyframes pulse-soft { 0%,100%{opacity:1} 50%{opacity:0.5} }
     .choice-card { transition: all 0.18s ease; }
@@ -387,14 +387,14 @@
                 <button
                   onClick={handleTest}
                   disabled={!val.trim() || testing || testResult === 'valid'}
-                  className="flex-1 text-sm py-2 rounded-lg border border-eh-500 text-eh-600 hover:bg-eh-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  className="flex-1 text-sm py-2 rounded-lg border border-magenta-500 text-magenta-600 hover:bg-magenta-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 >
                   {testing ? 'Testing...' : testResult === 'valid' ? 'Verified ✓' : 'Test Key'}
                 </button>
                 <button
                   onClick={handleSave}
                   disabled={!val.trim()}
-                  className="flex-1 text-sm py-2 rounded-lg bg-eh-500 text-white hover:bg-eh-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium"
+                  className="flex-1 text-sm py-2 rounded-lg bg-magenta-500 text-white hover:bg-magenta-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium"
                 >
                   Save &amp; Continue
                 </button>
@@ -594,7 +594,7 @@
                           {testing ? 'Testing…' : 'Test Key'}
                         </button>
                         <button onClick={handleSave} disabled={!keyVal.trim() || saved}
-                          className="flex-1 bg-eh-500 text-white rounded-lg py-2 text-sm font-semibold hover:bg-eh-600 disabled:opacity-40 transition-colors">
+                          className="flex-1 bg-magenta-500 text-white rounded-lg py-2 text-sm font-semibold hover:bg-magenta-600 disabled:opacity-40 transition-colors">
                           {saved ? '✓ Saved!' : 'Save & Activate'}
                         </button>
                       </div>
@@ -714,7 +714,7 @@
                 )}
                 <button
                   onClick={isLast ? handleClose : () => setStep(s => s + 1)}
-                  className="flex-1 bg-eh-500 text-white rounded-lg py-2.5 text-sm font-semibold hover:bg-eh-600 transition-colors"
+                  className="flex-1 bg-magenta-500 text-white rounded-lg py-2.5 text-sm font-semibold hover:bg-magenta-600 transition-colors"
                 >
                   {isLast ? 'Start playing →' : 'Next'}
                 </button>
@@ -768,31 +768,31 @@
       });
 
       return (
-        <div className="min-h-screen bg-gray-50">
-          {/* Compact header */}
-          <div className="bg-eh-500 text-white">
-            <div className="max-w-6xl mx-auto px-6 py-4">
+        <div className="min-h-screen">
+          {/* Header — white with 4px cyan top strip (E+H identity element) */}
+          <div className="bg-white border-b border-gray-200" style={{borderTop: '4px solid #009EE3'}}>
+            <div className="max-w-6xl mx-auto px-6 py-3">
               <div className="flex items-center justify-between gap-4">
                 <div className="flex items-center gap-3 min-w-0">
-                  <div className="w-9 h-9 bg-white/20 rounded-xl flex items-center justify-center text-xs font-bold flex-shrink-0">E+H</div>
+                  <div className="w-9 h-9 bg-eh-500 rounded flex items-center justify-center text-xs font-bold text-white flex-shrink-0">E+H</div>
                   <div className="min-w-0">
-                    <h1 className="text-xl font-bold leading-tight">DS Sales Simulator <span className="text-eh-200 text-xs font-normal align-middle">v{APP_VERSION}</span></h1>
-                    <p className="text-eh-200 text-xs mt-0.5 hidden sm:block">Practice sales discovery — learn to ask the right questions</p>
+                    <h1 className="text-lg font-bold leading-tight text-gray-900">DS Sales Simulator <span className="text-gray-400 text-xs font-normal align-middle">v{APP_VERSION}</span></h1>
+                    <p className="text-gray-500 text-xs mt-0.5 hidden sm:block">Practice sales discovery — learn to ask the right questions</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-3 flex-shrink-0">
-                  {/* Mode toggle: Offline (no key) vs Live AI (Groq key) */}
-                  <div className="flex items-center bg-white/15 rounded-lg p-0.5 text-xs">
+                <div className="flex items-center gap-2 flex-shrink-0">
+                  {/* Mode toggle */}
+                  <div className="flex items-center bg-gray-100 rounded-lg p-0.5 text-xs">
                     <button
                       onClick={() => onSetMode('offline')}
-                      className={`px-2.5 py-1 rounded-md transition-colors ${mode === 'offline' ? 'bg-white text-eh-700 font-semibold' : 'text-white/80 hover:text-white'}`}
+                      className={`px-2.5 py-1 rounded-md transition-colors ${mode === 'offline' ? 'bg-white text-gray-900 font-semibold shadow-sm' : 'text-gray-500 hover:text-gray-800'}`}
                       title="Pre-written replies. No key or internet needed."
                     >
                       Offline
                     </button>
                     <button
                       onClick={() => onSetMode('ai')}
-                      className={`px-2.5 py-1 rounded-md transition-colors ${mode === 'ai' ? 'bg-white text-eh-700 font-semibold' : 'text-white/80 hover:text-white'}`}
+                      className={`px-2.5 py-1 rounded-md transition-colors ${mode === 'ai' ? 'bg-white text-gray-900 font-semibold shadow-sm' : 'text-gray-500 hover:text-gray-800'}`}
                       title="Live AI replies via Groq. Needs an API key and internet."
                     >
                       Live AI
@@ -801,8 +801,8 @@
                   {mode === 'ai' && !adminKeySet && (
                     <button
                       onClick={onSetApiKey}
-                      className={`hidden sm:flex items-center gap-2 text-sm px-3 py-1.5 rounded-lg border transition-colors flex-shrink-0 ${
-                        apiKey ? 'border-white/30 text-white/80 hover:bg-white/10' : 'border-white bg-white/10 text-white hover:bg-white/20 font-medium'
+                      className={`hidden sm:flex items-center gap-2 text-xs px-3 py-1.5 rounded-lg border transition-colors flex-shrink-0 ${
+                        apiKey ? 'border-gray-300 text-gray-500 hover:bg-gray-50' : 'border-magenta-500 text-magenta-600 hover:bg-magenta-50 font-medium'
                       }`}
                     >
                       <span>{apiKey ? '✓' : '🔑'}</span>
@@ -812,7 +812,7 @@
                   {/* Help button */}
                   <button
                     onClick={onShowTutorial}
-                    className="w-8 h-8 flex items-center justify-center rounded-full bg-white/15 text-white hover:bg-white/25 transition-colors flex-shrink-0"
+                    className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200 transition-colors flex-shrink-0"
                     title="How to play"
                   >
                     <span className="text-sm font-bold">?</span>
@@ -820,7 +820,7 @@
                   {/* Admin button */}
                   <button
                     onClick={onShowAdmin}
-                    className="w-8 h-8 flex items-center justify-center rounded-full bg-white/15 text-white hover:bg-white/25 transition-colors flex-shrink-0"
+                    className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200 transition-colors flex-shrink-0"
                     title="Admin dashboard"
                   >
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -847,7 +847,7 @@
                   onClick={() => setFilter(f.key)}
                   className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
                     filter === f.key
-                      ? 'bg-eh-500 text-white'
+                      ? 'bg-magenta-500 text-white'
                       : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
                   }`}
                 >
@@ -912,7 +912,7 @@
                       disabled={!canStart}
                       className={`w-full py-2 rounded-lg text-sm font-semibold transition-colors ${
                         canStart
-                          ? 'bg-eh-500 text-white hover:bg-eh-600'
+                          ? 'bg-magenta-500 text-white hover:bg-magenta-600'
                           : 'bg-gray-100 text-gray-400 cursor-not-allowed'
                       }`}
                     >
@@ -960,7 +960,7 @@
       const persona = PERSONAS[scenario.personaId];
 
       return (
-        <div className="min-h-screen bg-gray-50 pb-24">
+        <div className="min-h-screen pb-24">
           <div className="max-w-3xl mx-auto px-4 py-6">
             <button onClick={onBack} className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-800 mb-6 transition-colors">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -1051,7 +1051,7 @@
               </div>
               <button
                 onClick={() => onStart(scenario)}
-                className="flex-1 bg-eh-500 text-white py-3 rounded-xl font-semibold text-base hover:bg-eh-600 active:bg-eh-700 transition-colors"
+                className="flex-1 bg-magenta-500 text-white py-3 rounded-xl font-semibold text-base hover:bg-magenta-600 active:bg-magenta-700 transition-colors"
               >
                 Begin Simulation →
               </button>
@@ -1350,7 +1350,7 @@
               </button>
               <button
                 onClick={onRetry}
-                className="flex-1 py-3 rounded-xl bg-eh-500 text-white text-sm font-semibold hover:bg-eh-600 transition-colors"
+                className="flex-1 py-3 rounded-xl bg-magenta-500 text-white text-sm font-semibold hover:bg-magenta-600 transition-colors"
               >
                 Try Again
               </button>
@@ -1493,7 +1493,7 @@
       }
 
       return (
-        <div className="flex flex-col h-screen bg-gray-50">
+        <div className="flex flex-col h-screen" style={{background:'#E6ECF0'}}>
           {/* Sticky progress bar (no score shown during play) */}
           <ScoreTracker
             currentStage={stageIndex + 1}
