@@ -12,18 +12,32 @@
       theme: {
         extend: {
           colors: {
+            // E+H official cyan palette (Cyan 1 = #009EE3 is the primary brand color)
             'eh': {
-              50:  '#e6f2fb',
-              100: '#cce5f7',
-              200: '#99caef',
-              300: '#66b0e7',
-              400: '#3395df',
-              500: '#0070b9',
-              600: '#005a94',
-              700: '#004370',
-              800: '#002d4b',
-              900: '#001627',
-            }
+              50:  '#EAF7FC',
+              100: '#AFD3E8',  // Cyan 2
+              200: '#7BBFD9',
+              300: '#3EADDE',
+              400: '#1AAEE5',
+              500: '#009EE3',  // Cyan 1 — primary brand cyan
+              600: '#007CAA',  // Cyan 3
+              700: '#00597A',  // Cyan 4
+              800: '#003D56',
+              900: '#001F2B',
+            },
+            // E+H official magenta palette (accent / second primary color)
+            'magenta': {
+              50:  '#FDE6F0',
+              100: '#F9CCDF',
+              200: '#F399BF',
+              300: '#EC66A0',
+              400: '#E8007D',
+              500: '#E5007D',  // Magenta 1 — highlight/accent
+              600: '#A8005C',  // Magenta 2
+              700: '#7B0040',  // Magenta 3
+              800: '#4D0028',
+              900: '#280015',
+            },
           },
           fontFamily: {
             sans: ['Segoe UI', 'system-ui', 'sans-serif']
@@ -507,7 +521,7 @@
         setTestResult(null);
       }
 
-      const typeStyle = { feature: 'bg-eh-100 text-eh-700', content: 'bg-violet-100 text-violet-700', fix: 'bg-amber-100 text-amber-700' };
+      const typeStyle = { feature: 'bg-eh-100 text-eh-700', content: 'bg-magenta-100 text-magenta-700', fix: 'bg-amber-100 text-amber-700' };
       const typeLabel = { feature: 'Feature', content: 'Content', fix: 'Fix' };
 
       return (
@@ -734,7 +748,7 @@
       return (
         <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${
           isBoth ? 'bg-teal-100 text-teal-700' :
-          isNetilion ? 'bg-violet-100 text-violet-700' :
+          isNetilion ? 'bg-magenta-100 text-magenta-700' :
           'bg-eh-100 text-eh-700'
         }`}>
           {product}
@@ -857,7 +871,7 @@
                   onClick={() => canStart && onStart(scenario)}
                 >
                   <div className={`h-1 ${
-                    scenario.productLine === 'netilion' ? 'bg-violet-500' :
+                    scenario.productLine === 'netilion' ? 'bg-magenta-500' :
                     scenario.productLine === 'both' ? 'bg-teal-500' :
                     'bg-eh-500'
                   }`} />
@@ -957,7 +971,7 @@
 
             <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden mb-4">
               <div className={`h-2 ${
-                scenario.productLine === 'netilion' ? 'bg-violet-500' :
+                scenario.productLine === 'netilion' ? 'bg-magenta-500' :
                 scenario.productLine === 'both' ? 'bg-teal-500' :
                 'bg-eh-500'
               }`} />
@@ -1268,9 +1282,9 @@
                 <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 mb-4">
                   <div className="font-semibold text-gray-900 mb-3">Discovery Technique</div>
                   <div className="grid grid-cols-3 gap-3">
-                    <div className="text-center bg-violet-50 rounded-xl p-3">
-                      <div className="text-2xl font-bold text-violet-700">{implications}</div>
-                      <div className="text-xs text-violet-600 mt-0.5">Implication Qs landed</div>
+                    <div className="text-center bg-magenta-50 rounded-xl p-3">
+                      <div className="text-2xl font-bold text-magenta-700">{implications}</div>
+                      <div className="text-xs text-magenta-600 mt-0.5">Implication Qs landed</div>
                     </div>
                     <div className="text-center bg-teal-50 rounded-xl p-3">
                       <div className="text-2xl font-bold text-teal-700">{needpayoffs}</div>
