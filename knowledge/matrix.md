@@ -9,7 +9,8 @@
 
 ## Part A — Which persona buys which product
 
-The six E+H personas (2021 report) map to products by what they are accountable for.
+The ten E+H personas (6 original 2021 archetypes + 4 re-homed to new industries) map to
+products by what they are accountable for.
 **A product only belongs in a scenario if its buyer role plausibly owns the decision.**
 
 | Persona | Role | Owns / cares about | Natural-fit products | Poor fit (avoid) |
@@ -20,6 +21,10 @@ The six E+H personas (2021 report) map to products by what they are accountable 
 | **Toshiaki Yamamoto** | Purchase Manager (Specialty Chem) | Price transparency, TCO, fair deals, no hidden costs | **FieldCare subscription**, Field Xpert order, any renewal/commercial conversation | Deep process/quality pain (he's commercial, not technical-owner) |
 | **Lynn Carter** | Process Engineer (Pharma) | Reliability, accuracy, GMP compliance, yield, batch records | **Netilion (data integration)**, Heartbeat Verification (interval extension), Liquid Analysis SSK141 | Hard-sell platforms needing months of CSV |
 | **Monica Ferrari** | Quality Manager (Pharma) | Instrument health visibility, deviations, audit-readiness, "100% safe" | **SAH70 / Netilion Health (plant-wide NE 107 visibility)**, Heartbeat Verification | Inventory, custody metering, pure pricing |
+| **Rafael Santos** *(José archetype, re-homed)* | Asset & Ops Manager (Water/WW) | Permit compliance, network reliability, remote visibility, public trust | **Netilion Water**, WirelessHART, Heartbeat, SmartBlue | GMP qualification, plant-wide ERP |
+| **Claire Martin** *(Monica archetype, re-homed)* | QA & Food Safety Manager (F&B) | HACCP plan, CCP compliance, food safety, lot traceability | **Heartbeat Verification**, Netilion Health, Liquid Analysis | Pharma/GMP tools, custody metering |
+| **Hendrik Vogel** *(Peter archetype, re-homed)* | I&C Engineer (Power & Energy) | Protection system integrity, unit availability, SIL, spurious trip prevention | **Heartbeat Technology**, SAH70, Netilion Health, FieldCare | Pricing deals, inventory tools |
+| **James Okafor** *(Michael archetype, re-homed)* | Operations Manager (Metals/Mining) | Recovery %, ore grade, OPEX, reagent dosing accuracy, reactive→predictive | **Netilion Health**, Heartbeat, Field Xpert, FieldCare | GMP qualification, soft-industry tools |
 
 ---
 
@@ -58,18 +63,22 @@ Use the **right consequence** for the industry. (Full detail in [industries.md](
 
 ---
 
-## Part D — The current six scenarios, audited against this matrix
+## Part D — All 12 scenarios, audited against this matrix
 
 | Scenario | Persona | Product | Industry | Verdict |
 |---|---|---|---|---|
 | Discovery Call | Peter | Field Xpert | Chemical | ✅ C&I engineer + field config + chemical = correct |
 | The Price Objection | Toshiaki | Field Xpert | Specialty Chem | ✅ Purchase manager + commercial = correct |
-| The Platform Evaluation | Lynn | Netilion | Pharma | ✅ Process engineer + cloud caution + GMP = correct (ensure CSV-validation fear is voiced) |
+| The Platform Evaluation | Lynn | Netilion | Pharma | ✅ Process engineer + cloud caution + GMP = correct |
 | Save the Renewal | José | Netilion Health | Chemical/refinery | ✅ Maintenance + health subscription = correct |
 | The Cross-Sell | Michael | Netilion + Field Xpert | Specialty Chem | ✅ Plant manager + plant-wide health from device data = correct |
 | The Subscription Pushback | Toshiaki | FieldCare 3.0 | Specialty Chem | ✅ Purchase manager + subscription pricing = correct |
-| **The Careful Buyer** | **Monica** | **SAH70** | **Pharma** | ⚠ **FIXED** — reframed from "calibration certificate management" (wrong) to **plant-wide instrument health visibility / unmonitored NE 107 alarm → batch deviation** (correct). See note below. |
+| **The Careful Buyer** | **Monica** | **SAH70** | **Pharma** | ⚠ **FIXED** — plant-wide NE 107 visibility / unmonitored alarm → batch deviation. See note below. |
 | The Hidden Gaps | Peter | WirelessHART | Chemical | ✅ C&I engineer + brownfield retrofit = correct |
+| Remote Stations Gone Dark | Rafael | Netilion Water | Water & WW | ✅ Asset/ops manager + permit compliance + NPDES exceedance risk = correct |
+| The Silent CCP Risk | Claire | Heartbeat Verification | Food & Beverage | ✅ QA/food safety manager + CCP drift window + lot disposition = correct. F&B language quarantine applied (no CAPA/deviation/GMP). |
+| The Protection Loop Gap | Hendrik | Heartbeat Technology | Power & Energy | ✅ I&C engineer + drum level protection + spurious trip prevention = correct |
+| The Grade Is Slipping | James | Netilion Health | Metals/Mining | ✅ Operations manager + flotation recovery KPI + slurry abrasion drift = correct |
 
 ### Note on Monica / SAH70 (the corrected scenario)
 - **Wrong (old):** SAH70 manages calibration certificates; a certificate "expired" and "stopped a batch."
