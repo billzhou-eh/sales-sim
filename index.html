@@ -261,6 +261,7 @@
     const API_KEY_KEY = 'ehss_apikey';
     const ADMIN_KEY_KEY = 'ehss_admin_key'; // set by admin; users never need to enter their own key
     const MODE_KEY = 'ehss_mode'; // 'offline' | 'ai'  (default offline)
+    const TUTORIAL_KEY = 'ehss_tutorial_seen';
 
     function loadProgress() {
       try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); }
@@ -628,6 +629,94 @@
       );
     }
 
+    // ─── Tutorial Modal ──────────────────────────────────────────────────────
+
+    const TUTORIAL_STEPS = [
+      {
+        icon: '🎯',
+        title: 'Practice real sales conversations',
+        body: 'You play the sales rep. The customer is simulated — realistic, guarded, and not volunteering their real problem. Your goal: ask the right questions to uncover their pain, then earn a next step.',
+      },
+      {
+        icon: '🗂️',
+        title: '6 stages, 3 choices each',
+        body: 'Every scenario has 6 conversation stages — opening, probing, developing the problem, quantifying impact, need-payoff, and close. At each stage you pick one of three responses. Choose carefully.',
+        note: 'The scenario ends after your 6th choice. There is no extra time.',
+      },
+      {
+        icon: '🔒',
+        title: 'Your score is hidden until the end',
+        body: 'Each choice is scored in the background — excellent, good, or poor. You won\'t see points during the conversation. Focus on the customer, not the scoreboard. The full debrief appears after stage 6.',
+      },
+      {
+        icon: '🌀',
+        title: 'Use SPIN — don\'t pitch early',
+        body: 'The sim follows the SPIN method: surface the Situation → name the Problem → develop the Implication (what it costs) → guide toward the Need-Payoff (what solving it is worth). Pitching a solution before the customer feels the problem will cost you points.',
+      },
+    ];
+
+    function TutorialModal({ onClose }) {
+      const [step, setStep] = useState(0);
+      const isLast = step === TUTORIAL_STEPS.length - 1;
+      const s = TUTORIAL_STEPS[step];
+
+      function handleClose() {
+        localStorage.setItem(TUTORIAL_KEY, '1');
+        onClose();
+      }
+
+      return (
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md fade-in">
+            <div className="p-6">
+              {/* Step indicator */}
+              <div className="flex justify-center gap-1.5 mb-6">
+                {TUTORIAL_STEPS.map((_, i) => (
+                  <button key={i} onClick={() => setStep(i)}
+                    className={`h-1.5 rounded-full transition-all ${i === step ? 'w-6 bg-eh-500' : 'w-1.5 bg-gray-200 hover:bg-gray-300'}`}
+                  />
+                ))}
+              </div>
+
+              {/* Content */}
+              <div className="text-center mb-6">
+                <div className="text-5xl mb-4">{s.icon}</div>
+                <h2 className="text-xl font-bold text-gray-900 mb-3">{s.title}</h2>
+                <p className="text-sm text-gray-600 leading-relaxed">{s.body}</p>
+                {s.note && (
+                  <div className="mt-3 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 text-xs text-amber-800 text-left">
+                    <strong>Note:</strong> {s.note}
+                  </div>
+                )}
+              </div>
+
+              {/* Navigation */}
+              <div className="flex gap-2">
+                {step > 0 && (
+                  <button onClick={() => setStep(s => s - 1)}
+                    className="px-4 py-2 text-sm text-gray-500 hover:text-gray-700 rounded-lg hover:bg-gray-100 transition-colors">
+                    Back
+                  </button>
+                )}
+                <button
+                  onClick={isLast ? handleClose : () => setStep(s => s + 1)}
+                  className="flex-1 bg-eh-500 text-white rounded-lg py-2.5 text-sm font-semibold hover:bg-eh-600 transition-colors"
+                >
+                  {isLast ? 'Start playing →' : 'Next'}
+                </button>
+              </div>
+
+              {!isLast && (
+                <button onClick={handleClose} className="w-full mt-2 text-xs text-gray-400 hover:text-gray-600 py-1 transition-colors">
+                  Skip tutorial
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
     // ─── Home Screen ─────────────────────────────────────────────────────────
 
     function DifficultyBadge({ level }) {
@@ -653,7 +742,7 @@
       );
     }
 
-    function HomeScreen({ onStart, onSetApiKey, apiKey, adminKeySet, mode, onSetMode, progress }) {
+    function HomeScreen({ onStart, onSetApiKey, apiKey, adminKeySet, mode, onSetMode, progress, onShowTutorial, onShowAdmin }) {
       const [filter, setFilter] = useState('all');
 
       const PERSONA_IDS = Object.keys(PERSONAS);
@@ -706,6 +795,25 @@
                       {apiKey ? 'Key Set' : 'Add Key'}
                     </button>
                   )}
+                  {/* Help button */}
+                  <button
+                    onClick={onShowTutorial}
+                    className="w-8 h-8 flex items-center justify-center rounded-full bg-white/15 text-white hover:bg-white/25 transition-colors flex-shrink-0"
+                    title="How to play"
+                  >
+                    <span className="text-sm font-bold">?</span>
+                  </button>
+                  {/* Admin button */}
+                  <button
+                    onClick={onShowAdmin}
+                    className="w-8 h-8 flex items-center justify-center rounded-full bg-white/15 text-white hover:bg-white/25 transition-colors flex-shrink-0"
+                    title="Admin dashboard"
+                  >
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                  </button>
                 </div>
               </div>
             </div>
@@ -1486,6 +1594,7 @@
 
       const [showApiModal, setShowApiModal] = useState(false);
       const [showAdminPanel, setShowAdminPanel] = useState(new URLSearchParams(window.location.search).has('admin'));
+      const [showTutorial, setShowTutorial] = useState(!localStorage.getItem(TUTORIAL_KEY));
       // If admin key is present, default to AI mode; otherwise respect saved preference
       const [mode, setMode] = useState(adminKey ? 'ai' : (localStorage.getItem(MODE_KEY) || 'offline'));
       const [progress, setProgress] = useState(loadProgress());
@@ -1565,6 +1674,9 @@
           {showAdminPanel && (
             <AdminPanel onClose={handleAdminClose} />
           )}
+          {showTutorial && (
+            <TutorialModal onClose={() => setShowTutorial(false)} />
+          )}
 
           {screen === 'home' && (
             <HomeScreen
@@ -1575,6 +1687,8 @@
               mode={mode}
               onSetMode={handleSetMode}
               progress={progress}
+              onShowTutorial={() => setShowTutorial(true)}
+              onShowAdmin={() => setShowAdminPanel(true)}
             />
           )}
 
