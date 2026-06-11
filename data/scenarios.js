@@ -1013,5 +1013,511 @@ const SCENARIOS = [
         ]
       }
     ]
+  },
+
+  // ── NEW SCENARIOS: archetypes re-homed in new industries ─────────────────────
+
+  {
+    id: 'water-netilion',
+    title: 'Remote Stations Gone Dark',
+    subtitle: 'Find the cost of a monitoring gap before the regulator does',
+    product: 'Netilion Water',
+    productLine: 'netilion',
+    difficulty: 'SC',
+    difficultyLabel: 'Sales Coordinator',
+    estimatedMinutes: 12,
+    personaId: 'rafael-santos',
+    description: 'Rafael manages a public water utility with outlying pump stations that have no continuous remote visibility. He is cautious and public-sector-minded — a wrong step is a headline.',
+    context: 'First meeting, introduced through the regional water association Netilion Water pilot programme mention. Rafael agreed to meet out of curiosity, not because he is looking to buy. He will not volunteer the permit exceedance incident.',
+    industryContext: 'INDUSTRY REALITY (Water & Wastewater, public utility): Rafael manages a municipal distribution network — main treatment works plus eight remote pump and discharge stations under an NPDES-equivalent permit. Analytical instruments (ammonia, chlorine residual, turbidity, pH) are critical at effluent discharge and distribution points. Remote station instruments are checked on manual rounds (weekly for main stations, less often for smaller discharge points) and via partial SCADA coverage. The biggest regulatory exposure is a permit exceedance on effluent discharge — triggering mandatory public notification and a corrective action plan. Rafael responds to permit compliance language, public trust, and regulatory readiness — not IT or digital-transformation framing. He is cautious about cloud hosting of public utility data.',
+    yourRole: 'E+H Sales Coordinator — introducing Netilion Water monitoring to a municipal utility',
+    knownGoingIn: [
+      'Asset & Operations Manager at a public water utility serving the Porto area',
+      'Network has main treatment works plus 8 remote pump and discharge stations',
+      'Met him through the regional water association after a Netilion Water pilot programme mention'
+    ],
+    objectives: [
+      'Find the monitoring gap at the remote stations without leading with features',
+      'Build the cost of a permit exceedance — regulatory, operational, and reputational',
+      'Propose a small pilot on 2–3 remote stations as a concrete first step'
+    ],
+    customerOpening: 'Thank you for coming. I saw the programme mentioned at the regional association meeting. I will be honest — I am interested, but I am also cautious. We are a public utility and anything we do with monitoring data gets scrutinised. So tell me what you are actually offering, and what it requires from us.',
+    systemPromptHint: 'An E+H Sales Coordinator is meeting you to introduce Netilion Water remote monitoring. You manage 8 remote pump and discharge stations. Last year an ammonia analyser at a remote discharge point drifted for several weeks before it was found on a manual round. The discharge had exceeded NPDES permit limits — you had to file a mandatory report and notify the municipality. You have not told the rep this. You are cautious and will only share details if the conversation earns it.',
+    stages: [
+      {
+        id: 'open',
+        title: 'Opening Move',
+        instruction: 'Rafael expects an overview of a product. He is cautious and public-sector minded. How do you start?',
+        choices: [
+          { id: 'a', type: 'rapport', quality: 'excellent', points: 10,
+            text: 'I appreciate that — before anything about our system, can I understand how you currently keep track of what is happening at your remote stations?',
+            rationale: 'You stepped past the overview and anchored to his work. A careful public-sector manager will respect that you asked before explaining.' },
+          { id: 'b', type: 'situation', quality: 'good', points: 5,
+            text: 'Of course. How many remote monitoring points do you have, and which parameters are most critical for your permit compliance?',
+            rationale: 'A reasonable situational question that sizes his network — still fact-collecting rather than finding a problem he already feels.' },
+          { id: 'c', type: 'solution', quality: 'poor', points: 0,
+            text: 'Netilion Water centralises all your station data into one dashboard with configurable alerts — shall I show you what it looks like?',
+            rationale: 'A feature overview before you know his problem confirms his caution about vendor pitches. He told you he is careful — lead with curiosity.' }
+        ]
+      },
+      {
+        id: 'probe',
+        title: 'First Question',
+        instruction: 'He says his team checks remote stations on rounds — weekly for the main ones, less often for the smaller discharge points. What do you ask?',
+        choices: [
+          { id: 'a', type: 'problem', quality: 'excellent', points: 10,
+            text: 'Between those rounds, if an analyser at a remote discharge point started drifting — how long before your team would know?',
+            rationale: 'A precise question about the blind window between checks. It does not name the problem — it asks him to picture it, which is how it becomes real.' },
+          { id: 'b', type: 'situation', quality: 'good', points: 5,
+            text: 'Are those remote stations connected to your SCADA, or are the rounds the main way you collect data from them?',
+            rationale: 'A fair connectivity question — it finds out whether SCADA covers the gap. Following up on what happens when it does not would go further.' },
+          { id: 'c', type: 'problem', quality: 'poor', points: 0,
+            text: 'Remote analyser drift is the usual problem in distributed networks — is that something your team has had to deal with?',
+            rationale: 'You named the problem before he did. A public-sector manager will feel managed rather than heard if a rep seems to have a script about his issues.' }
+        ]
+      },
+      {
+        id: 'develop',
+        title: 'Build the Problem',
+        instruction: 'He says drift happens occasionally and they deal with it when found. He does not offer detail. How do you respond?',
+        choices: [
+          { id: 'a', type: 'implication', quality: 'excellent', points: 10,
+            text: 'When you do find it — is there usually a period where the discharge data is uncertain, and you have to decide what to do with that data for compliance purposes?',
+            rationale: 'A question about the compliance consequence of an undetected drift window — it moves from "we deal with it" toward the real regulatory exposure.' },
+          { id: 'b', type: 'problem', quality: 'good', points: 5,
+            text: 'About how often does a remote point drift enough to need correction?',
+            rationale: 'A frequency question — useful to size the problem. Adding what happens during the drift window would make it more impactful.' },
+          { id: 'c', type: 'solution', quality: 'poor', points: 0,
+            text: 'Continuous remote alerts would give you the drift signal in real time, before it becomes a compliance issue.',
+            rationale: 'He has not described the consequence yet, so a product reference sounds like a pitch rather than a response to his situation.' }
+        ]
+      },
+      {
+        id: 'quantify',
+        title: 'Put a Cost on It',
+        instruction: 'He acknowledges that uncertain data after a drift event means a compliance decision, and that one report to the regulator last year was difficult. He says no more. How do you go next?',
+        choices: [
+          { id: 'a', type: 'implication', quality: 'excellent', points: 10,
+            text: 'A mandatory report to the regulator — what followed from that? The corrective action, the public notification, the follow-up inspection?',
+            rationale: 'You stayed with the event he opened and asked about its full reach — not the technical problem, but the regulatory and public consequence he is accountable for.' },
+          { id: 'b', type: 'implication', quality: 'good', points: 5,
+            text: 'That kind of report — does it also go to the municipality, and does it affect how the utility is viewed publicly?',
+            rationale: 'A good question about the reputational dimension — a public utility manager cares about this. The full regulatory chain (inspection, corrective action) would go deeper.' },
+          { id: 'c', type: 'situation', quality: 'poor', points: 0,
+            text: 'I see. And how many users across your team would need access to a monitoring dashboard?',
+            rationale: 'You moved to a procurement detail the moment he opened up about the regulator. That signals you stopped listening — and he will close back down.' }
+        ]
+      },
+      {
+        id: 'needpayoff',
+        title: 'Make It Matter',
+        instruction: 'He confirms the report led to a corrective action plan and an inspection. He is more open now. What next?',
+        choices: [
+          { id: 'a', type: 'needpayoff', quality: 'excellent', points: 10,
+            text: 'If you could see a drift developing at a remote discharge station before it reached permit limits — what would that change for you?',
+            rationale: 'A value question that makes him describe the benefit in his own terms — regulatory confidence, inspection readiness, public trust.' },
+          { id: 'b', type: 'implication', quality: 'good', points: 5,
+            text: 'So the real cost of that gap is not just a correction — it is the inspection, the corrective action plan, and the confidence the regulator has in your operation.',
+            rationale: 'A strong summary that broadens the cost — a question that makes him state the value of early warning would pull him further.' },
+          { id: 'c', type: 'solution', quality: 'poor', points: 0,
+            text: 'That is exactly the kind of event Netilion Water prevents — shall I walk you through the alert thresholds and reporting features?',
+            rationale: 'He just opened up about a difficult regulatory event and you moved to a feature walkthrough. Too fast, and it resets his caution.' }
+        ]
+      },
+      {
+        id: 'close',
+        title: 'Agree a Next Step',
+        instruction: 'He is genuinely interested but wants to start small and see it work before any wider discussion. Close it.',
+        choices: [
+          { id: 'a', type: 'solution', quality: 'excellent', points: 10,
+            text: 'Then let us start with two or three of your remote discharge stations — the ones with the most permit exposure. No wide rollout, just proof on the points that matter most.',
+            rationale: 'You matched his pace exactly — a small, risk-managed pilot on the stations with the highest compliance stakes. This is how a careful public-utility manager starts.' },
+          { id: 'b', type: 'solution', quality: 'good', points: 5,
+            text: 'A pilot on a few remote stations first makes sense — I can help align the alert thresholds to your specific permit parameters.',
+            rationale: 'A solid, low-pressure next step — naming the permit-specific parameters makes it feel tailored rather than generic.' },
+          { id: 'c', type: 'solution', quality: 'poor', points: 0,
+            text: 'I will send over a proposal for a full network rollout covering all eight stations, for you to review with your team.',
+            rationale: 'He asked to start small and you offered a full rollout. A cautious public-sector manager who opened with "careful" will not agree to this.' }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: 'fb-heartbeat',
+    title: 'The Silent CCP Risk',
+    subtitle: 'Surface the drift gap between calibration checks before it reaches a product hold',
+    product: 'Heartbeat Verification',
+    productLine: 'netilion',
+    difficulty: 'SC',
+    difficultyLabel: 'Sales Coordinator',
+    estimatedMinutes: 12,
+    personaId: 'claire-martin',
+    description: 'Claire manages food safety at a dairy plant. Her CCP instruments are on monthly spot-checks with no visibility between. She only engages if you ask precise HACCP questions.',
+    context: 'Claire agreed to a short meeting after seeing a reference in a food-safety newsletter. She is not looking to buy — she wants to understand if this addresses a real HACCP gap. Her guard comes down only with technical precision.',
+    industryContext: 'INDUSTRY REALITY (Food & Beverage, dairy): A HTST (high-temperature short-time) pasteurisation plant with continuous dairy lines. Temperature transmitters at the pasteuriser hold section are Critical Control Points (CCPs) under the HACCP plan — they must record accurate time-temperature data to prove the critical limit was met. CCP instruments are on a monthly calibration spot-check schedule; between checks, there is no systematic way to confirm a transmitter has not drifted. If a CCP transmitter is found out of tolerance at the next monthly check, the plant must review all product produced since the last good calibration result — affected lots may be held for disposition (test and release, downgrade, or destroy). No pharma language here: no "deviation", "CAPA", "batch record", or "GMP". The correct F&B terms are: CCP, critical limit, HACCP plan, product hold, lot disposition, corrective action, food safety plan.',
+    yourRole: 'E+H Sales Coordinator — presenting Heartbeat Verification as a HACCP support tool at a dairy manufacturer',
+    knownGoingIn: [
+      'QA & Food Safety Manager at a large dairy manufacturer in western France',
+      'Responsible for the HACCP plan and CCP management across pasteurisation lines',
+      'Agreed to a short meeting — evaluating, not buying'
+    ],
+    objectives: [
+      'Earn her engagement by asking precise HACCP questions, not broad quality questions',
+      'Build the cost of a CCP drift found late — the lot review, the hold, the disposition decision',
+      'Propose a live Heartbeat Verification run on one pasteuriser transmitter as a concrete first step'
+    ],
+    customerOpening: 'I read the article about in-situ instrument verification in the food-safety context. I am always looking for ways to strengthen our CCP monitoring. But I have to say — every tool we add to a HACCP programme must be justified. It cannot create more work, and it cannot give us a false sense of security. What exactly are you offering, and how does it relate to a CCP?',
+    systemPromptHint: 'An E+H Sales Coordinator is presenting Heartbeat Verification for your HACCP CCP management. Your pasteuriser hold-section temperature transmitters are CCPs on monthly spot-checks. Three months ago one was found out of tolerance — it had been reading 0.6°C low. You reviewed five days of production and held two lots for disposition; one was downgraded. You have not told the rep this. You are precise and guarded — you open up only if questions are technically accurate and HACCP-specific.',
+    stages: [
+      {
+        id: 'open',
+        title: 'Opening Move',
+        instruction: 'Claire opened with a direct question about the CCP connection. She wants precision, not an overview. How do you respond?',
+        choices: [
+          { id: 'a', type: 'rapport', quality: 'excellent', points: 10,
+            text: 'That is exactly the right question. Before I explain — can I ask how you currently know a CCP temperature sensor is still reading correctly between its monthly calibration checks?',
+            rationale: 'You answered her seriousness with a precise HACCP question about the specific gap. It signals you understand the CCP framework and creates the opening she asked for.' },
+          { id: 'b', type: 'situation', quality: 'good', points: 5,
+            text: 'Of course — how many CCPs are on your pasteurisation lines, and how often are they currently calibrated?',
+            rationale: 'A reasonable setup question — it sizes the programme. Following it with the between-check visibility question would take it further.' },
+          { id: 'c', type: 'solution', quality: 'poor', points: 0,
+            text: 'Heartbeat Verification runs in-situ on the installed transmitter and gives you a pass or fail result you can attach to your HACCP record.',
+            rationale: 'You answered her question with a feature description before understanding her setup. She asked how it relates to a CCP — not for a walkthrough.' }
+        ]
+      },
+      {
+        id: 'probe',
+        title: 'First Question',
+        instruction: 'She confirms CCP instruments are on monthly spot-checks. Between those checks, there is no systematic verification. What do you ask?',
+        choices: [
+          { id: 'a', type: 'problem', quality: 'excellent', points: 10,
+            text: 'If a temperature sensor at the hold section drifted in the second week of the month — when would your HACCP plan first register that?',
+            rationale: 'A technically precise question that names the hold section, the drift scenario, and the HACCP plan visibility gap. It is the right question for this conversation.' },
+          { id: 'b', type: 'situation', quality: 'good', points: 5,
+            text: 'Is the monthly check done by an external calibration laboratory, or internally by your team?',
+            rationale: 'A useful setup question about the calibration resource — it does not yet surface the gap between checks that creates the real risk.' },
+          { id: 'c', type: 'problem', quality: 'poor', points: 0,
+            text: 'Monthly checks leave a long window for drift — does that concern you from a food-safety standpoint?',
+            rationale: 'You named the risk for her rather than asking the question that makes her see it. A precise QA manager will answer "we manage it" and move on.' }
+        ]
+      },
+      {
+        id: 'develop',
+        title: 'Build the Problem',
+        instruction: 'She says the monthly check is the programme standard and they have managed it so far. She does not offer more. How do you respond?',
+        choices: [
+          { id: 'a', type: 'implication', quality: 'excellent', points: 10,
+            text: 'When the monthly check finds a transmitter out of tolerance — what does your HACCP plan require you to do about the product made since the last good result?',
+            rationale: 'A question that goes directly to the lot review and hold consequence required by the HACCP plan. She must answer — it does not assume a past event.' },
+          { id: 'b', type: 'problem', quality: 'good', points: 5,
+            text: 'Has a CCP check ever found a temperature sensor out of tolerance, and if so, how far back did you have to review?',
+            rationale: 'A direct question about a past event — a fair probe, though asking about the HACCP plan consequence first might be safer with a guarded QA manager.' },
+          { id: 'c', type: 'solution', quality: 'poor', points: 0,
+            text: 'Heartbeat Verification would run between those monthly checks and tell you whether the transmitter is still within its performance specification.',
+            rationale: 'She has not described a consequence yet. Jumping to the feature before she feels the problem means the feature has nothing to anchor to.' }
+        ]
+      },
+      {
+        id: 'quantify',
+        title: 'Put a Cost on It',
+        instruction: 'She confirms an out-of-tolerance result requires reviewing product since the last good calibration and potentially holding lots. She has not yet mentioned it has happened. How do you go next?',
+        choices: [
+          { id: 'a', type: 'implication', quality: 'excellent', points: 10,
+            text: 'Depending on when in the month it drifted, that lot review could cover days of production. Has that kind of review affected any product lots for you?',
+            rationale: 'You sized the lot review consequence, then gently asked if it has happened — giving her the chance to open up without pressure.' },
+          { id: 'b', type: 'implication', quality: 'good', points: 5,
+            text: 'If the drift happened early in the month, the lot review could be significant — how many days of production does one pasteuriser line cover in a month?',
+            rationale: 'A good question to size the review scope — a little weaker than also asking whether it has already happened, which opens the conversation further.' },
+          { id: 'c', type: 'situation', quality: 'poor', points: 0,
+            text: 'And how many temperature transmitters across your lines are currently on monthly checks?',
+            rationale: 'You moved to a count question when the conversation was building toward a real consequence. It resets to fact-gathering just as the problem was becoming visible.' }
+        ]
+      },
+      {
+        id: 'needpayoff',
+        title: 'Make It Matter',
+        instruction: 'She confirms it has happened — five days of lots reviewed, two held for disposition. She is more open now. What next?',
+        choices: [
+          { id: 'a', type: 'needpayoff', quality: 'excellent', points: 10,
+            text: 'If you had evidence that the transmitter was still within tolerance on day ten of that month — what would that have changed for those lots?',
+            rationale: 'A precise value question that lets her describe the benefit in HACCP terms — fewer lots held, faster disposition decision, less uncertainty. She states the value herself.' },
+          { id: 'b', type: 'implication', quality: 'good', points: 5,
+            text: 'So a drift that started mid-month means you review everything back to the last check — and the lot disposition carries real product and commercial cost.',
+            rationale: 'A fair summary that names the scope and the cost — a question that makes her state what earlier evidence would have been worth would go further.' },
+          { id: 'c', type: 'solution', quality: 'poor', points: 0,
+            text: 'Heartbeat Verification would have given you a dated, traceable pass result mid-month — that limits the lot review window.',
+            rationale: 'You described the benefit before she stated the need — technically correct, but the benefit lands harder when she says it herself.' }
+        ]
+      },
+      {
+        id: 'close',
+        title: 'Agree a Next Step',
+        instruction: 'She is genuinely interested but will not recommend anything without seeing it work on her own equipment. Close it.',
+        choices: [
+          { id: 'a', type: 'solution', quality: 'excellent', points: 10,
+            text: 'Then let us run a live Heartbeat Verification on one pasteuriser hold-section transmitter — you watch the report generate in real time, process running. If the result means nothing to you, we stop there.',
+            rationale: 'You matched her condition exactly — live, on her own equipment, no risk, no commitment. For a QA manager who needs proof, this is the right answer.' },
+          { id: 'b', type: 'solution', quality: 'good', points: 5,
+            text: 'I can arrange a demonstration on one of your CCP transmitters so you can see the output and judge whether it adds anything to your HACCP evidence base.',
+            rationale: 'A solid, low-pressure next step — adding that it runs with the process live, and she defines success, would make it feel even more tailored to her standard.' },
+          { id: 'c', type: 'solution', quality: 'poor', points: 0,
+            text: 'Let me prepare a proposal for a full CCP monitoring programme across both lines, with pricing and implementation timelines.',
+            rationale: 'She said she needs to see it work first — a full programme proposal jumps past the proof step she asked for and adds exactly the work she said she cannot justify.' }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: 'power-heartbeat',
+    title: 'The Protection Loop Gap',
+    subtitle: 'Build the case for continuous transmitter health in a critical safety loop',
+    product: 'Heartbeat Technology',
+    productLine: 'netilion',
+    difficulty: 'BDM',
+    difficultyLabel: 'Business Dev. Manager',
+    estimatedMinutes: 14,
+    personaId: 'hendrik-vogel',
+    description: 'Hendrik agreed to explore Heartbeat for his drum level protection loop. He is curious but technically demanding — he will probe every claim before building a business case.',
+    context: 'A technical meeting arranged after a colleague mentioned Heartbeat at an I&C conference. Hendrik is genuinely curious about in-situ verification but will test every technical claim hard. His drum level loop is his highest-concern measurement.',
+    industryContext: 'INDUSTRY REALITY (Power & Energy, coal-fired plant): A coal-fired generating unit runs a critical steam drum level protection loop — three redundant DP-based transmitters using median-select voting logic. Drum level is the most safety-sensitive measurement in a conventional boiler: high level risks water carryover into the turbine, low level risks tube overheating. A spurious unit trip from a faulty transmitter costs over €100k in lost generation plus restart, and goes directly into the fleet availability report. Transmitter health checks happen only in planned maintenance windows every 6–12 months. Hendrik speaks IEC 61511, SIL, median-select voting, unit availability, and MTBF. He will not be convinced by marketing claims. Heartbeat Verification checks a device in-situ without process interruption — it verifies, it does not replace required maintenance calibration or constitute a SIL proof test by itself.',
+    yourRole: 'E+H BDM — technical meeting on Heartbeat for critical protection loop transmitters',
+    knownGoingIn: [
+      'I&C Engineer at RWE Power AG, responsible for protection systems and instrument health on two coal units',
+      'Triple-redundant drum level loop; no systematic health monitoring between maintenance windows',
+      'Curious about in-situ verification but will probe hard — he will build a business case only if the evidence is solid'
+    ],
+    objectives: [
+      'Earn his technical confidence before any commercial step',
+      'Surface the cost of a spurious trip traced to a degraded transmitter in the protection loop',
+      'Propose a live Heartbeat Verification run on one drum level transmitter as a provable first step'
+    ],
+    customerOpening: 'I heard about Heartbeat at the I&C conference last month. The concept is interesting — in-situ verification without pulling the device. But I need to understand the limits before I consider building a business case. A protection system is not a place for technology that has not been properly understood. So — tell me exactly what it does and what it does not do.',
+    systemPromptHint: 'An E+H BDM is presenting Heartbeat Technology for your drum level protection loop transmitters. Transmitter health is checked only in planned maintenance windows. Eight months ago, one of the three transmitters developed a slow drift — the median-select compensated for a while, then a divergent reading triggered a spurious unit trip. The unit was offline for 18 hours; the cause was traced to the degraded transmitter. You have not told the rep this yet. You will probe every claim about diagnostic coverage and what "in-situ verification" actually proves.',
+    stages: [
+      {
+        id: 'open',
+        title: 'Opening Move',
+        instruction: 'Hendrik asked a direct technical question about what Heartbeat does and does not do. How do you respond?',
+        choices: [
+          { id: 'a', type: 'rapport', quality: 'excellent', points: 10,
+            text: 'Right — I will answer that exactly. But first: your drum level loop is triple-redundant with median-select. Between maintenance windows, how do you know whether all three transmitters are healthy?',
+            rationale: 'You acknowledged his demand for honesty and asked a precise protection-logic question — the right response for an I&C engineer who will only engage with someone who knows the system.' },
+          { id: 'b', type: 'situation', quality: 'good', points: 5,
+            text: 'Heartbeat Verification runs in-situ without removing the device. It compares live internal references to factory baselines and produces a pass/fail report — no process interruption.',
+            rationale: 'An accurate technical description that answers his question. But asking about his specific loop first would have earned more technical dialogue.' },
+          { id: 'c', type: 'solution', quality: 'poor', points: 0,
+            text: 'Heartbeat is a TÜV-attested in-situ verification method — it is proven technology used across thousands of power and process plants.',
+            rationale: 'You led with certification and a volume claim. An I&C engineer who asked for technical limits will push back on "thousands of plants" as a non-answer.' }
+        ]
+      },
+      {
+        id: 'probe',
+        title: 'First Question',
+        instruction: 'He confirms transmitter health in the protection loop is checked in maintenance windows only — every 6 to 12 months. Between windows, there is no systematic health view. What do you ask?',
+        choices: [
+          { id: 'a', type: 'problem', quality: 'excellent', points: 10,
+            text: 'Between those windows — if one of the three transmitters started to degrade slowly, at what point would the median-select logic actually show you something was wrong?',
+            rationale: 'A technically precise question about the specific failure mode in his protection logic — it asks him to think through the gap the way an I&C engineer would.' },
+          { id: 'b', type: 'situation', quality: 'good', points: 5,
+            text: 'When the maintenance window does happen — is the health check a full calibration against a reference standard, or a functional check?',
+            rationale: 'A fair question about what the window check covers — a question about the blind period between windows would go further toward the real risk.' },
+          { id: 'c', type: 'problem', quality: 'poor', points: 0,
+            text: 'That kind of health gap in a protection loop is exactly where Heartbeat adds value — continuous diagnostics surface degradation before it matters.',
+            rationale: 'You gave away the conclusion before he worked through the problem. He asked for technical precision — give him the question, not the answer.' }
+        ]
+      },
+      {
+        id: 'develop',
+        title: 'Build the Problem',
+        instruction: 'He acknowledges the median-select logic would mask a slow drift on one transmitter — and then, at some threshold, trigger a divergent reading. He pauses. How do you respond?',
+        choices: [
+          { id: 'a', type: 'implication', quality: 'excellent', points: 10,
+            text: 'That divergent reading — in your loop, does it cause a spurious trip, or does the logic hold it?',
+            rationale: 'A precise technical question about the specific consequence in his protection loop — it gives him the opportunity to describe what a spurious trip means for his unit.' },
+          { id: 'b', type: 'problem', quality: 'good', points: 5,
+            text: 'How close to that divergence threshold would a degrading transmitter get before a maintenance window catch would find it?',
+            rationale: 'A reasonable question about how close the gap takes him to a problem — asking about the trip consequence directly would pull more from him.' },
+          { id: 'c', type: 'solution', quality: 'poor', points: 0,
+            text: 'That is the failure mode Heartbeat Diagnostics monitors for — continuous NE 107 health status on each transmitter in the loop.',
+            rationale: 'He was working through a technical scenario and you cut to the product. He will probe the claim rather than finish the story — and the story is more valuable.' }
+        ]
+      },
+      {
+        id: 'quantify',
+        title: 'Put a Cost on It',
+        instruction: 'He confirms a bad divergent reading on that loop trips the unit. He mentions a spurious trip last year — 18 hours offline — without giving details. How do you respond?',
+        choices: [
+          { id: 'a', type: 'implication', quality: 'excellent', points: 10,
+            text: 'Eighteen hours of lost generation — what does that cost on your unit, and how does it show up in the fleet availability report?',
+            rationale: 'You stayed with the incident and asked about both the financial and the fleet-level consequence — the two measures that anchor a business case for Hendrik.' },
+          { id: 'b', type: 'implication', quality: 'good', points: 5,
+            text: 'A spurious trip from a protection loop fault is a direct hit on unit availability — how often does your fleet see that kind of event?',
+            rationale: 'A fair question about fleet frequency that widens the picture — asking the cost of the specific 18-hour event first would anchor the number more sharply.' },
+          { id: 'c', type: 'situation', quality: 'poor', points: 0,
+            text: 'That is difficult to deal with — and which HART version do those drum level transmitters actually run on your units?',
+            rationale: 'A technical detail question just as he opened up about a significant event. It looks like you stopped listening at the wrong moment.' }
+        ]
+      },
+      {
+        id: 'needpayoff',
+        title: 'Make It Matter',
+        instruction: 'He confirms the trip cost over €100k in lost generation and went into the fleet availability report. He pauses again. What next?',
+        choices: [
+          { id: 'a', type: 'needpayoff', quality: 'excellent', points: 10,
+            text: 'If Heartbeat had flagged that transmitter was degrading weeks before the trip — what would a business case for the maintenance team look like for you?',
+            rationale: 'A value question that links the capability directly to his business case — he describes the ROI himself, in the terms his maintenance and finance review will need.' },
+          { id: 'b', type: 'implication', quality: 'good', points: 5,
+            text: 'So one undetected degradation event cost over €100k and moved the fleet availability number — and the protection loop runs the same way today.',
+            rationale: 'A strong summary that puts the consequence and the continuing risk in one sentence — a question that makes him articulate the case himself would pull him further.' },
+          { id: 'c', type: 'solution', quality: 'poor', points: 0,
+            text: 'With Heartbeat monitoring all three transmitters continuously, that kind of trip becomes preventable — shall I show you the diagnostic architecture?',
+            rationale: 'He has not asked to see the architecture. Moving to a product walkthrough before he has built the case himself interrupts the work that makes the pilot meaningful.' }
+        ]
+      },
+      {
+        id: 'close',
+        title: 'Agree a Next Step',
+        instruction: 'He agrees the case is worth building, and is open to a first step — but needs to understand the limits of the verification method before taking it to his management.',
+        choices: [
+          { id: 'a', type: 'solution', quality: 'excellent', points: 10,
+            text: 'Then let us run a Heartbeat Verification on one drum level transmitter — you define the acceptance criteria, I explain exactly what the result does and does not prove. If it meets your standard, we build from there.',
+            rationale: 'You met his technical standard: he sets the criteria, you are transparent about the limits, and the next step is proof, not a commitment. Right offer for a careful engineer.' },
+          { id: 'b', type: 'solution', quality: 'good', points: 5,
+            text: 'A Heartbeat Verification run on one transmitter would show you the actual output — the coverage, the report, and what it proves — before you commit to anything.',
+            rationale: 'A solid, low-risk first step — adding that he sets the acceptance criteria and that you will explain the limits would match his stated condition more closely.' },
+          { id: 'c', type: 'solution', quality: 'poor', points: 0,
+            text: 'I will prepare a full Heartbeat rollout proposal for the drum level loop on both units, with SIL compliance notes attached.',
+            rationale: 'He asked to understand the limits before committing — a full rollout proposal with SIL compliance notes implies decisions he has not yet made.' }
+        ]
+      }
+    ]
+  },
+
+  {
+    id: 'metals-netilion',
+    title: 'The Grade Is Slipping',
+    subtitle: 'Connect instrument drift in the flotation circuit to the recovery number',
+    product: 'Netilion Health',
+    productLine: 'netilion',
+    difficulty: 'BDM',
+    difficultyLabel: 'Business Dev. Manager',
+    estimatedMinutes: 12,
+    personaId: 'james-okafor',
+    description: 'James cares about the recovery KPI. He will give you ten minutes to make a commercial case — if the connection to recovery or grade is not clear in the first few exchanges, he moves on.',
+    context: 'James agreed to this meeting because a peer at another mine mentioned the solution had reduced reactive instrument maintenance. He is results-driven and impatient with technology talk that does not connect to commercial outcomes.',
+    industryContext: 'INDUSTRY REALITY (Metals, Mining & Minerals — platinum concentrator): The flotation circuit at Mogalakwena runs 24/7 on platinum group metal ore. Density and flow instruments in the flotation feed and tailing streams are critical to reagent dosing (frother, collector, depressant). Slurry abrasion is the dominant failure mode — instruments drift or fail reactively. An undetected drift in feed density or flow causes incorrect reagent dosing: if the dose is off, concentrate grade and recovery fall. A 0.5% drop in platinum recovery is a direct and significant revenue loss per month — often only traceable to the instrument when the shift report or assay confirms the drop. James speaks in recovery %, reagent dosing, ore grade, OPEX, reactive vs predictive maintenance, and peer-site benchmarks. He will lose interest quickly if the conversation stays on platform features or digital transformation language.',
+    yourRole: 'E+H BDM — connecting instrument health monitoring to flotation recovery at a platinum concentrator',
+    knownGoingIn: [
+      'Operations Manager at Anglo American Mogalakwena, responsible for flotation throughput, recovery, and OPEX',
+      'Density and flow instruments in the circuit fail reactively; drift is found when downstream KPIs move',
+      'A peer at a copper mine mentioned Netilion Health had reduced reactive maintenance costs'
+    ],
+    objectives: [
+      'Reach the recovery KPI in the first few exchanges — do not stay on product or technology',
+      'Build the cost of an undetected drift — reagent dosing error, recovery loss, revenue impact',
+      'Propose a 30-day pilot on 3–5 key flotation instruments as a concrete first step'
+    ],
+    customerOpening: 'My peer at Kansanshi mentioned you. He said it helped them track instrument health before failures turned into maintenance call-outs. I have ten minutes. Tell me why this is useful for a flotation circuit.',
+    systemPromptHint: 'An E+H BDM is presenting Netilion Health to monitor instrument condition in your flotation circuit. Density and flow instruments drift and fail reactively due to slurry abrasion. Three months ago a density instrument in the flotation feed drifted for about ten days before the shift team noticed grade had softened. Root cause was instrument drift causing incorrect reagent dosing; recovery loss was approximately 0.4%. You have reported a recovery shortfall to your general manager twice in 18 months. You will engage quickly if the rep connects the tool to the recovery number. You will lose interest if they talk platforms or digital transformation without connecting to grade and recovery.',
+    stages: [
+      {
+        id: 'open',
+        title: 'Opening Move',
+        instruction: 'James gave you ten minutes and wants a direct commercial answer. How do you start?',
+        choices: [
+          { id: 'a', type: 'problem', quality: 'excellent', points: 10,
+            text: 'Simple: it gives you an early warning before an instrument drift touches your recovery number. In your flotation feed — how do you currently find out an instrument has started to drift?',
+            rationale: 'One sentence connecting the tool to his KPI, then a direct question about his current detection gap. Right pace and commercial register for James.' },
+          { id: 'b', type: 'situation', quality: 'good', points: 5,
+            text: 'It monitors instrument health continuously — density, flow, any Heartbeat-enabled device in the circuit. What does your current failure detection look like?',
+            rationale: 'A reasonable answer with a good follow-up question — slightly weaker because you led with the feature list before the commercial connection.' },
+          { id: 'c', type: 'solution', quality: 'poor', points: 0,
+            text: 'It is a cloud platform that aggregates NE 107 health status from all your connected instruments in real time — I can show you the dashboard.',
+            rationale: '"Cloud platform" and "dashboard" are exactly the technology-first language James does not respond to. He will give you three minutes, not ten.' }
+        ]
+      },
+      {
+        id: 'probe',
+        title: 'First Question',
+        instruction: 'He says the team usually finds out an instrument has failed when a downstream KPI — recovery or grade — has already moved. What do you ask?',
+        choices: [
+          { id: 'a', type: 'problem', quality: 'excellent', points: 10,
+            text: 'When you trace it back — how long has the drift typically been running before the KPI moves enough for the shift team to notice?',
+            rationale: 'A direct question about the drift window — it builds toward the lost recovery days, which is the commercial number he cares about.' },
+          { id: 'b', type: 'situation', quality: 'good', points: 5,
+            text: 'Which instruments in the circuit fail most often — density meters, flow meters, or both?',
+            rationale: 'A fair setup question that identifies the worst instruments — it does not yet open the cost of the detection gap, which is the more important direction.' },
+          { id: 'c', type: 'problem', quality: 'poor', points: 0,
+            text: 'Reactive maintenance is common in flotation circuits — do you have a maintenance backlog because of it?',
+            rationale: 'A general maintenance question misses the point. James is focused on recovery, not maintenance scheduling — a backlog question will not engage him.' }
+        ]
+      },
+      {
+        id: 'develop',
+        title: 'Build the Problem',
+        instruction: 'He says drift can run for days before anyone connects a softening grade to an instrument. He moves past it quickly. How do you respond?',
+        choices: [
+          { id: 'a', type: 'implication', quality: 'excellent', points: 10,
+            text: 'Days of drift in the feed density — at the reagent dosing error that creates, what does that do to your recovery percentage over that period?',
+            rationale: 'A direct causal question linking drift duration to reagent dosing error to recovery loss — the exact chain that James owns and has to explain to his GM.' },
+          { id: 'b', type: 'implication', quality: 'good', points: 5,
+            text: 'And when you trace it back to the instrument, that period of incorrect dosing is already gone — it is a recovery loss you cannot reverse.',
+            rationale: 'A strong statement of the irreversible cost — a question that makes him quantify the recovery impact would give him the number for his own case.' },
+          { id: 'c', type: 'solution', quality: 'poor', points: 0,
+            text: 'Netilion Health would have caught the drift early — it monitors NE 107 health status continuously on each instrument.',
+            rationale: 'He just described a real operational problem and you jumped to the product. For James, the feature means nothing until the cost is on the table.' }
+        ]
+      },
+      {
+        id: 'quantify',
+        title: 'Put a Cost on It',
+        instruction: 'He acknowledges that a drift event means days of sub-optimal dosing and a grade softening he has to report. He has not named a number yet. What do you do?',
+        choices: [
+          { id: 'a', type: 'implication', quality: 'excellent', points: 10,
+            text: 'At your throughput and current platinum price — what does a half-percentage-point drop in recovery cost you in a month?',
+            rationale: 'A direct, commercial, specific question that asks him to state the number himself. When he says it, the case for prevention is already made.' },
+          { id: 'b', type: 'implication', quality: 'good', points: 5,
+            text: 'A sustained dosing error across a few shifts, at your circuit scale, is a meaningful revenue impact — is that something you have had to account for in the month-end report?',
+            rationale: 'A fair link to the monthly reporting — asking him to name the number directly would be stronger for a commercially direct decision-maker.' },
+          { id: 'c', type: 'solution', quality: 'poor', points: 0,
+            text: 'I can show you case studies from copper and gold operations where Netilion Health cut reactive maintenance costs significantly.',
+            rationale: 'Case studies are support material, not a replacement for his own number. He asked for a commercial case — get his number first.' }
+        ]
+      },
+      {
+        id: 'needpayoff',
+        title: 'Make It Matter',
+        instruction: 'He confirms a half-point recovery drop costs significant revenue per month and he has had to report it to his GM twice in 18 months. He is engaged. What next?',
+        choices: [
+          { id: 'a', type: 'needpayoff', quality: 'excellent', points: 10,
+            text: 'If an instrument alert came 48 hours before the drift reached dosing error — how many of those GM conversations would that prevent?',
+            rationale: 'A value question that makes him state the benefit in his own operational and political terms. He knows the answer — saying it makes the case his.' },
+          { id: 'b', type: 'implication', quality: 'good', points: 5,
+            text: 'So the GM conversation is the signal — and preventing it means catching the drift before it moves the recovery number.',
+            rationale: 'A strong, concise link from the problem to the benefit — a question that makes him own the value of early warning would be slightly stronger.' },
+          { id: 'c', type: 'solution', quality: 'poor', points: 0,
+            text: 'Then Netilion Health is the right solution — it is the only platform that gives you Heartbeat diagnostics on your E+H instruments at circuit scale.',
+            rationale: 'He just told you what is at stake, and you gave him a product claim with "only platform" language. He will test that claim and it will stall the conversation.' }
+        ]
+      },
+      {
+        id: 'close',
+        title: 'Agree a Next Step',
+        instruction: 'He is willing to look at it, but wants to see it on his own instruments — not a software demo. Close it.',
+        choices: [
+          { id: 'a', type: 'solution', quality: 'excellent', points: 10,
+            text: 'Then 30 days on three or four of your highest-value feed instruments — no dashboard tour, just live health data from your circuit. You judge whether the early warning is real.',
+            rationale: 'You matched his condition exactly — his instruments, his circuit, his judgment. A results-driven operations manager agrees to a test on his terms.' },
+          { id: 'b', type: 'solution', quality: 'good', points: 5,
+            text: 'I can connect a few key density and flow instruments in the flotation feed for a 30-day trial — you set the success criteria.',
+            rationale: 'A solid next step on his terms — adding that the outcome is live health data from his circuit, not a demo, would make it feel less like a vendor trial.' },
+          { id: 'c', type: 'solution', quality: 'poor', points: 0,
+            text: 'I will prepare a full proposal for a site-wide Netilion Health rollout across the flotation circuit, with an ROI model based on your throughput data.',
+            rationale: 'He said he wants to see it on his own instruments — not a site-wide proposal. An ROI model from your data, not his, will not convince him.' }
+        ]
+      }
+    ]
   }
 ];

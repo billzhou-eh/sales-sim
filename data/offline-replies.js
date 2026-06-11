@@ -412,5 +412,211 @@ const OFFLINE_REPLIES = {
       c: ['The whole unit? I offered you one point. That is too much, too fast.',
           'You jumped to a plant-wide rollout. No — one point first, like I said.']
     }
+  },
+
+  // ── NEW OFFLINE REPLIES: archetypes re-homed in new industries ────────────────
+
+  'water-netilion': {
+    open: {
+      a: ['A fair approach. Our remote stations are on weekly rounds for the main ones, and less often for the smaller discharge points. What would you like to understand about them?',
+          'That is a reasonable starting point. The main works is covered by SCADA, but the outlying pump and discharge stations are on manual rounds. What would you like to know?'],
+      b: ['Eight remote stations in total. The critical permit parameters are ammonia at discharge and chlorine residual in distribution. The main plant is well covered — the remote stations less so.',
+          'Eight stations, yes. Permit compliance is primarily around ammonia and turbidity at the effluent discharge points, and chlorine residual in distribution. The main plant is well instrumented; the remote stations are more limited.'],
+      c: ['I appreciate the interest, but we already have a system in place. What specifically would this add for a utility our size?',
+          'We have managed our monitoring programme for many years. I am not sure a new platform is what we need right now. What problem are you solving for us specifically?']
+    },
+    probe: {
+      a: ['That is a precise question. At the remote discharge points, honestly, we would know in a few days if someone noticed something on the manual round. We do not have real-time visibility on those analysers.',
+          'Between rounds, we would not know. The weekly round is the check. If a discharge analyser drifted on day two and the round was not until day five or six, we would not see it until then.'],
+      b: ['Three of the remote stations are connected to the old SCADA — they report flow and level, but not the analytical parameters. The remaining five discharge stations are manual only.',
+          'The SCADA covers the main works and the three largest pumping stations. The smaller discharge stations are manual. The analytical instruments at those points are not wired in.'],
+      c: ['Our rounds schedule is designed around the risk level of each station. We review it regularly. Is this about the frequency of rounds, or something else?',
+          'We have a structured maintenance programme. What are you suggesting is missing from our current approach?']
+    },
+    develop: {
+      a: ['Yes — if a discharge analyser has drifted, we have to review the data from the period it may have been affected. Depending on how long it had been drifting, there is a window where the compliance picture is uncertain.',
+          'That is correct. If we find drift and cannot confirm when it started, we have to treat the data from that period with caution. That means a compliance decision we would prefer to avoid.'],
+      b: ['It happens two or three times a year across the network. Usually found on the round and corrected. I would call it manageable — though not ideal.',
+          'Probably one or two drift events per year at the remote stations. Usually routine. Small corrections on the round, no major incidents — at least that is how we have handled it.'],
+      c: ['We have managed this programme for a long time. I would not describe it as a significant problem. Is that the type of situation you are referring to?',
+          'Remote instrument drift is a normal part of operating a distribution network. We have procedures for dealing with it. What specifically concerns you about our current approach?']
+    },
+    quantify: {
+      a: ['The corrective action was straightforward. The public notification was more difficult. It had to go to the municipality and was published. The follow-up inspection came two months later. That took significant time from my team.',
+          'We filed the report, notified the municipality, prepared a corrective action plan, and accepted an inspection from the regional authority. The public notification was uncomfortable for the utility.'],
+      b: ['Yes, the report goes to the municipality and it is a matter of public record. It affects how the regulator views us — and how the municipal council views our operations.',
+          'Any mandatory report to the environmental authority is visible to the municipality. We are a public utility. That kind of report is discussed at a level above my team.'],
+      c: ['I appreciate your interest in our compliance picture, but those details are not something I discuss in initial meetings. Is there a specific technical point about your system you would like to cover?',
+          'Our regulatory history is not something I share at this stage. Can we keep the discussion to what your solution can actually do?']
+    },
+    needpayoff: {
+      a: ['It would change a great deal. If we had an alert before the level reached the permit limit, we could correct the instrument and redirect flow before any exceedance occurred. We would not be filing a report or under an inspection plan.',
+          'An early warning would mean we act on the instrument, not on the consequence. We could prevent the exceedance rather than respond to it. That is a fundamentally different position to be in with the regulator.'],
+      b: ['Corrective action plans, inspections, and public notifications are all manageable — but each one costs time and attention from a team that is already stretched. Fewer of them would be better.',
+          'The inspection put us on a heightened compliance schedule for six months. The corrective action plan took significant effort. It is a record we would prefer not to have repeated.'],
+      c: ['The benefit is clear in principle. My concern is whether a new monitoring layer would actually function reliably in a remote outdoor environment with limited connectivity.',
+          'The concept is straightforward. My question is whether the system would work in practice for small discharge stations with limited infrastructure.']
+    },
+    close: {
+      a: ['That is a reasonable starting point. The two or three discharge stations with the most permit exposure are the right places to begin. I would want to understand the connectivity requirements before we go further.',
+          'A limited pilot on the highest-exposure stations makes sense. I would need to understand what the system needs from our infrastructure, and what the data handling requirements are for a public utility.'],
+      b: ['A pilot on a few remote stations, with parameters aligned to our permit conditions, would be a reasonable first step. I would like to involve our compliance officer before we agree to anything.',
+          'That kind of targeted start is the right approach for us. Let us be clear about data residency and access controls before we proceed — those are requirements, not preferences, for a public utility.'],
+      c: ['Eight stations is a significant scope. I am not in a position to evaluate a proposal of that kind without a formal procurement process.',
+          'A site-wide rollout is not a decision I could make at this stage. I would need much more information before any broader proposal reaches my management.']
+    }
+  },
+
+  'fb-heartbeat': {
+    open: {
+      a: ['That is the right question to ask. Currently we have no systematic way to confirm a CCP instrument is still reading correctly between its monthly check. We rely on the schedule and on the HTST automated safety monitoring — but not on drift.',
+          'Honestly, we cannot confirm it between checks. If a temperature transmitter at the hold section has drifted by 0.3 or 0.4 degrees, the HTST will not alarm on that. We will not find it until the next monthly check.'],
+      b: ['We have four CCPs across the two lines — three temperature points at the hold sections and one flow meter for the hold time. They are on monthly calibration checks. Why do you ask?',
+          'Two lines, four CCPs in total. Monthly calibration schedule, done by our internal metrology team. What is the relevance of the calibration frequency to what you are offering?'],
+      c: ['What I need to understand first is whether this generates additional records my team has to manage. Every element we add to a HACCP programme must be justified. What records does this produce?',
+          'Before I engage with a feature description, I need to understand what this requires from our food safety plan. Can you explain the basis for using this output as supporting evidence in a HACCP corrective action?']
+    },
+    probe: {
+      a: ['Between checks, the only indication would be if the HTST automated divert valve triggered on a temperature drop below the critical limit. But that is a large deviation. A slow drift of half a degree would not trigger it. We would not see it.',
+          'A slow drift between monthly checks would be invisible. The automated system protects against the critical limit breach in real time, but it is not designed to catch gradual drift over weeks.'],
+      b: ['The monthly checks are done by our internal metrology team — we have an accredited calibration programme. They use a reference thermometer and a documented procedure.',
+          'We use an external accredited calibration laboratory for the annual formal calibration and our internal metrology team for the monthly spot-checks. Both produce records that go into the HACCP file.'],
+      c: ['We have a monthly schedule because that is the interval we validated in our HACCP plan. It has been accepted by our third-party auditors. Are you suggesting it is inadequate?',
+          'The monthly programme meets our food safety plan requirements. What specifically do you believe is insufficient about it?']
+    },
+    develop: {
+      a: ['Correct. If the calibration check finds the transmitter out of tolerance, we must review all product manufactured since the last good result. That is the HACCP corrective action — lot traceability review, assess whether the critical limit was met, and make a disposition decision.',
+          'If an out-of-tolerance result is found, we treat all production since the last verified good result as potentially affected. We review the temperature records for each lot and decide: release, hold for further testing, or dispose.'],
+      b: ['It has happened. A transmitter was found reading low at the monthly check. We reviewed five days of production. Two lots were held for disposition — one was tested and released, one was downgraded and sold at a lower price.',
+          'Yes, it has happened. The lot review covers everything since the last confirmed good calibration. Depending on when the drift started, that can be a large scope.'],
+      c: ['That is the procedure for any out-of-tolerance finding — it is standard HACCP corrective action. I am not sure what specifically about that process you are asking about.',
+          'We handle out-of-tolerance results according to our HACCP corrective action procedure. What is your question?']
+    },
+    quantify: {
+      a: ['Five days of production on one line. Two lots held for disposition — one released after additional testing, one downgraded. The commercial cost on the downgraded lot was real. The QA review and the testing were also resource-intensive.',
+          'Two lots held, one downgraded. The commercial cost was significant. The QA team time was also considerable — the lot review, the testing, and the corrective action documentation all took time we could not spare.'],
+      b: ['If the drift started early in the month, the review covers almost the whole month. That is the exposure — the earlier the drift, the larger the lot review scope.',
+          'The earlier in the calibration interval the drift occurs, the larger the scope. If a transmitter drifts in week one of four, you are reviewing the entire month\'s production.'],
+      c: ['Those details are internal. What I can say is that the consequence of an out-of-tolerance finding at a CCP is always significant — the scope of the lot review is the main variable.',
+          'I have told you how the corrective action works. I am not going to share specific production or commercial details in this meeting. Can we move to what your system actually does?']
+    },
+    needpayoff: {
+      a: ['It would have changed the disposition decision on the downgraded lot. If I had a dated pass result from day ten, I could have limited the review to the remaining twenty days — not the full month. The lot that was downgraded would likely have been released.',
+          'A dated pass result mid-month limits the review window. The lot disposition is based on the worst-case interval since the last confirmed good result. Shorten that interval and you shrink the exposure significantly.'],
+      b: ['The disposition cost and the QA team time were both real. Reducing the review scope — even by half — changes the commercial outcome and the resource requirement considerably.',
+          'The two costs are the product disposition and the QA team time. If the review scope is reduced, both of those are lower. That is a straightforward calculation.'],
+      c: ['In principle, a dated intermediate check would help narrow the review scope. My concern is whether this verification output would carry weight with a food safety auditor as supporting evidence in a HACCP corrective action file. Has it been tested in that context?',
+          'The logic is clear. But the food safety plan must justify any evidence source we use. What is the validation status of this method under HACCP audit standards?']
+    },
+    close: {
+      a: ['That is the right approach. A live demonstration on one of my CCP transmitters, process running, so I can see exactly what the report looks like and whether it would carry weight in a HACCP corrective action file. I am willing to see that.',
+          'A demonstration on a live CCP instrument is what I need before I form any view. I want to see the report format, the traceability reference, and the pass criteria. If it meets the standard, I will tell you.'],
+      b: ['One CCP transmitter, live, is a reasonable starting point. I would want to review the output format before agreeing to anything further. If it does not add to the HACCP evidence base, it adds no value for us.',
+          'One transmitter, one CCP, with full transparency about what the result means. That is the level of proof I need before I recommend this to my plant manager or include it in the food safety plan.'],
+      c: ['A full programme proposal is premature. I need to understand the technical basis first. Let us not get ahead of a conversation that has not properly started.',
+          'I agreed to an initial meeting. A full proposal for both lines would require my management to be involved and a formal evaluation process. That is not where we are.']
+    }
+  },
+
+  'power-heartbeat': {
+    open: {
+      a: ['That is a precise question. Between maintenance windows, we have no systematic view across all three transmitters. The median-select logic compensates for a single degrading leg — but we do not see which transmitter is degrading until the maintenance team checks it on shutdown.',
+          'Exactly the right question. We monitor the drum level signal going to the controller, but not the health of each individual transmitter in the loop. If one is drifting, the logic hides it until the divergence becomes large enough to be visible.'],
+      b: ['In-situ verification without removing the device is the concept I have been looking at. Tell me what the internal references are and how the method has been assessed. TÜV attestation is a start — I want to understand the diagnostic coverage specifically.',
+          'Heartbeat Verification running in-situ is the part that caught my attention. But what I need to know is the diagnostic coverage — what percentage of failure modes does the method actually detect? That is the number that matters for a protection application.'],
+      c: ['A certification and a reference count are not the same as a technical explanation. What is the diagnostic coverage for a DP-based drum level transmitter specifically? That is the number that matters.',
+          '"Proven in thousands of plants" is a marketing claim, not a technical answer. I want to understand the failure modes the method covers and the ones it does not. That is a completely different question.']
+    },
+    probe: {
+      a: ['In a three-transmitter median-select, one degrading transmitter pulls the median slightly but does not trip the logic immediately. The divergence has to reach a visible threshold in the DCS trend before anyone investigates the individual transmitter — and if they are not watching, it can stay hidden for a long time.',
+          'The short answer is that the median-select would not show it — not until the divergence became significant. A transmitter degrading slowly can pull the median for weeks before the DCS trend makes it visible, if someone is looking at the right screen.'],
+      b: ['During the maintenance window, we do a full calibration check against a reference standard and test the transmitter under simulated conditions. It is a complete check — but it is not continuous, and the interval can be six months or longer.',
+          'The maintenance window check is a combination — calibration on the DP cells, electronics test, inspection of the condensate lines. Thorough, but only at planned outage frequency.'],
+      c: ['That is exactly the diagnostic boundary I would focus on. What failure modes in a DP-based transmitter does Heartbeat actually cover? The coverage is the number I need before I can assess whether this is relevant for a protection loop.',
+          'Continuous monitoring is interesting in principle. But I need to know what it monitors specifically — not the signal it reports, but the physical failure modes it can detect in a high-pressure, high-temperature drum level application.']
+    },
+    develop: {
+      a: ['In our loop, a divergence beyond the voting threshold causes the protection logic to escalate. If the degraded transmitter\'s reading moves far enough from the median, the protection system interprets it as a genuine process condition and acts. In the worst case — a spurious trip.',
+          'The protection logic is designed to act on what it sees. If a degraded transmitter gives a signal that diverges enough, the median-select will eventually be overridden by the protection setpoints. That can produce a spurious trip. It is a known failure mode in any redundant level protection loop.'],
+      b: ['The closer a degraded transmitter gets to the trip setpoint before the maintenance window, the more likely the logic will see it as a genuine condition. A slow drift within that window, toward the protection setpoints during a production period, is the dangerous scenario.',
+          'If a transmitter degrades close to the protection setpoints and nobody sees it between windows, the only indication is when the loop trips or when a shift engineer notices a trend anomaly. The second depends on someone watching the right screen.'],
+      c: ['The failure mode analysis for this type of protection loop is well established. I would describe it as an accepted design trade-off, not a gap. The question is whether continuous diagnostics change that trade-off meaningfully.',
+          'Protection system redundancy is designed to tolerate exactly this kind of single-transmitter degradation. I am not dismissing the concern — I am asking whether the Heartbeat diagnostic coverage actually adds something to what the median-select logic already handles.']
+    },
+    quantify: {
+      a: ['A mid-size coal unit offline for 18 hours — at our output and grid contract, the lost generation cost is above €100k including restart. It goes straight into the fleet availability report and is reviewed at group level.',
+          'The financial cost of that length of outage at our unit output is significant — I would not state the exact figure externally, but above €100k including restart costs. The availability impact is a separate matter — it affects our maintenance performance review at fleet level.'],
+      b: ['Spurious trips at the fleet level are tracked carefully. Each one has to be analysed and the root cause documented. If it traces back to a transmitter health gap, that raises a question about whether the maintenance programme is adequate.',
+          'Fleet availability is a headline KPI. A spurious trip that traces to an instrument health gap would raise a question about the maintenance programme — and that is not a conversation any I&C engineer wants to have with plant management.'],
+      c: ['I am not going to quantify specific events in this meeting. The cost of a spurious trip from a protection loop fault is well understood in this industry. What I am evaluating is whether Heartbeat changes the probability of that event occurring.',
+          'Protocol details on specific incidents are not for external discussion. What I can say is that a spurious trip on a unit this size has a significant direct cost and a fleet-level reporting consequence.']
+    },
+    needpayoff: {
+      a: ['If the method is technically sound, the business case is straightforward. One avoided trip pays for a monitoring solution across the drum level loop several times over. The question is whether the diagnostic coverage is sufficient to actually prevent the degradation mode I have described.',
+          'The financial case for avoiding one trip is clear. The harder question for my management is the technical case — specifically, what Heartbeat diagnostic coverage provides for DP-based transmitters in a drum level protection application. That is the foundation the business case needs.'],
+      b: ['One avoided spurious trip justifies the investment. But "avoided" requires that the diagnostic method would have flagged the specific degradation mode before it reached the trip threshold. I need to verify that claim before I can make the case internally.',
+          'The gap is real. The question I need to answer for my management is: does Heartbeat provide a signal that would have been visible before the loop divergence reached the trip setpoint? That is a specific technical claim I need to test.'],
+      c: ['The concept is compelling in principle. But I will not build a business case on a claimed capability I have not tested. How do we verify that the Heartbeat output would have been useful in the specific degradation scenario I have described?',
+          'The ROI logic is sound if the diagnostic capability is real. I do not take that on trust in a protection system context. What is the right way to test that claim on my actual transmitters?']
+    },
+    close: {
+      a: ['That is an acceptable approach. One transmitter, I define the acceptance criteria, you explain exactly what the pass/fail result means and what it does not mean. If the output is technically defensible for a protection loop, I will build the case. If not, we stop there.',
+          'I accept that. One transmitter, transparent explanation of the diagnostic coverage and the limitations, and I judge the result against my own criteria. That is the right starting point.'],
+      b: ['A verification run on one transmitter with a full explanation of the output is a reasonable first step. I would want the result reviewed against the SIL documentation for this loop before I form a wider view.',
+          'One transmitter, full transparency on the method and its limits. I will assess the output and decide whether it is technically defensible in a protection system context. That is all I can agree to at this stage.'],
+      c: ['A rollout proposal for both units is premature. I have not evaluated the method yet. I would not take a proposal of that scope to my management without a tested technical basis.',
+          'A site-wide proposal is not something I can respond to without a technical evaluation first. We have not established the diagnostic basis for this application. Let us not jump to a procurement decision.']
+    }
+  },
+
+  'metals-netilion': {
+    open: {
+      a: ['Reactive. The shift team finds out from the assay or the grade trend. By then the drift has been running for days. The instrument is found, replaced, and we move on — but the recovery is already gone.',
+          'The team finds out when the downstream numbers soften. We trace it back to the instrument, correct it, and carry on. The gap between the drift starting and the shift team connecting it to an instrument is the problem.'],
+      b: ['Most of the critical instruments in the circuit are E+H. I know what NE 107 means. What I do not have is a central view of health across the circuit. Each instrument is checked individually on the maintenance schedule.',
+          'We have Heartbeat-enabled devices on most of the critical flow and density points. NE 107 health status is visible locally, but nobody has a systematic view of it across the circuit.'],
+      c: ['I appreciate the direct answer. The peer mention is the reason we are talking. What specifically does it do that is different from what my maintenance team already does on rounds?',
+          'A cloud platform is not what I am looking for if it needs a specialist to maintain it. Tell me how this works in practice in a flotation environment — not the software architecture.']
+    },
+    probe: {
+      a: ['Days. A slow drift does not trip any alarm — it moves the feed density reading gradually. The dosing system responds to what the instrument says. By the time the grade has moved enough to investigate, the drift has typically been running for five to ten days.',
+          'The shift team notices when the grade softens in the assay — usually at the end of a shift or the following shift report. At that point, the drift could have been running for a week. Sometimes longer if it is gradual.'],
+      b: ['Density meters take the most punishment from the slurry. Abrasion is worst at the highest solids concentration. Flow meters are second — liner wear mainly. Both fail faster than the maintenance interval suggests.',
+          'Density first, then flow. The slurry in the flotation feed at this operation is aggressive. We replace density instruments reactively — the mean time before a drift event is much shorter than the official maintenance interval.'],
+      c: ['Reactive maintenance is the model for most of the circuit. What would predictive monitoring require from my maintenance team in terms of daily workload? I do not want to add administrative burden for a marginal gain.',
+          'Tell me more specifically — what does "catch drift early" mean in practice? Is this a daily alert that needs someone to respond, or is it something that flags only when there is a real problem?']
+    },
+    develop: {
+      a: ['At the feed density range we operate, a drift of a few percent means the dosing system is delivering the wrong reagent mass. If the density reads high, the frother is overdosed and you lose selectivity. If it reads low, the collector is under-dosed. Either way, grade or recovery softens.',
+          'The dosing control is set against the density reading. If that reading is off, the dose is off. At circuit scale, a small dosing error sustained over days adds up to a measurable recovery loss. The grade move is often subtle enough that the shift team attributes it to ore variability first.'],
+      b: ['By the time we trace a grade softening to an instrument, the dosing correction window is gone. You cannot recover the reagent efficiency retrospectively. It is a revenue loss that has already happened.',
+          'The consequence is irreversible once the shift is done. We correct the instrument and recalibrate the dosing model, but the ore that went through at the wrong dosing is already in the tailings or concentrated at the wrong grade.'],
+      c: ['That is the operational reality. A drift event and a recovery correction are part of operating this kind of circuit. The question for me is how much this system reduces the frequency and duration of those events — and at what OPEX cost.',
+          'The link between density drift and reagent dosing is well understood here. What I need to know is: how much earlier does this system flag a drift than my current rounds-based check? Give me a number I can compare.']
+    },
+    quantify: {
+      a: ['At our PGM price and throughput, a 0.5% recovery drop for a full month is a number with several zeros. It is not the kind of loss you want to explain twice to the same general manager. I have explained it twice.',
+          'The revenue impact of a half-point recovery drop at this scale is significant. The commercial case for preventing it is obvious once you put a number on it. What I need to know is whether this system reliably prevents it — or just reports after the fact.'],
+      b: ['Yes, I have had to report it. The GM understands reagent chemistry is not exact science — but two events in 18 months where the root cause traced to an instrument that should have been flagged earlier is a different conversation.',
+          'The monthly report is where it shows up. A recovery shortfall that traces to instrumentation looks like a maintenance programme failure. That is the conversation I need to avoid a third time.'],
+      c: ['The commercial impact is real and I am aware of it. What I want to understand is the probability this system would actually flag a drift before it affects the grade — not the theoretical capability, but the practical detection time in a slurry abrasion environment.',
+          'Give me a realistic number for detection time. In a circuit like this, with slurry abrasion as the primary failure mode, how many days earlier would this system flag a drift compared to my current rounds-based check?']
+    },
+    needpayoff: {
+      a: ['Most of them. If I catch the drift two days in rather than ten days in, the dosing correction is minor and the recovery impact is small. The conversation with the GM does not happen. That is a clear improvement.',
+          'If the early warning is reliable, those conversations stop. The recovery shortfall is small, the correction is routine, and the grade holds. That is what I am paying a maintenance programme to deliver — and it is not delivering it right now.'],
+      b: ['Two avoidable recovery shortfalls per year, at the revenue impact I described — if this system prevents even one of them, the OPEX cost is justified. That is the calculation I would take to my management.',
+          'The GM conversation is the visible cost. But the recovery loss is the real cost. Preventing two events a year at that revenue impact pays for a monitoring system several times over.'],
+      c: ['The principle is clear. The risk I am evaluating is whether "only platform" means I am locked into a high-maintenance solution that creates a new dependency in the circuit. What is the ongoing support requirement?',
+          'The commercial case is sound if the detection is reliable. My concern is operational continuity — if the platform goes down, does my maintenance team lose visibility entirely, or does the circuit continue to operate normally?']
+    },
+    close: {
+      a: ['Three or four instruments in the feed, 30 days, I judge whether the early warning is real based on what I see in the health data versus what my team finds on rounds. If it catches something my team did not — we continue. If not, we stop.',
+          'That is the right scope. Three or four critical instruments in the flotation feed, live health data, 30 days. I will compare it to my maintenance team\'s round data. If it adds genuine early warning, the OPEX case is straightforward.'],
+      b: ['Density and flow in the feed stream, 30 days, I define success. If the early warning capability is real, the business case is simple. If not, we stop and I do not take it further.',
+          'A trial on the critical feed instruments is the right starting point. I will set the success criteria: the system must flag a drift event before my team finds it on a round. That is the only result that justifies continuing.'],
+      c: ['A site-wide proposal is not useful to me right now. I need to see it work on a small number of instruments first. A full proposal before a successful trial is not how I make decisions.',
+          'ROI modelling from a supplier is not something I rely on for purchasing decisions. I would rather run the trial and measure the actual result against my own recovery data. That is the only model I trust.']
+    }
   }
 };
