@@ -22,12 +22,13 @@ const SCENARIOS = [
     difficulty: 'SC',
     difficultyLabel: 'Sales Coordinator',
     estimatedMinutes: 12,
-    personaId: 'marcus-weber',
-    description: 'Marcus filled in a web form, but he expects a sales pitch. He will not tell you the real problem — you have to ask the right questions.',
-    context: 'First discovery call. You know almost nothing about Marcus — only that he runs maintenance at a chemical plant and asked about "field device tools." He has little time and does not like product pitches.',
+    personaId: 'peter-hoffmann',
+    description: 'Peter filled in a web form, but he expects a sales pitch. He will not tell you the real problem — you have to ask the right questions.',
+    context: 'First discovery call. You know almost nothing about Peter — only that he is a C&I engineer at a chemical plant and asked about "field device tools." He has little time and does not like product pitches.',
+    industryContext: 'INDUSTRY REALITY (Chemical, Ex / hazardous areas): This is a continuous-process plant — reactors, distillation columns, dosing skids — with HART, PROFIBUS and older Fieldbus instruments (Coriolis flow, radar and guided-wave level, pressure/DP, temperature) in ATEX-classified zones. Commissioning and parameter checks are done device-by-device with a laptop or handheld. When a device check stalls, the real risk is a process unit waiting or a spurious trip — not a discrete "production line". Peter respects technical depth and clever engineering and tunes out price-only or brochure talk. He speaks like an engineer: NE 107 status, Ex zone, DTM, commissioning, proof test, root cause. E+H is premium-priced; Vega and Emerson are the competitors he might mention.',
     yourRole: 'E+H Sales Coordinator — first discovery call',
     knownGoingIn: [
-      'Plant Maintenance Manager at a mid-size chemical plant',
+      'Control & Instrumentation Engineer at a mid-size chemical plant',
       'Asked on the website about "better field device management tools"',
       'Nothing more — you must find out his real situation during the call'
     ],
@@ -36,12 +37,12 @@ const SCENARIOS = [
       'Use questions to show the cost of that problem',
       'Agree a clear next step that works for him'
     ],
-    customerOpening: 'Thanks for calling. To be honest, I filled in that form quickly. I have been in many vendor calls, and I usually get twenty minutes of product talk before anyone asks what is wrong. So — what do you want to know?',
+    customerOpening: 'Thanks for calling. I will be honest — I filled in that form in about thirty seconds. I get a lot of vendor calls and they usually start with twenty minutes of product slides before anyone asks what the real problem is. So — what do you want to know?',
     stages: [
       {
         id: 'open',
         title: 'Opening Move',
-        instruction: 'Marcus expects a product pitch. How do you start?',
+        instruction: 'Peter expects a product pitch. How do you start?',
         choices: [
           { id: 'a', type: 'rapport', quality: 'excellent', points: 10,
             text: 'That is fair — I will not pitch. Can I first ask how your team works each day?',
@@ -73,10 +74,10 @@ const SCENARIOS = [
       {
         id: 'develop',
         title: 'Build the Problem',
-        instruction: 'Marcus plays the problem down as a minor annoyance they just manage. How do you reply?',
+        instruction: 'Peter plays the problem down as a minor annoyance his team just manages. How do you reply?',
         choices: [
           { id: 'a', type: 'implication', quality: 'excellent', points: 10,
-            text: 'While a technician waits for that call, does anything else stop — is a line ever standing idle?',
+            text: 'While a technician waits for that call, does anything else stop — is a process unit ever left waiting?',
             rationale: 'A question about the wider effect. It moves him from "a little annoying" toward the real cost to the plant.' },
           { id: 'b', type: 'problem', quality: 'good', points: 5,
             text: 'And how often does that happen in a normal month?',
@@ -92,7 +93,7 @@ const SCENARIOS = [
         instruction: 'He admits downtime is expensive, but has not put a number on it. Where do you go next?',
         choices: [
           { id: 'a', type: 'implication', quality: 'excellent', points: 10,
-            text: 'Expensive how — about what does one hour of a stopped line cost you when this happens?',
+            text: 'Expensive how — about what does one hour of a stopped unit cost you when this happens?',
             rationale: 'You move the question to real numbers. When he says the cost out loud, the problem becomes urgent in his own mind.' },
           { id: 'b', type: 'implication', quality: 'good', points: 5,
             text: 'Does it ever push the rest of the week\'s maintenance plan out of order too?',
@@ -105,7 +106,7 @@ const SCENARIOS = [
       {
         id: 'needpayoff',
         title: 'Make It Matter',
-        instruction: 'Marcus agrees the downtime cost is real and adds up over a year. Now what?',
+        instruction: 'Peter agrees the downtime cost is real and adds up over a year. Now what?',
         choices: [
           { id: 'a', type: 'needpayoff', quality: 'excellent', points: 10,
             text: 'If your technicians never had to stop to find a driver, what would that be worth to you?',
@@ -146,116 +147,117 @@ const SCENARIOS = [
     difficulty: 'BDM',
     difficultyLabel: 'Business Dev. Manager',
     estimatedMinutes: 14,
-    personaId: 'claire-fontaine',
-    description: 'Claire starts with a price challenge. The real opportunity is the hidden cost of her current setup — but she will not give it to you easily.',
-    context: 'Claire\'s local sales coordinator passed this to you. She brought a cost comparison, and she answers to a city council. Her stated problem is price — move past it to what her current setup really costs her before you talk numbers.',
-    yourRole: 'E+H BDM — customer with a tight public budget',
+    personaId: 'toshiaki-yamamoto',
+    description: 'Toshiaki starts with a price challenge. The real opportunity is the hidden cost of his current setup — but he will not give it to you easily.',
+    context: 'Toshiaki\'s local sales coordinator passed this to you. He brought a cost comparison, and he answers to his finance director. His stated problem is price — move past it to what his current setup really costs before you talk numbers.',
+    industryContext: 'INDUSTRY REALITY (Specialty Chemicals, commercial buyer): Toshiaki is the commercial owner, not the technical user — he reviews specifications himself and signs purchases under close finance-director scrutiny. His real concern is total cost of ownership: the post-purchase costs (calibration, maintenance contracts, software upgrades) that appear after the sticker price and make budgets hard to predict. E+H is genuinely premium-priced — in the SIG data, price/performance is a known weakness — so do not deny the price; justify it with lifecycle value. He values transparent pricing and fair dealing and dislikes hidden costs and market-power pressure. He speaks in total cost of ownership, master price, trade-in, calibration services, engineer time.',
+    yourRole: 'E+H BDM — customer with a tight budget and finance pressure',
     knownGoingIn: [
-      'Instrumentation Supervisor at a Paris water authority',
-      'Her current setup (older tablets + a shared FieldCare licence) costs about €8,000',
-      'She answers to a city council, and asked you to justify any extra spend'
+      'Purchase Manager at a specialty chemicals plant in Japan',
+      'His current setup (older tablets + a shared FieldCare licence) costs about €8,000',
+      'He answers to his finance director, and has asked you to justify any extra spend'
     ],
     objectives: [
       'Move the talk from price to the cost of staying the same',
-      'Put a number on the hidden cost, using her own figures',
-      'Match the case to her budget timing'
+      'Put a number on the hidden cost, using his own figures',
+      'Match the case to his budget timing'
     ],
-    customerOpening: 'Your colleague says you are the Field Xpert expert. I will be direct: my current setup costs about €8,000 and it works. I answer to a city council for every euro. So tell me — better in what way, and worth how much more?',
+    customerOpening: 'Your colleague tells me you are the Field Xpert expert. I will be direct: our current setup costs about €8,000 and it does the job. I have to justify every purchase to my finance director. So tell me — better in what way, and worth how much more?',
     stages: [
       {
         id: 'open',
         title: 'The Price Challenge',
-        instruction: 'She started with cost. How do you respond?',
+        instruction: 'He started with a direct cost question. How do you respond?',
         choices: [
           { id: 'a', type: 'rapport', quality: 'excellent', points: 10,
-            text: 'That is the right question to ask me. Before price — what does that setup cost you in time today?',
-            rationale: 'You respected her duty and moved from sticker price to total cost. Now the comparison is about value, not a price fight you would lose.' },
+            text: 'That is the right question to ask me. Before price — what does that setup cost your engineers in time today?',
+            rationale: 'You respected his duty to justify every purchase and moved from sticker price to total cost. Now the comparison is about value, not a fight you would lose.' },
           { id: 'b', type: 'solution', quality: 'good', points: 5,
             text: 'Fair. Could I show you where the features differ, and then we put numbers to it?',
-            rationale: 'You heard the concern, but leading with features becomes a product tour before you understand her real problem. Learn first.' },
+            rationale: 'You heard the concern, but leading with features becomes a product tour before you understand his real problem. Learn first.' },
           { id: 'c', type: 'solution', quality: 'poor', points: 0,
             text: 'It is about €3,500 per unit — a small step up. Shall I show you the feature comparison?',
-            rationale: 'You opened with price and called it "small" before giving her any reason to value it. A feature sheet will not fix that gap.' }
+            rationale: 'You opened with price and called it "small" before giving him any reason to value it. A feature sheet will not fix that gap.' }
         ]
       },
       {
         id: 'probe',
         title: 'Test "Good Enough"',
-        instruction: 'She insists her current setup works fine. How do you test that?',
+        instruction: 'He insists the current setup does the job. How do you test that?',
         choices: [
           { id: 'a', type: 'problem', quality: 'excellent', points: 10,
-            text: 'When a technician reaches a device whose driver is not on the tablet, what happens then?',
-            rationale: 'A precise question aimed at the most likely problem — one exact moment, not a vague request for her to name problems.' },
+            text: 'When a technician reaches a device whose driver is not on the tablet, what happens next?',
+            rationale: 'A precise question aimed at the most likely friction point — one exact moment, not a vague request for him to name problems.' },
           { id: 'b', type: 'problem', quality: 'good', points: 5,
-            text: 'What would you say frustrates your technicians most out in the field?',
-            rationale: 'A problem question, but too wide — you ask her to do your work. A targeted question gets there faster.' },
+            text: 'What would you say slows your engineers down most when they are configuring devices on site?',
+            rationale: 'A reasonable problem question — a little wide. A targeted question about a specific moment gets there faster.' },
           { id: 'c', type: 'situation', quality: 'poor', points: 0,
-            text: 'Water utilities often run many old HART devices — that is a problem for you too, right?',
-            rationale: 'You guessed at her problem instead of finding it, and it may not even be true for her site. She will feel unheard.' }
+            text: 'Specialty chemicals plants often run many different device protocols — compatibility is usually the problem, right?',
+            rationale: 'You assumed his problem instead of finding it. He will feel you are following a script, not listening to him specifically.' }
         ]
       },
       {
         id: 'develop',
         title: 'Build the Problem',
-        instruction: 'She concedes it happens sometimes, but plays it down. How do you respond?',
+        instruction: 'He concedes it happens occasionally, but calls it manageable. How do you respond?',
         choices: [
           { id: 'a', type: 'implication', quality: 'excellent', points: 10,
-            text: 'When it happens, how long does dealing with it take — and what does not get done meanwhile?',
-            rationale: 'A question that opens two things at once: time lost and the work that stops. It moves her past "sometimes".' },
+            text: 'When it happens, how long does it take to sort out — and what does not get done while that engineer is waiting?',
+            rationale: 'A question that opens two things at once: time lost and the work that stops. It moves him past "manageable".' },
           { id: 'b', type: 'problem', quality: 'good', points: 5,
             text: 'About how many times a year, across the whole team, would you say this kind of problem comes up?',
-            rationale: 'You start to measure it, good. But a number alone is not enough; the effect is what a budget owner feels.' },
+            rationale: 'You start to measure it, which is good. But a frequency number alone does not move a purchase decision — the cost does.' },
           { id: 'c', type: 'solution', quality: 'poor', points: 0,
             text: 'Our 4,000 pre-loaded drivers mean this simply never happens — shall I show you?',
-            rationale: 'You pitched into a half-open problem. She has not measured the cost yet, so the feature has nothing to connect to.' }
+            rationale: 'He gave a small hint of a problem and you jumped to the fix. He has not measured the cost yet, so the feature has nothing to connect to.' }
         ]
       },
       {
         id: 'quantify',
         title: 'Work Out the Numbers',
-        instruction: 'She agrees it costs real time, but she has not put money to it. Where do you go next?',
+        instruction: 'He agrees it costs real engineer time, but has not put money to it. Where do you go next?',
         choices: [
           { id: 'a', type: 'implication', quality: 'excellent', points: 10,
-            text: 'Let us put a euro figure on it — at a technician\'s full hourly cost, would that number help your council?',
-            rationale: 'You lead the calculation and link it to her decision — without inventing numbers. Turning lost time into euros answers a price worry.' },
+            text: 'Let us put a number on it — at a senior engineer\'s full hourly cost, how does that add up across the year?',
+            rationale: 'You lead the calculation without inventing numbers. When he says the cost out loud, it answers the finance director question himself.' },
           { id: 'b', type: 'implication', quality: 'good', points: 5,
-            text: 'That is clearly costing you real productivity each year — Field Xpert would recover most of that time.',
-            rationale: 'Right direction, but you stated the benefit instead of building the number with her. Euros against her budget would convince more.' },
+            text: 'That is clearly real cost each year — Field Xpert would recover most of that time.',
+            rationale: 'Right direction, but you stated the benefit instead of building the number with him. His own calculation would convince far more.' },
           { id: 'c', type: 'solution', quality: 'poor', points: 0,
-            text: 'Driver problems are well known in the industry — shall I send examples from similar utilities?',
-            rationale: 'You had the chance to build a euro case with her and chose general examples instead. Examples support a case; they cannot replace one.' }
+            text: 'Driver problems are common — shall I send examples from similar specialty chemicals sites?',
+            rationale: 'You had the chance to build a cost case with him and reached for examples instead. They support a case; they cannot replace one.' }
         ]
       },
       {
         id: 'needpayoff',
         title: 'Offer the Lever',
-        instruction: 'She accepts the logic, but the upfront cost is still the problem. How do you continue?',
+        instruction: 'He accepts the logic, but the upfront cost against the current setup is still the sticking point. How do you continue?',
         choices: [
           { id: 'a', type: 'needpayoff', quality: 'excellent', points: 10,
-            text: 'If that time went into planned maintenance instead, what is it worth? And do you still have the old tablets?',
-            rationale: 'A value question — she names the benefit herself — plus a real lever she must act on. You lower real cost, not value.' },
+            text: 'If that engineer time went back to real project work, what would that be worth to your director? And do you still have the old tablets?',
+            rationale: 'A value question in terms his finance director understands — plus a concrete commercial lever. You lower real cost without lowering value.' },
           { id: 'b', type: 'solution', quality: 'good', points: 5,
-            text: 'We have a trade-in — 20% off if you trade the old tablets. I would need to check they qualify.',
-            rationale: 'A relevant lever, well timed. A little passive ("I would need to check") versus asking her to find the units now, but the offer is right.' },
+            text: 'We have a trade-in — 20% off if you return the old tablets. Let me check if yours qualify.',
+            rationale: 'A relevant lever, well timed. Slightly passive — asking him to locate the units now would turn interest into a concrete next step.' },
           { id: 'c', type: 'solution', quality: 'poor', points: 0,
-            text: 'Let me ask my manager whether there is any pricing flexibility for the public sector.',
-            rationale: 'You have a real trade-in and reached for "let me ask my manager" instead. It causes delay and shows you do not know your own tools.' }
+            text: 'Let me check with my manager whether there is any special pricing available for your account.',
+            rationale: 'You have a real trade-in programme and reached for a vague "let me ask" instead. It signals you do not know your own tools.' }
         ]
       },
       {
         id: 'close',
-        title: 'Match Her Timing',
-        instruction: 'She likes the case, but says her budget is frozen until Q1. How do you close?',
+        title: 'Match His Timing',
+        instruction: 'He likes the case, but says his budget cycle does not open until next quarter. How do you close?',
         choices: [
           { id: 'a', type: 'solution', quality: 'excellent', points: 10,
-            text: 'Q1 gives us time. Let us confirm the trade-in now, and I will prepare a quote and a one-page cost case.',
-            rationale: 'You accepted the timing, made the wait useful, and gave her exactly what her process needs — with a reason to act now.' },
+            text: 'Next quarter gives us time. Let us confirm the trade-in now, and I will prepare a quote with the cost case ready for your director.',
+            rationale: 'You accepted his timing, made the wait useful, and gave him exactly what a precise purchase manager needs — with a reason to act now.' },
           { id: 'b', type: 'solution', quality: 'good', points: 5,
-            text: 'No problem — I will prepare a full proposal with the cost case and trade-in for your Q1 submission.',
-            rationale: 'Solid and helpful — you make her submission easier. A specific follow-up date would make it even stronger.' },
+            text: 'No problem — I will prepare a full proposal with the trade-in and cost case for your budget submission.',
+            rationale: 'Solid and helpful — you make his submission easier. A specific follow-up date would make it even stronger.' },
           { id: 'c', type: 'solution', quality: 'poor', points: 0,
-            text: 'Understood — I will call you again sometime in January, once your budget is open again.',
-            rationale: 'You built a strong case and then walked away for two months with no action in between. This is how live deals quietly die.' }
+            text: 'Understood — I will reach out again once the budget cycle opens.',
+            rationale: 'You built a strong case and then walked away with no action in between. A precise buyer without a document and a date will move on.' }
         ]
       }
     ]
@@ -270,19 +272,20 @@ const SCENARIOS = [
     difficulty: 'SC',
     difficultyLabel: 'Sales Coordinator',
     estimatedMinutes: 14,
-    personaId: 'liam-chen',
-    description: 'Liam treats this as a platform comparison. Your job is to move him away from features and onto the business problem he has not yet connected.',
-    context: 'Liam is in the middle of an evaluation and has already seen Azure IoT Hub and MindSphere. If you answer "what is different?" with features, you lose. The skill is to move him to the business problem he has not measured.',
+    personaId: 'lynn-carter',
+    description: 'Lynn treats this as a platform comparison. Your job is to move her away from features and onto the business problem she has not yet connected.',
+    context: 'Lynn is in the middle of an evaluation and has already seen Azure IoT Hub and MindSphere. If you answer "what is different?" with features, you lose. The skill is to move her to the business problem she has not fully measured.',
+    industryContext: 'INDUSTRY REALITY (Pharma / GMP): A regulated batch-manufacturing site — bioreactors, Water-for-Injection, formulation. The real risk is not connectivity (that is solved) but a measurement drift caught late: an instrument found out-of-tolerance at its next calibration triggers a deviation and an investigation of all product made since the last good calibration; affected batches go on quality hold and may be reworked, rejected or recalled. Lynn fears IIoT platforms that then need months of CSV (computerised-system validation). She speaks in deviation, batch record, data integrity (ALCOA+), CSV, qualification (IQ/OQ/PQ), audit. Never say a missing document "stops the line" — it is the investigation and the hold that create cost. Instruments arrive pre-calibrated; customers recalibrate and qualify, they do not "certify".',
     yourRole: 'E+H Sales Coordinator — competing in a formal evaluation',
     knownGoingIn: [
-      'Digital Transformation Lead at a pharma/food maker, evaluating IIoT platforms',
+      'Process Engineer at a pharma manufacturing site, evaluating IIoT platforms',
       'Already spoke with Microsoft (Azure IoT) and Siemens (MindSphere)',
-      'Has instruments from several makers; sharp, technical, well prepared'
+      'Has instruments from several makers; safety-conscious, well prepared, GMP-aware'
     ],
     objectives: [
       'Move from a feature comparison to the business problem',
       'Build the cost of finding an instrument failure too late (a GMP risk)',
-      'Agree a proof of concept based on his own success criteria'
+      'Agree a proof of concept based on her own success criteria'
     ],
     customerOpening: 'I have already seen Azure IoT Hub and MindSphere, and I read your whitepaper. So please skip the overview. Tell me one thing Netilion can do that those two really cannot.',
     stages: [
@@ -394,116 +397,117 @@ const SCENARIOS = [
     difficulty: 'BDM',
     difficultyLabel: 'Business Dev. Manager',
     estimatedMinutes: 14,
-    personaId: 'rodrigo-mendez',
-    description: 'Rodrigo blames the per-user price and wants to cancel. But the easy complaint may not be the real reason he wants to leave.',
-    context: 'A renewal at risk. Rodrigo starts with a price complaint and a threat to cancel. If you defend the price, you lose; your job is to find out what is really behind the cancellation before you answer.',
+    personaId: 'jose-garcia',
+    description: 'José is questioning the Netilion renewal. But the easy complaint about low usage may not be the real reason he is hesitating.',
+    context: 'A renewal at risk. José starts with a usage problem and a question about whether to continue. If you defend the price or the platform too quickly, you lose; your job is to find out what is really behind the hesitation before you answer.',
+    industryContext: 'INDUSTRY REALITY (Chemical / refinery maintenance): José runs maintenance on roughly 600 field instruments across a refinery — separators, distillation, internal transfer. His core fear is unplanned downtime: a flow meter failure that causes a process interruption and lost production. He is precise and task-focused, dislikes buzzwords and being pushed on cloud or wireless for critical devices, and values real technical experts and complete documentation. He uses NE 107, alarm management, MTBF, turnaround, device health. He championed the Netilion investment internally, so cancelling at renewal would mean admitting his own decision was wrong — that pressure is real but he will not say it openly.',
     yourRole: 'E+H BDM — keeping a subscription that may be lost',
     knownGoingIn: [
-      'Site Manager in upstream oil & gas; 6 months into a Netilion subscription',
-      'Paying for 15 users; says only 3 actually log in',
-      'Started the call ready to cancel, blaming the per-user price model'
+      'Head of Maintenance at a chemical refinery; 18 months into a Netilion Health subscription',
+      'Platform is running, but most technicians do not use it regularly',
+      'Renewal is due in 6 weeks — he is questioning whether it is worth it'
     ],
     objectives: [
       'Find out why people stopped using it, before you defend anything',
       'Connect the real cause to a clear fix',
-      'Explain the per-user value and take personal ownership of the fix'
+      'Take personal ownership of the fix and tie it to a concrete outcome'
     ],
-    customerOpening: 'Thank you for the time — I always enjoy working with your team. But I have to be honest: we pay for 15 users and only three really log in. It is becoming hard for me to justify the renewal. Help me understand why I should.',
+    customerOpening: 'Good to talk — I appreciate the call. I have to be straight with you: the platform is running, but most of my team does not check it. I am not sure this renewal is easy to justify. Help me understand why I should continue.',
     stages: [
       {
         id: 'open',
-        title: 'The Cancel Threat',
-        instruction: 'He has gently raised cancelling. How do you respond?',
+        title: 'The Renewal Question',
+        instruction: 'José has politely raised his doubts about renewing. How do you respond?',
         choices: [
           { id: 'a', type: 'problem', quality: 'excellent', points: 10,
-            text: 'Thank you for being open. Before I give reasons to stay — what happened with the twelve who stopped?',
-            rationale: 'You did not defend the price — you looked for the cause, like a partner studying a failure. The real cause matters most here.' },
+            text: 'Thank you for being direct. Before I say anything about the renewal — why did the team stop checking the platform?',
+            rationale: 'You did not defend the price or the product — you looked for the cause first. A maintenance manager who values precision will respect that.' },
           { id: 'b', type: 'solution', quality: 'good', points: 5,
-            text: 'I understand. Should we reduce to the seats you use, and raise the value on those?',
-            rationale: 'Reasonable, and cutting seats is honest — but you jumped to solutions before knowing WHY people stopped using it.' },
+            text: 'I understand. What if we simplify how the team uses it — fewer alerts, fewer screens to check?',
+            rationale: 'Reasonable instinct, but you jumped to a solution before knowing why the team stopped. The cause matters more than the fix right now.' },
           { id: 'c', type: 'solution', quality: 'poor', points: 0,
-            text: 'Per-user is our standard model — let me see what pricing flexibility I can find for you.',
-            rationale: 'You accepted his story that it is about price and reached for a discount. The real problem is not price, and "let me see" looks weak.' }
+            text: 'The subscription is core to what E+H offers — let me see if we can adjust the price to make it easier to justify.',
+            rationale: 'You accepted that it is a pricing problem and reached for a discount. José is precise and fair-minded — a discount without a reason looks like covering for failure.' }
         ]
       },
       {
         id: 'diagnose',
-        title: 'Look Deeper',
-        instruction: 'Frustrated, he explains that early alert overload made the team switch alerts off and stop trusting the tool. How do you respond?',
+        title: 'Find the Real Cause',
+        instruction: 'He says alert overload made the team switch off notifications — and after that, nobody checked the dashboard any more. How do you respond?',
         choices: [
           { id: 'a', type: 'implication', quality: 'excellent', points: 10,
-            text: 'So two things broke. When it stopped matching reality — was that devices not reporting, or just too much noise?',
-            rationale: 'You separated two different failures with a precise question — they need different fixes, and finding the real one saves the account.' },
+            text: 'So alerts stopped meaning anything — and once the team stopped checking, was there a moment when something slipped through?',
+            rationale: 'A precise question that links the alert failure to a real consequence. You are not defending the tool — you are following the problem to its end.' },
           { id: 'b', type: 'problem', quality: 'good', points: 5,
-            text: 'Too many alerts is a common problem. How was the alert setup done when it first went live?',
-            rationale: 'Right topic, and asking about the setup is relevant — but it slightly suggests the setup was done wrong, which is leading.' },
+            text: 'Alert overload is a known issue. How was the alert configuration set up when the platform first went live?',
+            rationale: 'Right topic — alert setup is the real problem. Asking whether something slipped through would connect the failure to a real cost.' },
           { id: 'c', type: 'solution', quality: 'poor', points: 0,
-            text: 'Too many alerts is common — shall I send you our guide on how to set up alerts well for your team?',
-            rationale: 'Sending a guide to someone ready to cancel avoids the problem he raised. He needs you to fix it, not to read a document.' }
+            text: 'Alert overload is fixable — Alarm Management does routing and filtering. Shall I show you how it works?',
+            rationale: 'He has just described a breakdown in trust, and you moved straight to a feature demo. He needs to feel understood before he will look at solutions.' }
         ]
       },
       {
         id: 'connect',
-        title: 'Connect to the Fix',
-        instruction: 'He confirms the alert noise was the real cause — that is when people stopped using it. Your move?',
+        title: 'The Missed Warning',
+        instruction: 'He pauses, then mentions the flow meter failure six weeks ago. He does not say more. How do you respond?',
         choices: [
-          { id: 'a', type: 'solution', quality: 'excellent', points: 10,
-            text: 'That is the real cause — Alarm Management does routing and filtering. Cut the noise a lot, and do 15 seats look different?',
-            rationale: 'With the cause named, you link it to a real fix and re-frame the seat question around it — this turns "cancel" into "show me".' },
-          { id: 'b', type: 'solution', quality: 'good', points: 5,
-            text: 'That is fixable — Alarm Management does smart routing and filtering, and I can personally help you set it all up.',
-            rationale: 'Correct fix, well introduced, and offering help is right — it just does not re-frame the renewal as clearly.' },
+          { id: 'a', type: 'implication', quality: 'excellent', points: 10,
+            text: 'That failure — what did Netilion show in the weeks before it happened? Was the health data there?',
+            rationale: 'A precise, respectful question that connects the tool to the failure he is thinking about. If the data was there and nobody saw it, that is the real story.' },
+          { id: 'b', type: 'problem', quality: 'good', points: 5,
+            text: 'Was that failure something the platform should have caught?',
+            rationale: 'A direct question that moves toward the key issue — a little blunt, but José is direct. A question about the data specifically would go deeper.' },
           { id: 'c', type: 'solution', quality: 'poor', points: 0,
-            text: 'You can mute the low-priority signals device by device in settings — some work, but the noise drops.',
-            rationale: 'For hundreds of instruments, doing it by hand is weeks of work — not a reason to stay. You missed the feature built for this.' }
+            text: 'That is exactly the kind of event Netilion Health is built to prevent — it shows device health declining before a failure.',
+            rationale: 'You took a painful moment he just shared and made it a product pitch. For a precise, controlled person like José, that closes the conversation.' }
         ]
       },
       {
         id: 'reframe',
-        title: 'Explain Per-User',
-        instruction: 'He pushes back on the per-user model and argues he should pay per asset instead. How do you respond?',
+        title: 'Acknowledge the Gap',
+        instruction: 'He confirms the health data had been declining for three weeks. He says quietly: "The platform was there. We just stopped looking." How do you respond?',
         choices: [
-          { id: 'a', type: 'implication', quality: 'excellent', points: 10,
-            text: 'In oil & gas, after a safety event, someone asks who accepted that alarm and when. Per-user gives that record. A concern for you?',
-            rationale: 'A real, non-defensive reason tied to his world — then a question to check it lands. Much stronger than a general "teamwork" answer.' },
-          { id: 'b', type: 'problem', quality: 'good', points: 5,
-            text: 'Per-user gives you accountability — knowing exactly who acted on the data, not just that it was watched.',
-            rationale: 'The right idea, accountability, but said at a high level. Linking it to a real safety moment would make it feel real to him.' },
+          { id: 'a', type: 'needpayoff', quality: 'excellent', points: 10,
+            text: 'That is honest — and it means the tool works. The gap was the alert setup, not the platform. If we fix that together, what changes?',
+            rationale: 'You acknowledged what he said without blame, separated the setup failure from the platform capability, and asked a value question — turning regret into reason to continue.' },
+          { id: 'b', type: 'solution', quality: 'good', points: 5,
+            text: 'That means the data was right — Alarm Management would have surfaced it before anyone had to check manually.',
+            rationale: 'Accurate and relevant — you separate the configuration gap from the tool. A value question would pull him further than a statement.' },
           { id: 'c', type: 'solution', quality: 'poor', points: 0,
-            text: 'It is our standard model everywhere — not obvious, I know, so I can offer a discount to make up for it.',
-            rationale: 'You repeated that the model exists and offered a discount — but he is asking if the model fits, which a discount does not answer.' }
+            text: 'That shows the platform worked — so really the renewal makes a lot of sense now, does it not?',
+            rationale: 'He just shared something difficult, and you used it to push the renewal. That is too fast, and with José — who dislikes pressure — it will close him down.' }
         ]
       },
       {
         id: 'commercial',
-        title: 'The Commercial Lever',
-        instruction: 'He softens, but says the cost still has to feel fair. What can you do?',
+        title: 'Make the Price Fair',
+        instruction: 'He is willing to continue, but says the renewal still needs to be easy to defend upward. What can you do?',
         choices: [
           { id: 'a', type: 'solution', quality: 'excellent', points: 10,
-            text: 'Your deal runs through an NSP channel, so you already qualify for 20% off — let me confirm it is on your renewal.',
-            rationale: 'You found a discount he is already owed (confirm, not give away) and tied cost to fixing usage — defending value while making price fair.' },
+            text: 'Your contract runs through an NSP partner, so you already qualify for 20% off the renewal — let me confirm it is applied.',
+            rationale: 'A discount he already qualifies for — not invented, not a concession. For a precise buyer this distinction matters: you are confirming, not bargaining.' },
           { id: 'b', type: 'solution', quality: 'good', points: 5,
-            text: 'There is a 20% NSP discount on your subscription — I will make sure it is applied to the renewal.',
-            rationale: 'Correct and relevant — a little weaker because it sounds like a gift rather than a discount he already qualifies for.' },
+            text: 'There is a 20% NSP discount on your subscription — I will make sure it is on the renewal quote.',
+            rationale: 'Correct and relevant — slightly weaker because it sounds like a gift rather than a programme he already belongs to.' },
           { id: 'c', type: 'solution', quality: 'poor', points: 0,
-            text: 'I can give a 15% loyalty discount for renewing — the most I can approve without asking my manager.',
-            rationale: 'You invented a discount that does not match the real NSP programme — it is inaccurate and looks like closing for its own sake.' }
+            text: 'I can offer a 15% loyalty discount — it is the most I can approve without going to my manager.',
+            rationale: 'A made-up discount that does not match the real NSP programme. José values accurate, fact-based communication — an invented number will lose his trust.' }
         ]
       },
       {
         id: 'close',
         title: 'Take Ownership',
-        instruction: 'He is willing to try, but has no time to manage it himself. Close it.',
+        instruction: 'He is willing to renew, but says he does not have the time or interest to manage the configuration himself. Close it.',
         choices: [
           { id: 'a', type: 'solution', quality: 'excellent', points: 10,
-            text: 'I will handle it myself — a session this week with your leads. If it is not working in 30 days, we review the seats.',
-            rationale: 'You took personal ownership, offered a clear session with his people, and gave a real safety net — exactly what a near-cancel needs.' },
+            text: 'I will handle it personally — a session this week with your lead technicians to fix the alert setup. If it is not right in 30 days, we revisit.',
+            rationale: 'You took full, personal ownership, made it specific and fast, and gave him a clear safety net — the right answer for a precise manager who does not want more work.' },
           { id: 'b', type: 'solution', quality: 'good', points: 5,
-            text: 'I will ask our onboarding team to set up Alarm Management this week, plus a clear 30-day plan to bring the users back.',
-            rationale: 'You took ownership and made a plan — but handing it to an "onboarding team" adds a step that can cause delay when he is close to leaving.' },
+            text: 'I will get our technical team to set up Alarm Management properly this week and send you a clear 30-day plan.',
+            rationale: 'The right approach, and a plan is what José will want — handing it to a "technical team" adds a layer he cannot control, which may feel imprecise.' },
           { id: 'c', type: 'solution', quality: 'poor', points: 0,
-            text: 'I will mark you as a priority account so customer success calls this week — please do not cancel before then.',
-            rationale: '"Please do not cancel" sounds desperate, and you passed him to a team he has not met. After all that work, it feels like you gave up.' }
+            text: 'I will flag you as a priority and have customer success contact you this week to take it from here.',
+            rationale: 'You passed the problem to a team he has not met, with no specifics and no safety net. After all the progress you made, it feels like you gave up at the finish.' }
         ]
       }
     ]
@@ -518,33 +522,34 @@ const SCENARIOS = [
     difficulty: 'BDM',
     difficultyLabel: 'Business Dev. Manager',
     estimatedMinutes: 12,
-    personaId: 'annika-sorensen',
-    description: 'Annika is a loyal, careful customer in a friendly mood — she is not looking to buy anything. A sales pitch will make her step back; only real curiosity opens the door.',
-    context: 'A relationship check-in. Annika likes her new Field Xpert tablets and is not looking for anything else. Your only way in is honest curiosity about how her team works — never a pitch.',
-    yourRole: 'E+H BDM — cross-selling to a long-term, careful customer',
+    personaId: 'michael-reynolds',
+    description: 'Michael is a satisfied Field Xpert customer in a reasonable mood — he is not looking to buy anything new. A sales pitch will make him close down; only sharp business questions open the door.',
+    context: 'A routine check-in. Michael is happy with his Field Xpert tablets and not expecting anything else. Your only way in is genuine curiosity about plant performance — never a pitch.',
+    industryContext: 'INDUSTRY REALITY (Specialty Chemicals, plant manager): Michael owns plant P&L and reports OEE and uptime to group leadership every quarter. His pain is rotating-equipment failure — a compressor failure last quarter caused unplanned downtime and lost production, and the early sensor-health signals had been declining for weeks but nobody watched them systematically. He wants peer-level data and a data-driven predictive-maintenance story he can show leadership, especially after a regional peer recently presented one. He dislikes doom-and-gloom messaging and standard sales visits. Talk in outcomes, KPIs and dollars, not features. Terms: OEE, uptime, unplanned downtime, instrument health, predictive maintenance.',
+    yourRole: 'E+H BDM — cross-selling to an existing, results-focused customer',
     knownGoingIn: [
-      'Maintenance Lead, 10+ year E+H customer; just received 2 new Field Xpert tablets',
-      'Has not used Netilion; careful, and does not like being sold to',
-      'In a warm, friendly mood on a routine check-in'
+      'Plant Manager at a specialty chemicals site; has been using Field Xpert for 18 months',
+      'Has not used Netilion; data-driven, focused on KPIs and uptime',
+      'In a reasonable, open mood on a routine relationship call'
     ],
     objectives: [
       'Find the data gap with curiosity, not a pitch',
-      'Connect a past problem to predictive instrument health',
+      'Connect a past production problem to predictive instrument health',
       'Offer a no-risk start (Netilion Plus), with no pressure'
     ],
-    customerOpening: 'Good timing — the two new SMT70Bs arrived last week and the team loves them. Field Xpert has been one of our best purchases in years, honestly. So, how are things on your side?',
+    customerOpening: 'Good timing — the tablets are working well and the team has settled in. Field Xpert was a good investment. So, what brings you today?',
     stages: [
       {
         id: 'open',
         title: 'Start Without Pitching',
-        instruction: 'She is warm and focused on the relationship. How do you start?',
+        instruction: 'He is in a good mood and focused on the relationship. How do you start?',
         choices: [
           { id: 'a', type: 'problem', quality: 'excellent', points: 10,
             text: 'Glad to hear it! I am curious — when your technicians collect device data on Field Xpert, where does it go?',
             rationale: 'A short, warm reply, then an honest question that opens the data topic naturally. It feels like a check-in, not a setup.' },
           { id: 'b', type: 'solution', quality: 'good', points: 5,
             text: 'Great. With more Field Xpert units now, this is a good time to look at Netilion — it connects to them.',
-            rationale: 'You moved to the product within 30 seconds — a careful buyer in a friendly mood quietly becomes more guarded.' },
+            rationale: 'You moved to the product within 30 seconds — a results-driven buyer in a good mood quietly becomes more guarded.' },
           { id: 'c', type: 'solution', quality: 'poor', points: 0,
             text: 'Wonderful! We have been rolling out Netilion lately — shall I give you a quick overview now?',
             rationale: '"Shall I give you an overview" clearly shows you came with a plan to sell. She will feel sold to in the first minute.' }
@@ -553,7 +558,7 @@ const SCENARIOS = [
       {
         id: 'gap',
         title: 'The Data Gap',
-        instruction: 'She says the data mostly stays on the device, exported by hand, and is not well organised. Your move?',
+        instruction: 'He says device data mostly stays on the tablet or in local files — no central view, no history. Your move?',
         choices: [
           { id: 'a', type: 'implication', quality: 'excellent', points: 10,
             text: 'When a problem comes up suddenly, what is it like trying to rebuild that device\'s history?',
@@ -569,7 +574,7 @@ const SCENARIOS = [
       {
         id: 'incident',
         title: 'The Opening',
-        instruction: 'She mentions a past meter failure that caused days of downtime and still bothers her.',
+        instruction: 'He mentions a compressor failure last quarter that caused significant downtime and still bothers him.',
         choices: [
           { id: 'a', type: 'implication', quality: 'excellent', points: 10,
             text: 'That sounds very costly. Looking back, were there any strange signs in the readings before?',
@@ -585,7 +590,7 @@ const SCENARIOS = [
       {
         id: 'realise',
         title: 'Let Her See It',
-        instruction: 'She realises the readings had been unstable for weeks, but they saw it too late.',
+        instruction: 'He admits sensor health had been declining for weeks before the failure, but nobody was watching it systematically.',
         choices: [
           { id: 'a', type: 'needpayoff', quality: 'excellent', points: 10,
             text: 'If something had shown that as instrument health weeks earlier, would it have changed how this ended?',
@@ -601,33 +606,33 @@ const SCENARIOS = [
       {
         id: 'entry',
         title: 'The No-Risk Start',
-        instruction: 'She is interested, but says the budget is tight after buying the tablets. Your move?',
+        instruction: 'He is interested, but says the budget is tight after the Field Xpert investment. Your move?',
         choices: [
           { id: 'a', type: 'solution', quality: 'excellent', points: 10,
-            text: 'Those new SMT70Bs may qualify for Netilion Plus — a free year included. Do you have the order numbers?',
-            rationale: 'A no-cost path that removes the budget worry, tied to a purchase she already made, with a clear next action. Good timing.' },
+            text: 'Those Field Xpert tablets may qualify for Netilion Plus — a free year included. Do you have the order numbers?',
+            rationale: 'A no-cost path that removes the budget worry, tied to a purchase he already made, with a clear next action. Good timing.' },
           { id: 'b', type: 'solution', quality: 'good', points: 5,
             text: 'Your tablet order may include a Netilion Plus coupon — a 12-month free subscription. Worth checking.',
-            rationale: 'The right lever, but "may include" is uncertain — confirming it now would turn her interest into action.' },
+            rationale: 'The right lever, but "may include" is uncertain — confirming it now would turn his interest into action.' },
           { id: 'c', type: 'solution', quality: 'poor', points: 0,
             text: 'There is a free 30-day trial — you could sign up online and test it on a few devices.',
-            rationale: 'A general trial is not the Netilion Plus benefit she probably already has from her tablet order — it shows you did not check her account.' }
+            rationale: 'A general trial is not the Netilion Plus benefit he probably already has from the tablet order — it shows you did not check his account.' }
         ]
       },
       {
         id: 'close',
         title: 'Close Without Pressure',
-        instruction: 'She is open to it, as long as there is no new cost and it stays small. Close it.',
+        instruction: 'He is open to it, as long as there is no new cost and it stays small. Close it.',
         choices: [
           { id: 'a', type: 'solution', quality: 'excellent', points: 10,
-            text: 'Nothing big — let us connect it to your Field Xpert on a couple of key meters, with you in control. Shall we?',
-            rationale: 'You matched exactly what she asked for — small, low-risk, in her control. A careful buyer agrees to a small first step, not a big one.' },
+            text: 'Nothing big — let us connect it to your Field Xpert on a couple of key assets, with you in control. Shall we?',
+            rationale: 'You matched exactly what he asked for — small, low-risk, in his control. A results-focused buyer agrees to a small first step, not a big one.' },
           { id: 'b', type: 'solution', quality: 'good', points: 5,
             text: 'Of course — let me set up a short follow-up to activate Netilion Plus and walk you through it.',
-            rationale: 'A reasonable, low-pressure next step — just less strong than offering a small, clear test on her key meters right now.' },
+            rationale: 'A reasonable, low-pressure next step — just less strong than offering a small, clear test on his key assets right now.' },
           { id: 'c', type: 'solution', quality: 'poor', points: 0,
             text: 'Great — I will prepare a proposal for a full Netilion rollout across your entire site, for you and your team to review.',
-            rationale: 'She said nothing big — and you offered a full site rollout. Going too far breaks the trust and confirms her fear of being sold to.' }
+            rationale: 'He said nothing big — and you offered a full site rollout. Going too far confirms his sense that this was a sales call, not a check-in.' }
         ]
       }
     ]
@@ -642,14 +647,16 @@ const SCENARIOS = [
     difficulty: 'BDM',
     difficultyLabel: 'Business Dev. Manager',
     estimatedMinutes: 13,
-    personaId: 'thomas-bauer',
-    description: 'Thomas dislikes being moved off a permanent FieldCare licence. The objection is the pricing model — but that may not be the real issue.',
-    context: 'E+H is moving FieldCare to a subscription model (3.0, with Netilion and tag-based pricing). Thomas starts annoyed about "renting software he already owns." If you defend the model, you lose — understand how he works before pricing comes up.',
+    personaId: 'toshiaki-yamamoto',
+    systemPromptHint: 'An E+H BDM has called to discuss moving your FieldCare software to a subscription model. You own a permanent licence and you are not happy about being asked to pay annually for something you already paid for. You are polite but direct — you want a clear reason to change, and "this is how it works now" will not satisfy you. You will not volunteer the real cost of your current desktop-only setup; the rep has to find it.',
+    description: 'Toshiaki dislikes being moved off a permanent FieldCare licence. The objection is the pricing model — but that may not be the real issue.',
+    context: 'E+H is moving FieldCare to a subscription model (3.0, with Netilion and tag-based pricing). Toshiaki starts with a direct objection about "renting software he already owns." If you defend the model, you lose — understand how his team works before pricing comes up.',
+    industryContext: 'INDUSTRY REALITY (Specialty Chemicals, commercial buyer): Toshiaki owns an older permanent FieldCare SFE500 desktop licence and resents being asked to pay annually for software he already bought once. His real, unspoken cost is device management trapped on one engineering PC — colleagues blocked when he is away or when that PC is busy during a commissioning or audit, plus the manual upkeep of the DTM library and device versions as the installed base grows. He thinks in total cost of ownership and finance-director justification, values pricing transparency, and dislikes "this is how the industry works now" pressure. Terms: permanent licence, DTM library, multi-user access, engineering seat, total cost of ownership.',
     yourRole: 'E+H BDM — handling a change in the pricing model',
     knownGoingIn: [
-      'Controls & Automation Manager at a specialty chemicals site',
+      'Purchase Manager at a specialty chemicals plant in Japan',
       'Owns an older permanent FieldCare SFE500 desktop licence',
-      'Started the call annoyed about being pushed toward a subscription'
+      'Started the call with a direct question about the subscription model'
     ],
     objectives: [
       'Do not defend the pricing model — find out how the desktop setup works today',
@@ -759,123 +766,124 @@ const SCENARIOS = [
 
   {
     id: 'sah70-assethealth',
-    title: 'The Multi-Site Case',
-    subtitle: 'Earn a multi-year decision from a careful buyer',
+    title: 'The Careful Buyer',
+    subtitle: 'Earn a pilot from a Quality Manager who has seen every platform pitch',
     product: 'SAH70 Asset Health',
     productLine: 'netilion',
     difficulty: 'BDM',
     difficultyLabel: 'Business Dev. Manager',
     estimatedMinutes: 15,
-    personaId: 'patricia-nowak',
-    description: 'Patricia wants proof, not promises. She will not easily admit the cost of her reactive maintenance — you have to build it before a multi-site case can work.',
-    context: 'An early call about Asset Health Monitoring (SAH70, on-premise, multi-user). Patricia is a reliability manager who reports uptime to the VP and has been let down by tools before. This is a multi-site, multi-year decision she will defend with data.',
-    yourRole: 'E+H BDM — multi-site, multi-year asset health opportunity',
+    personaId: 'monica-ferrari',
+    description: 'Monica wants proof, not promises. She will not easily admit that an instrument health alarm went unnoticed — you have to surface the real cost before SAH70 can land.',
+    context: 'An early call about asset health monitoring (SAH70, on-premise). Monica is a Quality Manager at a pharma manufacturing site. NE 107 health status is visible per device, but no one watches it systematically across the plant. She agreed to the meeting because her VP asked her to evaluate options — not because she is convinced.',
+    industryContext: 'INDUSTRY REALITY (Pharma / GMP quality): Monica is the quality gatekeeper who can place a batch on quality hold. Instrument NE 107 health status (Failure, Function check, Out of specification, Maintenance required) is visible per device but nobody watches it plant-wide. Her fear: a degraded instrument sits unnoticed during a production campaign, the measurement drifts, batch record review later finds a deviation, a CAPA follows, and the affected batch goes on quality hold. Nothing can leave the validated network, so only an on-premise system is acceptable. She speaks in deviation, CAPA, batch record review, audit finding, quality hold, out-of-tolerance — and NEVER says a "certificate expired", that devices "need certification", or "health record". Calibration is due on a schedule; it does not expire. Instruments ship pre-calibrated; the customer recalibrates and qualifies (IQ/OQ/PQ).',
+    yourRole: 'E+H BDM — pharma instrument health and compliance opportunity',
     knownGoingIn: [
-      'Reliability Manager across several food & beverage plants',
-      'Mostly reactive/scheduled maintenance, with some older condition tools',
-      'Data-driven, careful with money, tired of "another monitoring dashboard"'
+      'Quality Manager at a pharmaceutical manufacturing site in Milan',
+      'Responsible for instrument health and documentation across ~400 measurement devices',
+      'Precise and sceptical — has been disappointed by monitoring platforms before'
     ],
     objectives: [
-      'Link to her uptime goal before you talk about features',
-      'Build the real cost of reactive maintenance and a recent failure',
-      'Offer one pilot site that can grow — not a big rollout at once'
+      'Connect to her quality goal before you mention features or products',
+      'Draw out the real cost of unmonitored instrument health status across a production campaign',
+      'Propose a small, provable pilot she can defend to her VP — not a site-wide rollout'
     ],
-    customerOpening: 'I will be honest, I get pitched a monitoring platform every few months and they all promise the world. I report uptime to my VP, so I care about results, not dashboards. What are we really talking about here?',
+    customerOpening: 'I will be direct — I get presented with monitoring platforms regularly, and they all promise to make my life easier. What I need is a system that works, that I can prove to an auditor, and that does not create more work than it saves. What are we actually talking about here?',
     stages: [
       {
         id: 'open',
         title: 'The Careful Opening',
-        instruction: 'She is tired of monitoring pitches. How do you start?',
+        instruction: 'She is tired of tool vendors who overpromise. How do you start?',
         choices: [
           { id: 'a', type: 'rapport', quality: 'excellent', points: 10,
-            text: 'Fair — I will not add to that. The uptime number you report to your VP: what is pushing it down today?',
-            rationale: 'You stepped around the dashboard tiredness and linked to the number she is responsible for. Everything next connects to a goal she owns.' },
+            text: 'Fair — I will not add to that pile. The quality standard you are responsible for: what is hardest to keep under control across a production campaign?',
+            rationale: 'You stepped past the vendor scepticism and anchored to the standard she is accountable for. Everything that follows connects to a goal she owns.' },
           { id: 'b', type: 'problem', quality: 'good', points: 5,
-            text: 'Understood — and where, across all your sites, would you say your reliability programme has its biggest gaps now?',
-            rationale: 'A reasonable problem question, but wide — you ask her to find her own gaps. Linking it to her uptime number would be sharper.' },
+            text: 'Understood — where in your instrument management process would you say the biggest gaps are right now?',
+            rationale: 'A reasonable problem question, but wide — you are asking her to locate her own gaps. Linking it to a specific quality goal would be sharper.' },
           { id: 'c', type: 'solution', quality: 'poor', points: 0,
-            text: 'SAH70 is an on-premise asset-health platform with NE 107 signals across your site — shall I show you?',
+            text: 'SAH70 is an on-premise asset health platform that gives you NE 107 health signals across your whole site — shall I show you?',
             rationale: 'You became the dashboard pitch she warned about — features before context confirm her doubts in the first thirty seconds.' }
         ]
       },
       {
         id: 'probe',
-        title: 'How She Finds Out',
-        instruction: 'She admits things mostly work, but problems still slip through. What do you ask to find out how she detects them?',
+        title: 'How Instrument Health Gets Monitored',
+        instruction: 'She says instrument health status is visible in the DCS but someone has to look — and in practice they do not always. What do you ask?',
         choices: [
           { id: 'a', type: 'problem', quality: 'excellent', points: 10,
-            text: 'When a problem slips through, how do you usually find out — before it fails, or after?',
-            rationale: 'A question aimed at the reactive-versus-early gap, and it invites the failure story without you assuming there is one.' },
+            text: 'When an instrument changes to Maintenance Required or Out of Specification status during a production run — how does your team find out in time to act?',
+            rationale: 'You named a specific NE 107 status and a specific moment — this is the gap she is living with, and now she has to describe exactly how it works (or does not).' },
           { id: 'b', type: 'situation', quality: 'good', points: 5,
-            text: 'How many sites, and about how many critical assets are we talking about across the group?',
-            rationale: 'Useful for sizing a multi-site deal, but a fact question — it maps the estate without showing what the surprises cost her.' },
+            text: 'How many instruments are feeding health status into the system, and who is responsible for reviewing it?',
+            rationale: 'A fair situational question that sizes the estate — following up on what happens when no one looks would sharpen it.' },
           { id: 'c', type: 'solution', quality: 'poor', points: 0,
-            text: 'SAH70 gives early warnings, so those surprises mostly go away — worth a look?',
-            rationale: 'You promised the result before she described the problem — "surprises go away" is exactly the over-promise she is tired of.' }
+            text: 'SAH70 aggregates NE 107 signals from all your instruments into one dashboard — that is exactly the visibility you need.',
+            rationale: 'She has not described a problem yet. Jumping to the dashboard confirms the pattern she warned you about in the opening.' }
         ]
       },
       {
         id: 'develop',
         title: 'Build the Cost',
-        instruction: 'She mentions a recent failure but quickly moves past it. How do you respond?',
+        instruction: 'She mentions that last year an instrument was in a degraded health state for several weeks during a campaign and nobody noticed until an internal audit flagged it. She moves past it quickly. How do you respond?',
         choices: [
           { id: 'a', type: 'implication', quality: 'excellent', points: 10,
-            text: 'When it failed, what did it actually cost you — the stoppage, the scrapped product, the rush to fix it?',
-            rationale: 'You stayed on the painful event and opened up its full cost — this is where a reactive failure becomes a number she feels.' },
+            text: 'When it was found in the audit — what did that actually cost you? The batch investigation, the CAPA, the deviation report?',
+            rationale: 'You stayed on the incident and opened up its full cost — this is where an unmonitored health alarm becomes a number she can feel and quantify.' },
           { id: 'b', type: 'problem', quality: 'good', points: 5,
-            text: 'How often would you say an unplanned failure like that one happens across all of your sites these days?',
-            rationale: 'A good question to size how often it happens — adding the cost of one event would make it land harder than frequency alone.' },
+            text: 'How many instruments across the plant could be in a similar state right now, without anyone flagging it?',
+            rationale: 'A fair question to size the risk — pairing it with the cost of the one incident that already happened would make it land harder.' },
           { id: 'c', type: 'solution', quality: 'poor', points: 0,
-            text: 'That is the classic case for condition monitoring — SAH70 catches that decline weeks earlier.',
-            rationale: 'She gave you a real failure and you jumped to the product — she has not measured the cost, so the feature has nothing to connect to.' }
+            text: 'That is exactly what SAH70 prevents — a plant-wide health view would have surfaced that alarm weeks earlier.',
+            rationale: 'She gave you a real incident and you jumped to the product. She has not measured the cost yet, so the feature has nothing to connect to.' }
         ]
       },
       {
         id: 'quantify',
-        title: 'Link It to the Goal',
-        instruction: 'She agrees the failure was expensive and avoidable in hindsight. Where do you go next?',
+        title: 'Link It to Her Standard',
+        instruction: 'She agrees the batch investigation was costly and the CAPA was difficult to explain to her VP. Where do you go next?',
         choices: [
           { id: 'a', type: 'implication', quality: 'excellent', points: 10,
-            text: 'If events like that are pulling down the uptime you report, what would catching half of them early do to it?',
-            rationale: 'You link the failure cost straight to the goal she is judged on — she does the value math herself, against the number her VP sees.' },
+            text: 'If a degraded instrument can stay undetected for weeks during a campaign, what does that mean for the next audit — or for your VP Quality?',
+            rationale: 'You link the incident directly to the standard she is judged on — she does the risk calculation herself, against what her VP sees.' },
           { id: 'b', type: 'implication', quality: 'good', points: 5,
-            text: 'So a few of those a year is doing real damage to both uptime and budget.',
-            rationale: 'A fair summary tied to two measures — a question that makes her weigh the goal impact herself would pull her further.' },
+            text: 'So a health alarm that goes unaddressed during production can reach audit level — and your team is the one explaining it.',
+            rationale: 'A fair summary tied to accountability — a question that makes her name the risk herself would pull her in further.' },
           { id: 'c', type: 'solution', quality: 'poor', points: 0,
-            text: 'Let me send you some cost examples from other food and beverage makers who already use SAH70 successfully today.',
-            rationale: 'You had the chance to build her own goal case and reached for other companies\' numbers — they cannot replace hers for a proof-driven buyer.' }
+            text: 'Let me send you examples from other pharma sites that use SAH70 to monitor instrument health.',
+            rationale: 'You had the chance to build her own risk case and reached for other companies\' stories — they cannot replace hers for a proof-driven buyer.' }
         ]
       },
       {
         id: 'needpayoff',
         title: 'The Data-Location Question',
-        instruction: 'She warms, then asks where the data lives — they are careful about anything leaving their network.',
+        instruction: 'She warms, then asks where the data lives — nothing can leave their validated network.',
         choices: [
           { id: 'a', type: 'needpayoff', quality: 'excellent', points: 10,
-            text: 'Good — SAH70 runs on-premise, so the data stays in your network. Would that clear the path inside your company?',
+            text: 'Good — SAH70 runs on-premise, so the data stays inside your network. Would that clear the path for your validation team?',
             rationale: 'You turned a possible objection into a strength and asked a value question that gets her to confirm the way forward herself.' },
           { id: 'b', type: 'solution', quality: 'good', points: 5,
-            text: 'No concern there — SAH70 is an on-premise system, so the data stays on your own infrastructure.',
-            rationale: 'Accurate and reassuring, and it removes the objection — a follow-up tied to her internal approval would turn relief into momentum.' },
+            text: 'No concern — SAH70 is an on-premise system, so the data never leaves your infrastructure.',
+            rationale: 'Accurate and reassuring, and it removes the objection — a follow-up tied to her validation team\'s approval would turn relief into momentum.' },
           { id: 'c', type: 'solution', quality: 'poor', points: 0,
             text: 'It syncs to the Netilion cloud, but it is encrypted and certified — there is nothing to worry about.',
-            rationale: 'You contradicted SAH70\'s on-premise design and waved away a real data concern — "nothing to worry about" makes a careful buyer more worried.' }
+            rationale: 'You contradicted SAH70\'s on-premise design and dismissed a real GMP concern — "nothing to worry about" makes a careful Quality Manager more worried.' }
         ]
       },
       {
         id: 'close',
         title: 'Size the Decision',
-        instruction: 'She is interested, but calls a full group rollout a big risk she must justify. Close it.',
+        instruction: 'She is interested, but will not approve a full rollout without proof. Close it.',
         choices: [
           { id: 'a', type: 'solution', quality: 'excellent', points: 10,
-            text: 'Then let us not risk the group — one site, your worst assets, goals you can defend to your VP. Prove it, then grow.',
-            rationale: 'You matched her risk level exactly — one site, measured against her goals, in her control, growing only on proof. This is how careful decisions start.' },
+            text: 'Then let us start small — one production line, your highest-risk instruments, results you can show your VP. Prove it, then expand.',
+            rationale: 'You matched her risk level exactly — one line, measured against her compliance goals, in her control, growing only on proof. This is how a careful decision starts.' },
           { id: 'b', type: 'solution', quality: 'good', points: 5,
-            text: 'I would suggest a pilot at one site first, measured against your reliability goals, before any wider step.',
-            rationale: 'The right idea — pilot before rollout, tied to her goals. Naming her hardest assets and her VP goals would make it even stronger.' },
+            text: 'I would suggest a pilot on one line first, measured against your certification goals, before any wider step.',
+            rationale: 'The right idea — pilot before rollout, tied to her goals. Naming her highest-risk instruments and her VP Quality goals would make it even stronger.' },
           { id: 'c', type: 'solution', quality: 'poor', points: 0,
-            text: 'I will prepare a full multi-site rollout proposal, with all of the group-wide pricing worked out, ready for senior management.',
-            rationale: 'She just called a group rollout a big risk she must defend dollar by dollar — and you offered exactly that. The easiest possible "no".' }
+            text: 'I will prepare a full site rollout proposal with all the pricing worked out, ready for senior management.',
+            rationale: 'She just said no full rollout without proof — and you offered exactly that. The easiest possible "no" from someone who never agrees quickly.' }
         ]
       }
     ]
@@ -890,12 +898,14 @@ const SCENARIOS = [
     difficulty: 'BDM',
     difficultyLabel: 'Business Dev. Manager',
     estimatedMinutes: 14,
-    personaId: 'jan-visser',
-    description: 'Jan believes wireless is unreliable, and that the points he cannot cable are simply impossible to monitor. What he really needs is hidden under that belief.',
-    context: 'A meeting about WirelessHART for an older refinery. Jan openly doubts that wireless is reliable or secure enough for the points that matter. Your way in is to move past the doubt and find what he really needs — before defending the technology.',
+    personaId: 'peter-hoffmann',
+    systemPromptHint: 'An E+H BDM is meeting with you about WirelessHART for your older chemical plant. You are sceptical — wireless feels unreliable and insecure for the monitoring points that really matter. You are willing to listen, but you will not be convinced by specs alone. You need to feel the rep understands your plant and your concerns before you open up about what you are actually trying to monitor.',
+    description: 'Peter believes wireless is unreliable for points that matter, and that the gaps he cannot cable are simply impossible to monitor. What he really needs is hidden under that belief.',
+    context: 'A meeting about WirelessHART for an older chemical plant. Peter openly doubts that wireless is reliable or secure enough for the points that matter. Your way in is to move past the doubt and find what he really needs — before defending the technology.',
+    industryContext: 'INDUSTRY REALITY (Chemical, Ex / hazardous areas): An older chemical plant where many measurement points are still checked by manual rounds because cabling into ATEX-classified areas is slow, permit-heavy and costly. The real risk is the blind window between rounds — a point drifting unseen in a hazardous area before the next check. Peter is a curious engineer who must be shown, not told: he tests every claim and genuinely doubts wireless reliability and security for points that matter. He uses Ex zone, classified area, HART, self-healing mesh, AES-128, manual rounds, root cause. Frame WirelessHART as the engineered answer to gaps that cabling cannot justify — backed by evidence, never over-claimed.',
     yourRole: 'E+H BDM — wireless retrofit for an older plant, with FX/Netilion cross-sell',
     knownGoingIn: [
-      'Maintenance & Reliability Engineer at an older refinery',
+      'Control & Instrumentation Engineer at an older chemical plant',
       'Monitors many points by manual rounds; adding cables is slow and costly',
       'Started the meeting doubting that wireless is reliable or secure enough'
     ],
@@ -904,22 +914,22 @@ const SCENARIOS = [
       'Build the risk hidden between manual checks',
       'Answer the reliability and security concern honestly, then offer a small pilot'
     ],
-    customerOpening: 'I will listen, but let me say up front — this is a refinery. I am not convinced wireless is reliable or secure enough for the points that really matter to us. Convince me I am wrong.',
+    customerOpening: 'I agreed to this meeting because I want to understand how wireless monitoring actually works in practice. But I will be honest — this is a chemical plant with hazardous areas. I am not yet convinced wireless is reliable or secure enough for the points that really matter. Show me I am wrong.',
     stages: [
       {
         id: 'open',
-        title: 'The Wireless Doubter',
-        instruction: 'He doubts that wireless belongs in a refinery. How do you start?',
+        title: 'The Curious Sceptic',
+        instruction: 'Peter is open-minded but wants to be shown, not told. How do you start?',
         choices: [
           { id: 'a', type: 'rapport', quality: 'excellent', points: 10,
-            text: 'Healthy doubt — we will test it later. First: if cable cost and permits were free, what would you monitor?',
-            rationale: 'You set the objection aside and asked the question that brings out the monitoring he gave up on. Handle reliability after he wants the result.' },
+            text: 'A fair test. Before we get to specs — if cabling and permits were free, which points would you monitor that you currently cannot?',
+            rationale: 'You accepted the challenge and asked the question that brings out what he actually needs. Reliability specs land better once he wants the result.' },
           { id: 'b', type: 'situation', quality: 'good', points: 5,
-            text: 'Fair. WirelessHART has a 10-year track record in plants like yours — how many points do you check by hand?',
-            rationale: 'The reassurance is fine and the question is reasonable, but it is a fact question — the "if cost were free" angle opens the real need faster.' },
+            text: 'Fair. WirelessHART has a 10-year track record in process plants — how many points do you check by hand today?',
+            rationale: 'The reassurance is fine and the question is reasonable, but it is a fact question — the "if cabling were free" angle opens the real need faster.' },
           { id: 'c', type: 'solution', quality: 'poor', points: 0,
-            text: 'Let me reassure you — the SWA50 uses AES-128 encryption and self-healing mesh, so reliability is fine.',
-            rationale: 'You defended the technology before knowing what he would use it for — now you are arguing specs with a doubter, not finding a need.' }
+            text: 'Let me reassure you — the SWA50 uses AES-128 encryption and a self-healing mesh, so reliability is solid.',
+            rationale: 'You started with specs before knowing what he needs them for. An engineer who wants to be shown will test every claim — and you have given him nothing to test yet.' }
         ]
       },
       {
@@ -957,14 +967,14 @@ const SCENARIOS = [
       {
         id: 'quantify',
         title: 'The Safety Weight',
-        instruction: 'He goes quiet, then admits a missed signal between rounds is what worries him most. Where do you go?',
+        instruction: 'He goes quiet, then admits a missed signal between rounds is what worries him most in a hazardous area. Where do you go?',
         choices: [
           { id: 'a', type: 'implication', quality: 'excellent', points: 10,
-            text: 'In a hazardous area, worst case if one drifts unseen — and what is cabling them quoted at?',
-            rationale: 'You build both the safety risk and the cost of the usual fix — the contrast makes wireless look like the practical way out.' },
+            text: 'In a classified area, if one of those drifts unseen before the next round — what is the worst case? And what does cabling them cost?',
+            rationale: 'You build both the safety consequence and the cost of the traditional fix — the contrast makes wireless the practical, engineered answer rather than a risk.' },
           { id: 'b', type: 'implication', quality: 'good', points: 5,
-            text: 'So the points you most want to cover are exactly the ones hardest to justify cabling for.',
-            rationale: 'A sharp summary of the difficult situation he lives with — a question about the safety risk or the cable quote would deepen it more.' },
+            text: 'So the points you most need to watch are exactly the ones where adding cable is hardest to justify.',
+            rationale: 'A sharp summary of the situation he lives with — a question about the consequence in a hazardous area would deepen the weight of it.' },
           { id: 'c', type: 'situation', quality: 'poor', points: 0,
             text: 'I understand — and which HART version do those field devices actually run on this site?',
             rationale: 'You moved to a technical detail just as he opened up about what worries him most — it breaks the moment and looks like you stopped listening.' }
@@ -973,13 +983,13 @@ const SCENARIOS = [
       {
         id: 'objection',
         title: 'Earn the Trust',
-        instruction: 'He raises it directly now: he needs to know wireless will not drop out or get hacked in a live plant.',
+        instruction: 'He raises it directly now: he needs evidence, not promises, that wireless will not drop out or be compromised in a classified chemical area.',
         choices: [
           { id: 'a', type: 'solution', quality: 'excellent', points: 10,
             text: 'Right to ask — AES-128 encryption, self-healing mesh, 10-year sensor life. Which one point should we prove it on?',
             rationale: 'You answered with facts he can check, then moved to a low-risk proof on his terms — reassurance plus a clear next step beats reassurance alone.' },
           { id: 'b', type: 'solution', quality: 'good', points: 5,
-            text: 'Fair concerns — it uses AES-128 encryption and a self-healing mesh, with a strong record in refineries.',
+            text: 'Fair concerns — it uses AES-128 encryption and a self-healing mesh, with a strong record in chemical and process plants.',
             rationale: 'Accurate reassurance that answers both worries — it just stops short of turning the relief into action with a pilot offer.' },
           { id: 'c', type: 'solution', quality: 'poor', points: 0,
             text: 'Honestly, it is completely safe — we have never had a single reliability or security problem anywhere.',

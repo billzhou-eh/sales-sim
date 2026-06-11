@@ -314,52 +314,52 @@ const OFFLINE_REPLIES = {
 
   'sah70-assethealth': {
     open: {
-      a: ['Okay, that is a better question. What hurts uptime now is unplanned failures we did not see coming.',
-          'Fair enough. The thing dragging my number down is the surprises — failures we catch too late.'],
-      b: ['Gaps? Probably our condition coverage. But that is a big question to throw at me cold.',
-          'We have gaps, sure. I would rather you be specific than ask me to audit myself.'],
+      a: ['That is a better question. What is hardest to keep under control is the instrument health status — it is visible per device, but nobody watches it consistently across a campaign.',
+          'Fair. The thing I cannot keep under control is whether someone is actually looking at device health during a run. The status is there; the attention is not.'],
+      b: ['Gaps? Probably how we follow up on device status. But that is a wide question to throw at me cold.',
+          'We have gaps, yes. I would rather you be specific than ask me to audit my own process.'],
       c: ['And there it is — the platform pitch. This is exactly what I said I am tired of.',
-          'Features across my site. I have heard this exact slide from three vendors.']
+          'NE 107 across my whole site. I have heard this exact slide from three vendors.']
     },
     probe: {
-      a: ['Usually after it fails, honestly. We find out when something breaks, not before.',
-          'Mostly after the fact. That is the problem — we are reactive, not ahead of it.'],
-      b: ['Several sites, a few hundred critical assets. It is a lot to cover.',
-          'Group-wide, it is hundreds of assets across multiple plants. Why?'],
-      c: ['"Surprises disappear" is the exact over-promise I do not believe.',
+      a: ['Honestly? Often we find out at batch record review, not during the run. The status was there — nobody was watching it.',
+          'Too often after the fact. The device sat in Maintenance Required and we caught it later, not in time to act.'],
+      b: ['Around four hundred measurement devices feeding status. In theory the shift reviews it. In practice, not reliably.',
+          'Several hundred instruments report health. Who reviews it? That is exactly the weak point.'],
+      c: ['One dashboard for everything — that is the over-promise I do not believe.',
           'You promised the result before I described the problem. That is a red flag for me.']
     },
     develop: {
-      a: ['When it failed? A line stoppage, scrapped product, and a scramble to recover. It was not cheap.',
-          'Honestly, it cost us a stoppage and wasted product. The cleanup was the worst part.'],
-      b: ['A few times a year, across the group. Enough to notice.',
-          'It happens more than I would like. I could not give you an exact number now.'],
+      a: ['When the audit found it? A deviation, an investigation, a CAPA, and the affected batch on quality hold while we assessed impact. Explaining that to my VP was the worst part.',
+          'It cost us a deviation and a long investigation. The batch went on hold pending impact assessment. The paperwork and the questions from above were brutal.'],
+      b: ['It has happened more than once. Enough that I cannot call it a one-off anymore.',
+          'A handful of times. Each one is a deviation I have to defend.'],
       c: ['You jumped to the product. I have not put a cost on it yet, so that lands flat.',
-          'Condition monitoring, sure. But you skipped the part where I feel the pain.']
+          'Plant-wide visibility, sure. But you skipped the part where I feel the pain.']
     },
     quantify: {
-      a: ['If we caught half of those early, my uptime number would move in a way my VP would notice. That is the case.',
-          'Catching even half early would change the figure I report. Now you are talking my language.'],
-      b: ['A few a year does hurt uptime and budget, yes. That is fair.',
-          'It damages both, true. I had not tied them together out loud.'],
-      c: ['Other companies\' numbers are not mine. My VP wants our case, not theirs.',
-          'Case studies will not pass our approval. I need my own figures.']
+      a: ['If a degraded instrument can sit unnoticed for weeks, the next audit is the real exposure — and that lands on my desk, in front of my VP.',
+          'You are right to ask. One undetected case became a deviation and a CAPA. The next one is an audit finding I would have to own.'],
+      b: ['A status that goes unwatched can reach audit level, yes — and my team is the one explaining it.',
+          'It does reach compliance, true. I had not said it out loud quite like that.'],
+      c: ['Other sites\' numbers are not mine. My VP wants our case, not a brochure.',
+          'Case studies will not pass our review. I need evidence from our own line.']
     },
     needpayoff: {
-      a: ['On-premise actually matters to us. If the data stays in our network, yes, that clears the internal path.',
-          'That it stays on our infrastructure is a real plus. It removes my biggest internal objection.'],
-      b: ['On-premise, good. That settles the data question for now.',
-          'Alright, on our own servers. That is reassuring.'],
-      c: ['Cloud, but "nothing to worry about"? That phrase worries me more, not less.',
-          'You waved away a real data concern. That is not how you win a careful buyer.']
+      a: ['On-premise matters to us — nothing can leave the validated network. If the data stays inside, yes, that clears the path for my validation team.',
+          'That it stays on our infrastructure is a real plus. It removes my biggest objection before validation even starts.'],
+      b: ['On-premise, good. That settles the data-location question for now.',
+          'Inside our own network. That is reassuring — the cloud question is what usually kills these for me.'],
+      c: ['Cloud sync, but "nothing to worry about"? On a validated network that phrase worries me more, not less.',
+          'You waved away a real GMP concern. That is not how you win a careful buyer.']
     },
     close: {
-      a: ['One site, my worst assets, my own KPIs, and grow only if it proves out. That is how I can defend it. Let us do it.',
-          'A single-site proof I control, scaling on evidence? Yes. That I can take upstairs.'],
-      b: ['A pilot first, tied to my metrics. That is the right shape.',
-          'One site, measured properly, before anything bigger. Agreed in principle.'],
-      c: ['A full group rollout is exactly the big bet I said I must justify dollar by dollar. That is an easy no.',
-          'You proposed the whole group. That is the fastest way to get a no from me.']
+      a: ['One line, my highest-risk instruments, results I can show my VP, and grow only if it proves out. That is how I can defend it. Let us do it.',
+          'A single-line proof I control, scaling on evidence? Yes. That I can take upstairs.'],
+      b: ['A pilot first, tied to my compliance goals. That is the right shape.',
+          'One line, measured properly, before anything wider. Agreed in principle.'],
+      c: ['A full site rollout is exactly what I said I will not approve without proof. That is an easy no.',
+          'You proposed the whole site. That is the fastest way to get a no from me.']
     }
   },
 
