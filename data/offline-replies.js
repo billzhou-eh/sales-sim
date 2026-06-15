@@ -29,7 +29,7 @@ const OFFLINE_REPLIES = {
       b: ['A few times a month, more in a bad week. I have not counted exactly.',
           'Often enough to be annoying. Two or three times a month at least.'],
       c: ['You are jumping ahead. I have not said this is big enough to buy anything.',
-          'Maybe. But I am not ready to talk about your product yet.']
+          'You are moving too fast. I have not agreed there is a problem here.']
     },
     quantify: {
       a: ['An hour of a stopped line runs into the thousands. I do not have the exact figure here, but it hurts.',
@@ -83,12 +83,12 @@ const OFFLINE_REPLIES = {
           'Features again. I have not said this justifies the spend.']
     },
     quantify: {
-      a: ['Put in euros, the lost hours could approach the price difference. That is the kind of figure the council understands.',
+      a: ['Put in euros, the lost hours could approach the price difference. That is the kind of figure my finance director understands.',
           'In money terms, the lost time is not trivial. That is a calculation I could actually present.'],
-      b: ['Perhaps. But "most of it" is not a number I can take to the council.',
+      b: ['Perhaps. But "most of it" is not a number I can take to my finance director.',
           'It might. I would need the figure, not a general claim.'],
-      c: ['Examples from other utilities are not my budget case. I need my own numbers.',
-          'Case studies will not convince the council. They want our figures.']
+      c: ['Examples from similar chemical plants are not my budget case. I need my own numbers.',
+          'Case studies will not convince my finance director. They want our figures.']
     },
     needpayoff: {
       a: ['If that time went to planned maintenance, that would genuinely help us. And yes, we still have the old tablets.',
@@ -100,8 +100,8 @@ const OFFLINE_REPLIES = {
     },
     close: {
       a: ['That works for our timing. Prepare the quote and the one-page case, and confirm the trade-in. I can use that.',
-          'Good. A quote and a short cost case for the council, ready for Q1. Send it.'],
-      b: ['A written proposal is fine. Make sure the numbers are clear for the council.',
+          'Good. A quote and a short cost case for my finance director, ready for Q1. Send it.'],
+      b: ['A written proposal is fine. Make sure the numbers are clear for my finance director.',
           'Send the full proposal. I will review it before the budget opens.'],
       c: ['January with nothing in between? The case will go cold. I expected more.',
           'If you simply call back later, this will lose momentum. Disappointing.']
@@ -177,20 +177,20 @@ const OFFLINE_REPLIES = {
           'Please — not another PDF. I need this fixed, not homework.']
     },
     connect: {
-      a: ['If you can genuinely cut that noise, then yes — fifteen seats starts to look reasonable again.',
-          'Now that is interesting. Fix the noise and the value question changes for me.'],
-      b: ['Alarm Management — alright. If you help set it up, I am willing to look again.',
-          'That sounds like the right tool. I would want help, but it is promising.'],
-      c: ['Device by device, by hand? My team does not have weeks for that.',
-          'That is a lot of manual work. It would not survive my schedule.']
+      a: ['Yes. It was there. The NE 107 status had been showing Maintenance Required for three weeks. I saw it myself once. Then the alerts went quiet and nobody looked again.',
+          'The data was in the system. I went back and checked after the failure. We just were not watching.'],
+      b: ['Probably, yes. The readings were not normal. We should have been watching.',
+          'That is the right question. Looking back — yes, the signal was there.'],
+      c: ['You are making a sales point out of a failure I am still angry about. That is not right.',
+          'I just told you about a €40,000 breakdown and you turned it into a feature list.']
     },
     reframe: {
-      a: ['That is a fair point — after an incident, knowing who acknowledged what matters here. Yes, auditability concerns us.',
-          'In our work, accountability after a safety event is real. I had not thought of it that way.'],
-      b: ['Accountability, alright. I understand the idea, even if it still feels abstract.',
-          'Knowing who acted — yes, I see the logic, in principle.'],
-      c: ['You repeated the model and offered a discount. I asked whether the model fits us.',
-          'A discount does not answer my question, my friend. I asked about the principle.']
+      a: ['It means we could trust what the dashboard shows. Right now we do not. That is the real problem.',
+          'That changes a lot, honestly. If the alerts meant something, the team would check. That is what I need.'],
+      b: ['That may be true. But a statement is not the same as having it work.',
+          'Alright. That is reassuring, in a careful way.'],
+      c: ['You are moving too fast. I have not agreed to anything yet.',
+          'Do not push the renewal before I have finished thinking.']
     },
     commercial: {
       a: ['I did not know we already qualified for that. Please confirm it — that helps the fairness a lot.',

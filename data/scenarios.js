@@ -66,7 +66,7 @@ const SCENARIOS = [
           { id: 'b', type: 'situation', quality: 'good', points: 5,
             text: 'Are those protocols spread across all the lines, or only in a few areas?',
             rationale: 'Useful background, but still a fact question — about his site, not the problems inside it.' },
-          { id: 'c', type: 'problem', quality: 'poor', points: 0,
+          { id: 'c', type: 'situation', quality: 'poor', points: 0,
             text: 'Missing drivers are the usual problem with that mix — is that your main problem too?',
             rationale: 'This puts words in his mouth. A cautious engineer pushes back, and the problem is not real to him until he says it himself.' }
         ]
@@ -188,7 +188,7 @@ const SCENARIOS = [
           { id: 'a', type: 'problem', quality: 'excellent', points: 10,
             text: 'When a technician reaches a device whose driver is not on the tablet, what happens next?',
             rationale: 'A precise question aimed at the most likely friction point — one exact moment, not a vague request for him to name problems.' },
-          { id: 'b', type: 'problem', quality: 'good', points: 5,
+          { id: 'b', type: 'situation', quality: 'good', points: 5,
             text: 'What would you say slows your engineers down most when they are configuring devices on site?',
             rationale: 'A reasonable problem question — a little wide. A targeted question about a specific moment gets there faster.' },
           { id: 'c', type: 'situation', quality: 'poor', points: 0,
@@ -235,7 +235,7 @@ const SCENARIOS = [
         choices: [
           { id: 'a', type: 'needpayoff', quality: 'excellent', points: 10,
             text: 'If that engineer time went back to real project work, what would that be worth to your director? And do you still have the old tablets?',
-            rationale: 'A value question in terms his finance director understands — plus a concrete commercial lever. You lower real cost without lowering value.' },
+            rationale: 'A value question in terms his finance director understands — plus a concrete commercial lever. The trade-in question plants the seed; confirming eligibility becomes the first concrete next step.' },
           { id: 'b', type: 'solution', quality: 'good', points: 5,
             text: 'We have a trade-in — 20% off if you return the old tablets. Let me check if yours qualify.',
             rationale: 'A relevant lever, well timed. Slightly passive — asking him to locate the units now would turn interest into a concrete next step.' },
@@ -292,14 +292,14 @@ const SCENARIOS = [
       {
         id: 'open',
         title: 'The Opening Challenge',
-        instruction: 'He wants a difference, right now. How do you respond?',
+        instruction: 'She wants a difference, right now. How do you respond?',
         choices: [
           { id: 'a', type: 'rapport', quality: 'excellent', points: 10,
             text: 'Instead of a general answer — what result are you personally responsible for delivering with this platform?',
-            rationale: 'You refused the feature fight and moved to what he is measured on. A difference only matters when it is linked to his goals.' },
+            rationale: 'You refused the feature fight and moved to what she is measured on. A difference only matters when it is linked to her goals.' },
           { id: 'b', type: 'problem', quality: 'good', points: 5,
             text: 'Honestly, it is instrument-level depth, not just connection. What is driving your evaluation?',
-            rationale: 'A reasonable hint plus a question, but you led with a claim he will file as "another vendor difference".' },
+            rationale: 'A reasonable hint plus a question, but you led with a claim she will file as "another vendor difference".' },
           { id: 'c', type: 'solution', quality: 'poor', points: 0,
             text: 'Shall I show why Netilion\'s depth — built on 200 years of measurement — beats both of them?',
             rationale: 'Company history as a question is still the empty answer he warned about. A buyer who researched two rivals will stop listening.' }
@@ -308,11 +308,11 @@ const SCENARIOS = [
       {
         id: 'reframe',
         title: 'Change the Question',
-        instruction: 'He argues connection is already a solved problem, and asks what else you offer.',
+        instruction: 'She argues connection is already a solved problem, and asks what else you offer.',
         choices: [
           { id: 'a', type: 'problem', quality: 'excellent', points: 10,
             text: 'Agreed, connection is the basic part. Today, how do you find out an instrument has drifted before it affects a batch?',
-            rationale: 'You agreed with him (no argument) and moved to the real gap. This is the question that uncovers the hidden problem behind the features.' },
+            rationale: 'You agreed with her (no argument) and moved to the real gap. This is the question that uncovers the hidden problem behind the features.' },
           { id: 'b', type: 'solution', quality: 'good', points: 5,
             text: 'The difference is Heartbeat — health signals from inside the instrument, not just the process value.',
             rationale: 'True and relevant, but a feature answer to a feature question — still a comparison. He has not felt why depth matters yet.' },
@@ -324,7 +324,7 @@ const SCENARIOS = [
       {
         id: 'develop',
         title: 'Build the Consequence',
-        instruction: 'He admits they usually catch problems late, after the fact, then trace them back.',
+        instruction: 'She admits they usually catch problems late, after the fact, then trace them back.',
         choices: [
           { id: 'a', type: 'implication', quality: 'excellent', points: 10,
             text: 'In a regulated batch, what does that late catch cost you — scrapped product, a deviation report, an audit risk?',
@@ -340,27 +340,27 @@ const SCENARIOS = [
       {
         id: 'multivendor',
         title: 'The Multi-Vendor Test',
-        instruction: 'He warns that an E+H-only tool is not acceptable, since they run other makers too.',
+        instruction: 'She warns that an E+H-only tool is not acceptable, since they run other makers too.',
         choices: [
           { id: 'a', type: 'problem', quality: 'excellent', points: 10,
             text: 'Honest answer — gateways connect them, but the deep health data is richer on E+H. What is your actual mix?',
             rationale: 'Honesty plus a question. Admitting the limit builds trust with a sharp buyer, and the mix tells you how much it matters.' },
           { id: 'b', type: 'solution', quality: 'good', points: 5,
             text: 'Other makers connect through our FieldEdge gateway — it is strongest on E+H, but it handles the others too.',
-            rationale: 'True, but you skipped the depth limit he will test. He will find it later and wonder what else you left out.' },
+            rationale: 'True, but you skipped the depth limit she will test. She will find it later and wonder what else you left out.' },
           { id: 'c', type: 'solution', quality: 'poor', points: 0,
             text: 'Netilion works with almost any field device — many makers is a strong fit for us.',
-            rationale: '"Almost any device" claims too much and hides the limit. With this buyer, the moment he tests it, you lose trust.' }
+            rationale: '"Almost any device" claims too much and hides the limit. With this buyer, the moment she tests it, you lose trust.' }
         ]
       },
       {
         id: 'needpayoff',
         title: 'Make It Matter',
-        instruction: 'He is more interested now. How do you make the value clear?',
+        instruction: 'She is more interested now. How do you make the value clear?',
         choices: [
           { id: 'a', type: 'needpayoff', quality: 'excellent', points: 10,
             text: 'Seeing an instrument fail weeks before it reached a batch — what is that worth to your business case?',
-            rationale: 'A value question that links the ability to his own goal — he states the value and the stakes himself, which lasts longest.' },
+            rationale: 'A value question that links the ability to her own goal — she states the value and the stakes herself, which lasts longest.' },
           { id: 'b', type: 'implication', quality: 'good', points: 5,
             text: 'So the real risk is not connection — it is being asked to trust a measurement you cannot check.',
             rationale: 'A strong way to frame it, but a question that makes him say the value would pull him further than a statement he can just accept.' },
@@ -372,11 +372,11 @@ const SCENARIOS = [
       {
         id: 'close',
         title: 'Design the Proof of Concept',
-        instruction: 'He is open to a proof of concept and asks what you would suggest.',
+        instruction: 'She is open to a proof of concept and asks what you would suggest.',
         choices: [
           { id: 'a', type: 'solution', quality: 'excellent', points: 10,
             text: '20 of your most critical instruments over 60 days — include 5 Yokogawa or ABB. You set the goals; we review first.',
-            rationale: 'A proof built on HIS goals, with other makers included. Offering to test your weak point shows confidence and keeps his trust.' },
+            rationale: 'A proof built on HER goals, with other makers included. Offering to test your weak point shows confidence and keeps her trust.' },
           { id: 'b', type: 'solution', quality: 'good', points: 5,
             text: 'A normal 60 to 90 day test across 10 to 20 devices, where you set the goals and we measure against them.',
             rationale: 'The shape is right and the goals are his — good. But "normal" feels like a template next to a plan built for his exact worries.' },
@@ -419,7 +419,7 @@ const SCENARIOS = [
         title: 'The Renewal Question',
         instruction: 'José has politely raised his doubts about renewing. How do you respond?',
         choices: [
-          { id: 'a', type: 'problem', quality: 'excellent', points: 10,
+          { id: 'a', type: 'rapport', quality: 'excellent', points: 10,
             text: 'Thank you for being direct. Before I say anything about the renewal — why did the team stop checking the platform?',
             rationale: 'You did not defend the price or the product — you looked for the cause first. A maintenance manager who values precision will respect that.' },
           { id: 'b', type: 'solution', quality: 'good', points: 5,
@@ -544,7 +544,7 @@ const SCENARIOS = [
         title: 'Start Without Pitching',
         instruction: 'He is in a good mood and focused on the relationship. How do you start?',
         choices: [
-          { id: 'a', type: 'problem', quality: 'excellent', points: 10,
+          { id: 'a', type: 'situation', quality: 'excellent', points: 10,
             text: 'Glad to hear it! I am curious — when your technicians collect device data on Field Xpert, where does it go?',
             rationale: 'A short, warm reply, then an honest question that opens the data topic naturally. It feels like a check-in, not a setup.' },
           { id: 'b', type: 'solution', quality: 'good', points: 5,
@@ -552,7 +552,7 @@ const SCENARIOS = [
             rationale: 'You moved to the product within 30 seconds — a results-driven buyer in a good mood quietly becomes more guarded.' },
           { id: 'c', type: 'solution', quality: 'poor', points: 0,
             text: 'Wonderful! We have been rolling out Netilion lately — shall I give you a quick overview now?',
-            rationale: '"Shall I give you an overview" clearly shows you came with a plan to sell. She will feel sold to in the first minute.' }
+            rationale: '"Shall I give you an overview" clearly shows you came with a plan to sell. He will feel sold to in the first minute.' }
         ]
       },
       {
@@ -562,13 +562,13 @@ const SCENARIOS = [
         choices: [
           { id: 'a', type: 'implication', quality: 'excellent', points: 10,
             text: 'When a problem comes up suddenly, what is it like trying to rebuild that device\'s history?',
-            rationale: 'A gentle question that points toward a real event — letting her tell the story, not you stating that the gap matters.' },
+            rationale: 'A gentle question that points toward a real event — letting him tell the story, not you stating that the gap matters.' },
           { id: 'b', type: 'solution', quality: 'good', points: 5,
             text: 'What if all of that synced automatically to one central view, instead of exporting by hand?',
-            rationale: 'A "what if" moves toward selling before she has felt the cost — she has not said the manual work actually hurts yet.' },
+            rationale: 'A "what if" moves toward selling before he has felt the cost — he has not said the manual work actually hurts yet.' },
           { id: 'c', type: 'solution', quality: 'poor', points: 0,
             text: 'That is exactly what Netilion fixes — it syncs Field Xpert data to a central history. Want to see it?',
-            rationale: 'Straight to the pitch before she has any reason to care about central history — you skipped the part where she sees she needs it.' }
+            rationale: 'Straight to the pitch before he has any reason to care about central history — you skipped the part where he sees he needs it.' }
         ]
       },
       {
@@ -578,29 +578,29 @@ const SCENARIOS = [
         choices: [
           { id: 'a', type: 'implication', quality: 'excellent', points: 10,
             text: 'That sounds very costly. Looking back, were there any strange signs in the readings before?',
-            rationale: 'You respected the story, then asked a question that makes her think about missed early signs — the way in to predictive health, in her words.' },
+            rationale: 'You respected the story, then asked a question that makes him think about missed early signs — the way in to predictive health, in his words.' },
           { id: 'b', type: 'solution', quality: 'good', points: 5,
             text: 'That is exactly what Netilion with Heartbeat prevents — it warns you before that kind of failure.',
-            rationale: 'Right capability, but you jumped to the solution the moment she shared a painful memory — it feels like a sales move.' },
+            rationale: 'Right capability, but you jumped to the solution the moment he shared a painful memory — it feels like a sales move.' },
           { id: 'c', type: 'situation', quality: 'poor', points: 0,
             text: 'That is unfortunate. Did you run a full root-cause review of the failure afterwards?',
-            rationale: 'A review question is a side-track — she gave you a real problem; explore whether monitoring would have caught it, do not ask for a report.' }
+            rationale: 'A review question is a side-track — he gave you a real problem; explore whether monitoring would have caught it, do not ask for a report.' }
         ]
       },
       {
         id: 'realise',
-        title: 'Let Her See It',
+        title: 'Let Him See It',
         instruction: 'He admits sensor health had been declining for weeks before the failure, but nobody was watching it systematically.',
         choices: [
           { id: 'a', type: 'needpayoff', quality: 'excellent', points: 10,
             text: 'If something had shown that as instrument health weeks earlier, would it have changed how this ended?',
-            rationale: 'A value question — she says the worth of an early warning herself, tied to the exact problem that hurt her. Now Netilion answers her own need.' },
+            rationale: 'A value question — he says the worth of an early warning himself, tied to the exact problem that hurt him. Now Netilion answers his own need.' },
           { id: 'b', type: 'solution', quality: 'good', points: 5,
             text: 'That is the difference Heartbeat sees — instrument health, separate from process readings. You would have seen it early.',
-            rationale: 'Accurate and well aimed, but getting her to say the value herself, with a question, would land more deeply.' },
+            rationale: 'Accurate and well aimed, but getting him to say the value himself, with a question, would land more deeply.' },
           { id: 'c', type: 'solution', quality: 'poor', points: 0,
             text: 'A common situation — shall I send examples from similar plants where Heartbeat caught it?',
-            rationale: 'Examples are support material, not a reply to a personal story — it breaks the moment she just opened up to you.' }
+            rationale: 'Examples are support material, not a reply to a personal story — it breaks the moment he just opened up to you.' }
         ]
       },
       {
@@ -798,9 +798,9 @@ const SCENARIOS = [
           { id: 'a', type: 'rapport', quality: 'excellent', points: 10,
             text: 'Fair — I will not add to that pile. The quality standard you are responsible for: what is hardest to keep under control across a production campaign?',
             rationale: 'You stepped past the vendor scepticism and anchored to the standard she is accountable for. Everything that follows connects to a goal she owns.' },
-          { id: 'b', type: 'problem', quality: 'good', points: 5,
+          { id: 'b', type: 'situation', quality: 'good', points: 5,
             text: 'Understood — where in your instrument management process would you say the biggest gaps are right now?',
-            rationale: 'A reasonable problem question, but wide — you are asking her to locate her own gaps. Linking it to a specific quality goal would be sharper.' },
+            rationale: 'A reasonable question, but wide — you are asking her to locate her own gaps. Linking it to a specific quality goal would be sharper.' },
           { id: 'c', type: 'solution', quality: 'poor', points: 0,
             text: 'SAH70 is an on-premise asset health platform that gives you NE 107 health signals across your whole site — shall I show you?',
             rationale: 'You became the dashboard pitch she warned about — features before context confirm her doubts in the first thirty seconds.' }
@@ -879,7 +879,7 @@ const SCENARIOS = [
             text: 'Then let us start small — one production line, your highest-risk instruments, results you can show your VP. Prove it, then expand.',
             rationale: 'You matched her risk level exactly — one line, measured against her compliance goals, in her control, growing only on proof. This is how a careful decision starts.' },
           { id: 'b', type: 'solution', quality: 'good', points: 5,
-            text: 'I would suggest a pilot on one line first, measured against your certification goals, before any wider step.',
+            text: 'I would suggest a pilot on one line first, measured against your compliance goals, before any wider step.',
             rationale: 'The right idea — pilot before rollout, tied to her goals. Naming her highest-risk instruments and her VP Quality goals would make it even stronger.' },
           { id: 'c', type: 'solution', quality: 'poor', points: 0,
             text: 'I will prepare a full site rollout proposal with all the pricing worked out, ready for senior management.',
@@ -1071,7 +1071,7 @@ const SCENARIOS = [
           { id: 'b', type: 'situation', quality: 'good', points: 5,
             text: 'Are those remote stations connected to your SCADA, or are the rounds the main way you collect data from them?',
             rationale: 'A fair connectivity question — it finds out whether SCADA covers the gap. Following up on what happens when it does not would go further.' },
-          { id: 'c', type: 'problem', quality: 'poor', points: 0,
+          { id: 'c', type: 'situation', quality: 'poor', points: 0,
             text: 'Remote analyser drift is the usual problem in distributed networks — is that something your team has had to deal with?',
             rationale: 'You named the problem before he did. A public-sector manager will feel managed rather than heard if a rep seems to have a script about his issues.' }
         ]
@@ -1176,7 +1176,7 @@ const SCENARIOS = [
         instruction: 'Claire opened with a direct question about the CCP connection. She wants precision, not an overview. How do you respond?',
         choices: [
           { id: 'a', type: 'rapport', quality: 'excellent', points: 10,
-            text: 'That is exactly the right question. Before I explain — can I ask how you currently know a CCP temperature sensor is still reading correctly between its monthly calibration checks?',
+            text: 'That is exactly the right question. Before I explain — can I ask how you currently know a CCP temperature sensor is still reading correctly between its scheduled calibration checks?',
             rationale: 'You answered her seriousness with a precise HACCP question about the specific gap. It signals you understand the CCP framework and creates the opening she asked for.' },
           { id: 'b', type: 'situation', quality: 'good', points: 5,
             text: 'Of course — how many CCPs are on your pasteurisation lines, and how often are they currently calibrated?',
@@ -1197,7 +1197,7 @@ const SCENARIOS = [
           { id: 'b', type: 'situation', quality: 'good', points: 5,
             text: 'Is the monthly check done by an external calibration laboratory, or internally by your team?',
             rationale: 'A useful setup question about the calibration resource — it does not yet surface the gap between checks that creates the real risk.' },
-          { id: 'c', type: 'problem', quality: 'poor', points: 0,
+          { id: 'c', type: 'situation', quality: 'poor', points: 0,
             text: 'Monthly checks leave a long window for drift — does that concern you from a food-safety standpoint?',
             rationale: 'You named the risk for her rather than asking the question that makes her see it. A precise QA manager will answer "we manage it" and move on.' }
         ]
@@ -1323,7 +1323,7 @@ const SCENARIOS = [
           { id: 'b', type: 'situation', quality: 'good', points: 5,
             text: 'When the maintenance window does happen — is the health check a full calibration against a reference standard, or a functional check?',
             rationale: 'A fair question about what the window check covers — a question about the blind period between windows would go further toward the real risk.' },
-          { id: 'c', type: 'problem', quality: 'poor', points: 0,
+          { id: 'c', type: 'solution', quality: 'poor', points: 0,
             text: 'That kind of health gap in a protection loop is exactly where Heartbeat adds value — continuous diagnostics surface degradation before it matters.',
             rationale: 'You gave away the conclusion before he worked through the problem. He asked for technical precision — give him the question, not the answer.' }
         ]
@@ -1427,7 +1427,7 @@ const SCENARIOS = [
         title: 'Opening Move',
         instruction: 'James gave you ten minutes and wants a direct commercial answer. How do you start?',
         choices: [
-          { id: 'a', type: 'problem', quality: 'excellent', points: 10,
+          { id: 'a', type: 'situation', quality: 'excellent', points: 10,
             text: 'Simple: it gives you an early warning before an instrument drift touches your recovery number. In your flotation feed — how do you currently find out an instrument has started to drift?',
             rationale: 'One sentence connecting the tool to his KPI, then a direct question about his current detection gap. Right pace and commercial register for James.' },
           { id: 'b', type: 'situation', quality: 'good', points: 5,
